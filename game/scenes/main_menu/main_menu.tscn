@@ -1,0 +1,110 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/main_menu/background.jpg" type="Texture" id=2]
+
+[node name="main_menu_scene" type="Control"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="TextureFrame" type="TextureFrame" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = -896.0
+margin/bottom = -771.0
+texture = ExtResource( 2 )
+stretch_mode = 0
+
+[node name="main_menu_panel" type="Panel" parent="."]
+
+editor/display_folded = true
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 126.0
+margin/top = 0.0
+margin/right = 388.0
+margin/bottom = 0.0
+
+[node name="main_menu_v_container" type="VBoxContainer" parent="main_menu_panel"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+alignment = 1
+
+[node name="menu_entry_1" type="Button" parent="main_menu_panel/main_menu_v_container"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 246.0
+margin/right = 262.0
+margin/bottom = 282.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Menu entry 1"
+flat = false
+
+[node name="menu_entry_2" type="Button" parent="main_menu_panel/main_menu_v_container"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 282.0
+margin/right = 262.0
+margin/bottom = 318.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Menu entry 2"
+flat = false
+
+[node name="menu_entry_3" type="Button" parent="main_menu_panel/main_menu_v_container"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 318.0
+margin/right = 262.0
+margin/bottom = 354.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Menu entry 3"
+flat = false
+
+

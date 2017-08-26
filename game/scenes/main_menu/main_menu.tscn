@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
-[ext_resource path="res://scenes/main_menu/background.jpg" type="Texture" id=2]
+[ext_resource path="res://scenes/main_menu/main_menu.gd" type="Script" id=2]
+[ext_resource path="res://scenes/main_menu/background.jpg" type="Texture" id=3]
 
 [node name="main_menu_scene" type="Control"]
 
@@ -16,8 +17,9 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
+script/script = ExtResource( 2 )
 
-[node name="TextureFrame" type="TextureFrame" parent="."]
+[node name="background" type="TextureFrame" parent="."]
 
 anchor/right = 1
 anchor/bottom = 1
@@ -29,12 +31,11 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = -896.0
 margin/bottom = -771.0
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 stretch_mode = 0
 
-[node name="main_menu_panel" type="Panel" parent="."]
+[node name="buttonsPanel" type="Panel" parent="."]
 
-editor/display_folded = true
 anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -45,7 +46,7 @@ margin/top = 0.0
 margin/right = 388.0
 margin/bottom = 0.0
 
-[node name="main_menu_v_container" type="VBoxContainer" parent="main_menu_panel"]
+[node name="buttonsContainer" type="VBoxContainer" parent="buttonsPanel"]
 
 anchor/right = 1
 anchor/bottom = 1
@@ -59,7 +60,7 @@ margin/right = 0.0
 margin/bottom = 0.0
 alignment = 1
 
-[node name="menu_entry_1" type="Button" parent="main_menu_panel/main_menu_v_container"]
+[node name="start" type="Button" parent="buttonsPanel/buttonsContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -72,10 +73,10 @@ margin/bottom = 282.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Menu entry 1"
+text = "Scene de test"
 flat = false
 
-[node name="menu_entry_2" type="Button" parent="main_menu_panel/main_menu_v_container"]
+[node name="menu_entry_2" type="Button" parent="buttonsPanel/buttonsContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -88,10 +89,10 @@ margin/bottom = 318.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Menu entry 2"
+text = "Unusefull button"
 flat = false
 
-[node name="menu_entry_3" type="Button" parent="main_menu_panel/main_menu_v_container"]
+[node name="exit" type="Button" parent="buttonsPanel/buttonsContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -104,7 +105,7 @@ margin/bottom = 354.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Menu entry 3"
+text = "Quitter"
 flat = false
 
 

@@ -2,9 +2,8 @@ extends Sprite
 
 var lig
 var col
-var rotation = 0 setget set_rotation
 const CONSTS = preload("res://engine/consts.gd")
-var tile_type = null
+var robot_id = 1
 var root = null
 
 func set_sprite_pos_size():
@@ -14,21 +13,12 @@ func set_sprite_pos_size():
 	var scale = Vector2(tile_size / float(t.get_height()), tile_size / float(t.get_width()))
 	set_scale(scale)
 
-func set_rotation(value):
-	value = int(value)%4;
-	set_rot(float(value) * 2 * PI /4)
-
 func _ready():
 	root = get_parent().get_parent()
-	set_texture(load("res://scenes/game/tiles/" + tile_type + ".png"))
+	set_texture(load("res://scenes/game/robots/robot_" + str(robot_id) + ".png"))
 	set_sprite_pos_size()
 	
-func _init(_lig, _col):
+func custom_init(_lig, _col, _robot_id):
 	lig = _lig
 	col = _col
-	
-static func createTile(type, lig, col):
-	var tileClass = load("res://engine/tiles/" + type + "_tile.gd")
-	var tile = tileClass.new(lig, col)
-	tile.tile_type = type
-	return tile
+	robot_id = _robot_id

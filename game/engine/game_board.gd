@@ -3,22 +3,29 @@ extends Node2D
 var height = 0 setget resize_height
 var width = 0 setget resize_width
 var grid = []
-export var tilesSize = 30 setget resize_tiles
+var robots = {}
+export var tile_size = 30 setget resize_tiles
 var mode = "game"
 var active = false
 
-const TILE_CLASS = preload("res://engine/tile.gd")
+const TILE_CLASS = preload("res://engine/tiles/floor_tile.gd")
 
-func get_new_tile(line, col):
-	var tile = TILE_CLASS.new(line, col, tilesSize)
-	add_child(tile)
+func get_new_tile(line, col, type = "floor"):
+	var tile = TILE_CLASS.createTile(type, line, col)
+	get_node("tiles").add_child(tile)
 	return tile
 
+func add_new_robot(line, col, id_robot):
+	var robot = preload("res://engine/robot.tscn").instance()
+	robot.custom_init(line, col, id_robot)
+	get_node("robots").add_child(robot)
+	robots[id_robot] = robot
+
 func resize_tiles(value):
-	tilesSize = value
+	tile_size = value
 	for line in grid:
 		for tile in line:
-			tile.tileSize = tilesSize
+			tile.set_sprite_pos_size()
 
 func resize_height(newHeight):
 	for line in range(newHeight, height):
@@ -44,9 +51,7 @@ func resize_width(newWidth):
 	width = newWidth
 
 func _ready():
-	resize_height(5)
-	resize_width(2)
-	grid[1][1].rotation = 1
+	pass
 
 func _init():
 	pass

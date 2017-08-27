@@ -15,6 +15,16 @@ func get_new_tile(line, col, type = "floor"):
 	get_node("tiles").add_child(tile)
 	return tile
 
+func set_tile_type(line, col, type = "floor"):
+	var old = grid[line][col]
+	if old.tile_type == type:
+		return
+	old.close_propertie()
+	var new_tile = get_new_tile(line, col, type)
+	new_tile.rotation = old.rotation
+	grid[line][col] = new_tile
+	old.queue_free()
+
 func add_new_robot(line, col, id_robot):
 	var robot = preload("res://engine/robot.tscn").instance()
 	robot.custom_init(line, col, id_robot)
@@ -26,6 +36,8 @@ func resize_tiles(value):
 	for line in grid:
 		for tile in line:
 			tile.set_sprite_pos_size()
+	for robot_id in robots:
+		robots[robot_id].set_sprite_pos_size()
 
 func resize_height(newHeight):
 	for line in range(newHeight, height):

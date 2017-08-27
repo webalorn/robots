@@ -12,3 +12,11 @@ func _ready():
 	buttons = get_node("buttonsPanel/buttonsContainer")
 	buttons.get_node("start").connect("pressed", self, "load_test_game")
 	buttons.get_node("exit").connect("pressed", self, "exit_game")
+	
+#	get_tree().set_auto_accept_quit(false)
+	print(OS.get_name(), " debug: ", OS.is_debug_build())
+
+func _notification(what):
+	pass
+#	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+#		OS.alert("Ne pas quitter !")

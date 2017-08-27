@@ -25,6 +25,8 @@ func _ready():
 	processor.call_deferred("move_robot", 2, CONSTS.DIRS.DOWN)
 	yield(processor, "processing_end")
 	processor.call_deferred("move_robot", 1, CONSTS.DIRS.RIGHT)
+	yield(processor, "processing_end")
+	processor.call_deferred("move_robot", 1, CONSTS.DIRS.DOWN)
 
 func scene_init(params):
 	print("Game init with params: ", params)

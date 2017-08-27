@@ -30,6 +30,9 @@ func _init(_lig, _col):
 func close_propertie(): # Used to convert tiles: unlink portal, set activated
 	pass
 	
+func get_entering_result(direction):
+	return {action = CONSTS.destroyed}
+	
 static func createTile(type, lig, col):
 	var tileClass = load("res://engine/tiles/" + type + "_tile.gd")
 	var tile = tileClass.new(lig, col)

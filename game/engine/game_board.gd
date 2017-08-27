@@ -31,6 +31,12 @@ func add_new_robot(line, col, id_robot):
 	get_node("robots").add_child(robot)
 	robots[id_robot] = robot
 
+func robot_on_cell(line, col):
+	for id in robots:
+		if robots[id].line == line and robots[id].col == col:
+			return robots[id]
+	return null
+
 func resize_tiles(value):
 	tile_size = value
 	for line in grid:
@@ -51,6 +57,10 @@ func resize_height(newHeight):
 	
 	height = newHeight
 	
+func pos_in_grid(lig, col):
+	if lig < 0 or col < 0 or lig >= height or col >= width:
+		return false
+	return true
 	
 func resize_width(newWidth):
 	for line in range(height):

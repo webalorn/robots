@@ -6,6 +6,8 @@ const blocked = "blocked"
 const move = "move"
 const lost_in_space = "lost_in_space"
 const destroyed = "destroyed"
+const teleport = "teleport"
+const portal_blocked = "portal_blocked"
 
 static func invertDir(dir):
 	if dir == DIRS.UP:

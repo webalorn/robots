@@ -24,6 +24,7 @@ func set_tile_type(line, col, type = "floor"):
 	new_tile.rotation = old.rotation
 	grid[line][col] = new_tile
 	old.queue_free()
+	return new_tile
 
 func add_new_robot(line, col, id_robot):
 	var robot = preload("res://engine/robot.tscn").instance()
@@ -33,7 +34,7 @@ func add_new_robot(line, col, id_robot):
 
 func robot_on_cell(line, col):
 	for id in robots:
-		if robots[id].line == line and robots[id].col == col:
+		if robots[id].line == line and robots[id].col == col and not robots[id].destroyed:
 			return robots[id]
 	return null
 
@@ -57,8 +58,8 @@ func resize_height(newHeight):
 	
 	height = newHeight
 	
-func pos_in_grid(lig, col):
-	if lig < 0 or col < 0 or lig >= height or col >= width:
+func pos_in_grid(line, col):
+	if line < 0 or col < 0 or line >= height or col >= width:
 		return false
 	return true
 	

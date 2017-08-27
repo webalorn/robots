@@ -43,6 +43,16 @@ func action_lost_in_space(params):
 	self.destroyed = true
 	emit_signal("signal_action_end")
 
+func action_teleport(params):
+	line = params.teleport_to.line
+	col = params.teleport_to.col
+	set_sprite_pos_size()
+	emit_signal("signal_action_end")
+
+func action_portal_blocked(params):
+	print("Can't teleport")
+	emit_signal("signal_action_end")
+
 ####################
 ##     Init       ##
 ####################

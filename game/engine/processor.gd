@@ -15,7 +15,11 @@ func move_robot(id_robot, direction):
 		var next_pos = CONSTS.apply_move(robot.line, robot.col, direction)
 	
 		var action_result = {action = null, tile_type = null}
-		if not board.pos_in_grid(next_pos.line, next_pos.col):
+		var situation = [robot.line, robot.col, direction]
+		
+		if previous_locations.has(situation):
+			action_result.action = CONSTS.destroyed
+		elif not board.pos_in_grid(next_pos.line, next_pos.col):
 			action_result.action = CONSTS.lost_in_space
 		elif board.robot_on_cell(next_pos.line, next_pos.col):
 			action_result.action = CONSTS.blocked
@@ -25,11 +29,13 @@ func move_robot(id_robot, direction):
 			action_result = next_tile.get_entering_result(enterSide)
 			action_result.tile_type = next_tile.tile_type
 		
+		previous_locations[situation] = true
+		
 		action_result.to_cell = next_pos
 		if action_result.has("direction"):
 			direction = int(action_result.direction)%4
 		
-		if not action_result.action in [CONSTS.blocked]:
+		if not action_result.action in [CONSTS.blocked, CONSTS.portal_blocked]:
 			robot.connect("signal_action_end", self, "move_robot", [id_robot, direction])
 			robot.call("action_" + action_result.action, action_result)
 		else:

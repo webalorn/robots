@@ -54,4 +54,16 @@ func _init(_line, _col, _robot_id).(_line, _col):
 	robot_id = _robot_id
 
 func save():
-	return {}
+	var s = .save()
+	s.robot_id = robot_id
+	s.destroyed = destroyed
+	return s
+	
+func _load(s):
+	._load(s)
+	destroyed = s.destroyed
+	
+static func load_from(s):
+	var robot = new(s.line, s.col, s.robot_id)
+	robot._load(s)
+	return robot

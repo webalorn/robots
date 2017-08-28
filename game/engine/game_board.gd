@@ -8,6 +8,7 @@ export var tile_size = 30 setget resize_tiles
 var mode = "game"
 
 const TILE_CLASS = preload("res://engine/tiles/floor_tile.gd")
+const ROBOT_CLASS = preload("res://engine/robot.gd")
 
 func get_new_tile(line, col, type = "floor"):
 	var tile = TILE_CLASS.createTile(type, line, col)
@@ -26,7 +27,7 @@ func set_tile_type(line, col, type = "floor"):
 	return new_tile
 
 func add_new_robot(line, col, id_robot):
-	var robot = preload("res://engine/robot.gd").new(line, col, id_robot)
+	var robot = ROBOT_CLASS.new(line, col, id_robot)
 	get_node("robots").add_child(robot)
 	robots[id_robot] = robot
 
@@ -71,11 +72,12 @@ func resize_width(newWidth):
 	
 	width = newWidth
 
-func _ready():
-	pass
-
-func _init():
-	pass
+func clear():
+	resize_width(0)
+	resize_height(0)
+	for id in robots:
+		robots[id].queue_free()
+	robots = []
 
 func save():
 	var s = {
@@ -83,6 +85,7 @@ func save():
 		grid = [],
 		width = self.width,
 		height = self.height,
+		save_version = save_manager.SAVE_VERSION
 	}
 	for id in robots:
 		s.robots[id] = robots[id].save()
@@ -91,3 +94,17 @@ func save():
 		for tile in line:
 			s.grid[-1].push_back(tile.save())
 	return s
+
+func load_from(s):
+	self.clear()
+	height = s.height
+	width = s.width
+	grid = s.grid
+	robots = s.robots
+	for line in grid:
+		for tile in line:
+			tile = TILE_CLASS.load_from(tile)
+			get_node("tiles").add_child(tile)
+	for id in robots:
+		robots[id] = ROBOT_CLASS.load_from(robots[id])
+		get_node("robots").add_child(robots[id])

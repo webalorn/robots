@@ -24,7 +24,19 @@ func close_propertie(): # Used to convert tiles: unlink portal, remove reference
 	pass
 
 func save():
-	return {}
+	var s = .save()
+	s.tile_type = tile_type
+	s.rotation = rotation
+	return s
+	
+func _load(s):
+	._load(s)
+	rotation = s.rotation
+	
+static func load_from(s):
+	var tile = createTile(s.tile_type, s.line, s.col)
+	tile._load(s)
+	return tile
 
 static func createTile(type, line, col):
 	var tileClass = load("res://engine/tiles/" + type + "_tile.gd")

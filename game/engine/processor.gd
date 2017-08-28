@@ -1,22 +1,21 @@
 extends Reference
 
 var board
-var CONSTS
 signal processing_end
 var previous_locations = {} # TODO: use this
 
 func move_robot(id_robot, direction):
 	var robot = board.robots[id_robot]
-	
+
 	if robot.is_connected("signal_action_end", self, "move_robot"):
 		robot.disconnect("signal_action_end", self, "move_robot")
-	
+
 	if not robot.destroyed and direction != null:
 		var next_pos = CONSTS.apply_move(robot.line, robot.col, direction)
-	
+
 		var action_result = {action = null, tile_type = null}
 		var situation = [robot.line, robot.col, direction]
-		
+
 		if previous_locations.has(situation):
 			action_result.action = CONSTS.destroyed
 		elif not board.pos_in_grid(next_pos.line, next_pos.col):
@@ -30,11 +29,11 @@ func move_robot(id_robot, direction):
 			action_result.tile_type = next_tile.tile_type
 		
 		previous_locations[situation] = true
-		
+
 		action_result.to_cell = next_pos
 		if action_result.has("direction"):
 			direction = int(action_result.direction)%4
-		
+
 		if not action_result.action in [CONSTS.blocked, CONSTS.portal_blocked]:
 			robot.connect("signal_action_end", self, "move_robot", [id_robot, direction])
 			robot.call("action_" + action_result.action, action_result)
@@ -46,4 +45,3 @@ func move_robot(id_robot, direction):
 
 func _init(_board):
 	board = _board
-	CONSTS = preload("res://engine/consts.gd")

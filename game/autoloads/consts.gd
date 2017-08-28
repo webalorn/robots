@@ -1,4 +1,4 @@
-extends Reference
+extends Node
 
 enum DIRS {UP = 0, LEFT = 1, DOWN = 2, RIGHT = 3}
 
@@ -9,7 +9,7 @@ const destroyed = "destroyed"
 const teleport = "teleport"
 const portal_blocked = "portal_blocked"
 
-static func invertDir(dir):
+func invertDir(dir):
 	if dir == DIRS.UP:
 		return DIRS.DOWN
 	if dir == DIRS.DOWN:
@@ -18,10 +18,10 @@ static func invertDir(dir):
 		return DIRS.RIGHT
 	return DIRS.LEFT
 
-static func real_side(tileSide, tileRotation):
+func real_side(tileSide, tileRotation):
 	return (tileSide + 4 - tileRotation)%4
 	
-static func apply_move(line, col, move):
+func apply_move(line, col, move):
 	if move == DIRS.UP:
 		line -= 1
 	elif move == DIRS.DOWN:

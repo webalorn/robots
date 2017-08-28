@@ -1,11 +1,9 @@
 extends Control
 
-var CONSTS
 var processor
 
 func _ready():
 	var board = get_node("board")
-	CONSTS = preload("res://engine/consts.gd")
 	
 	board.width = 10
 	board.height = 8
@@ -25,6 +23,9 @@ func _ready():
 	p2.linked_to = p1
 	p2.rotation = CONSTS.DIRS.DOWN;
 	
+	var save = board.save()
+	save_manager.save_to("user://saves/test.dat", save)
+	
 	processor = preload("res://engine/processor.gd").new(board)
 	processor.move_robot(1, CONSTS.DIRS.DOWN)
 	yield(processor, "processing_end")
@@ -32,7 +33,9 @@ func _ready():
 	yield(processor, "processing_end")
 	processor.call_deferred("move_robot", 1, CONSTS.DIRS.RIGHT)
 	yield(processor, "processing_end")
-	processor.call_deferred("move_robot", 1, CONSTS.DIRS.DOWN)
+	#processor.call_deferred("move_robot", 1, CONSTS.DIRS.DOWN)
+	
+	board.load_from(save)
 
 func scene_init(params):
 	print("Game init with params: ", params)

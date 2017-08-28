@@ -3,7 +3,6 @@ extends Node2D
 var view = null
 var line
 var col
-const CONSTS = preload("res://engine/consts.gd")
 var root = null
 
 func set_sprite_pos_size():
@@ -23,3 +22,12 @@ func _ready():
 func _init(_line, _col):
 	line = _line
 	col = _col
+
+func save():
+	return {
+		line = line,
+		col = col
+	}
+
+func _load(s):
+	pass

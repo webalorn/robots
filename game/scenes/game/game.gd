@@ -21,7 +21,7 @@ func _ready():
 	board.set_tile_type(4, 4, "space")
 	
 	var p1 = board.set_tile_type(6, 2, "portal")
-	var p2 = board.set_tile_type(2, 2, "portal")
+	var p2 = board.set_tile_type (2, 2, "portal")
 	p2.linked_to = p1
 	p2.rotation = CONSTS.DIRS.DOWN;
 	

@@ -3,7 +3,7 @@ extends "special_tile.gd"
 var linked_to = null setget link_to
 var FLOOR_CLASS = preload("res://engine/tiles/floor_tile.gd")
 
-func _init(a, b).(a, b):
+func _init(a, b, c).(a, b, c):
 	pass
 
 func unlink():

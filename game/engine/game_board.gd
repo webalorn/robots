@@ -26,8 +26,7 @@ func set_tile_type(line, col, type = "floor"):
 	return new_tile
 
 func add_new_robot(line, col, id_robot):
-	var robot = preload("res://engine/robot.tscn").instance()
-	robot.custom_init(line, col, id_robot)
+	var robot = preload("res://engine/robot.gd").new(line, col, id_robot)
 	get_node("robots").add_child(robot)
 	robots[id_robot] = robot
 

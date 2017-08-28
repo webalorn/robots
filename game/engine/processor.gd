@@ -5,7 +5,7 @@ signal processing_end
 var previous_locations = {} # TODO: use this
 
 func move_robot(id_robot, direction):
-	var robot = board.robots[id_robot]
+	var robot = board.robots[str(id_robot)]
 
 	if robot.is_connected("signal_action_end", self, "move_robot"):
 		robot.disconnect("signal_action_end", self, "move_robot")

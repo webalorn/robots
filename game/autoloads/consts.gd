@@ -19,7 +19,7 @@ func invertDir(dir):
 	return DIRS.LEFT
 
 func real_side(tileSide, tileRotation):
-	return (tileSide + 4 - tileRotation)%4
+	return int(tileSide + 4 - tileRotation)%4
 	
 func apply_move(line, col, move):
 	if move == DIRS.UP:

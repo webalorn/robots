@@ -23,8 +23,7 @@ func _ready():
 	p2.linked_to = p1
 	p2.rotation = CONSTS.DIRS.DOWN;
 	
-	var save = board.save()
-	save_manager.save_to("user://saves/test.dat", save)
+	save_manager.save_to("user://saves/first_save.dat", board.save())
 	
 	processor = preload("res://engine/processor.gd").new(board)
 	processor.move_robot(1, CONSTS.DIRS.DOWN)
@@ -33,9 +32,10 @@ func _ready():
 	yield(processor, "processing_end")
 	processor.call_deferred("move_robot", 1, CONSTS.DIRS.RIGHT)
 	yield(processor, "processing_end")
-	#processor.call_deferred("move_robot", 1, CONSTS.DIRS.DOWN)
+	processor.call_deferred("move_robot", 1, CONSTS.DIRS.DOWN)
+	yield(processor, "processing_end")
 	
-	board.load_from(save)
+	board.load_from(save_manager.read("user://saves/first_save.dat"))
 
 func scene_init(params):
 	print("Game init with params: ", params)

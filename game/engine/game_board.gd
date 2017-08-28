@@ -3,7 +3,7 @@ extends Node2D
 var height = 0 setget resize_height
 var width = 0 setget resize_width
 var grid = []
-var robots = {}
+var robots = Dictionary()
 export var tile_size = 30 setget resize_tiles
 var mode = "game"
 
@@ -27,9 +27,9 @@ func set_tile_type(line, col, type = "floor"):
 	return new_tile
 
 func add_new_robot(line, col, id_robot):
-	var robot = ROBOT_CLASS.new(line, col, id_robot)
+	var robot = ROBOT_CLASS.new(line, col, str(id_robot))
 	get_node("robots").add_child(robot)
-	robots[id_robot] = robot
+	robots[str(id_robot)] = robot
 
 func robot_on_cell(line, col):
 	for id in robots:
@@ -102,9 +102,9 @@ func load_from(s):
 	grid = s.grid
 	robots = s.robots
 	for line in grid:
-		for tile in line:
-			tile = TILE_CLASS.load_from(tile)
-			get_node("tiles").add_child(tile)
+		for col in range(line.size()):
+			line[col] = TILE_CLASS.load_from(line[col])
+			get_node("tiles").add_child(line[col])
 	for id in robots:
 		robots[id] = ROBOT_CLASS.load_from(robots[id])
 		get_node("robots").add_child(robots[id])

@@ -66,3 +66,6 @@ func custom_init(_line, _col, _robot_id):
 	line = _line
 	col = _col
 	robot_id = _robot_id
+
+func save():
+	return {}

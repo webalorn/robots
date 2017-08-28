@@ -6,7 +6,6 @@ var grid = []
 var robots = {}
 export var tile_size = 30 setget resize_tiles
 var mode = "game"
-var active = false
 
 const TILE_CLASS = preload("res://engine/tiles/floor_tile.gd")
 
@@ -78,3 +77,18 @@ func _ready():
 
 func _init():
 	pass
+
+func save():
+	var s = {
+		robots = {},
+		grid = [],
+		width = self.width,
+		height = self.height,
+	}
+	for id in robots:
+		s.robots[id] = robots[id].save()
+	for line in grid:
+		s.grid.push_back([])
+		for tile in line:
+			s.grid[-1].push_back(tile.save())
+	return s

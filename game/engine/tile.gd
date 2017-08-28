@@ -17,6 +17,9 @@ func set_sprite_pos_size():
 func set_rotation(value):
 	rotation = int(value)%4;
 	set_rot(float(rotation) * 2 * PI /4)
+	
+func get_entering_result(direction):
+	return {action = CONSTS.destroyed}
 
 func _ready():
 	root = get_parent().get_parent()
@@ -32,10 +35,10 @@ func change_type(type):
 
 func close_propertie(): # Used to convert tiles: unlink portal, remove references...
 	pass
-	
-func get_entering_result(direction):
-	return {action = CONSTS.destroyed}
-	
+
+func save():
+	return {}
+
 static func createTile(type, line, col):
 	var tileClass = load("res://engine/tiles/" + type + "_tile.gd")
 	var tile = tileClass.new(line, col)

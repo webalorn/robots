@@ -37,6 +37,7 @@ func move_robot(id_robot, direction):
 		previous_locations[situation] = true
 
 		action_result.to_cell = next_pos
+		action_result.action_direction = direction
 		if action_result.has("direction"):
 			direction = int(action_result.direction)%4
 

@@ -50,7 +50,7 @@ func move_robot(id_robot, direction):
 		if previous_locations.size() > 1:
 			var tile = board.grid[robot.line][robot.col]
 			if tile.has_method("robot_enter"):
-				tile.robot_exit(robot)
+				tile.robot_enter(robot)
 		previous_locations = {}
 		emit_signal("processing_end")
 

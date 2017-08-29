@@ -3,6 +3,9 @@ extends Control
 var processor
 
 func _ready():
+	tmp_gen_board();
+
+func tmp_gen_board():
 	var board = get_node("board")
 	
 	board.width = 10
@@ -27,10 +30,10 @@ func _ready():
 	p1.set_is_active(false)
 	b1.add_target(p1)
 	
+	return
+	
 	save_manager.save_to("user://saves/first_save.dat", board.save())
 	board.load_from(save_manager.read("user://saves/first_save.dat"))
-	
-	print(p1.is_active())
 	
 	processor = preload("res://engine/processor.gd").new(board)
 	processor.move_robot(1, CONSTS.DIRS.DOWN)
@@ -44,3 +47,6 @@ func _ready():
 
 func scene_init(params):
 	print("Game init with params: ", params)
+
+func exit():
+	global.goto_scene("main_menu")

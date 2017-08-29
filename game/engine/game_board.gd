@@ -99,12 +99,17 @@ func load_from(s):
 	self.clear()
 	height = s.height
 	width = s.width
-	grid = s.grid
+	grid = []
 	robots = s.robots
-	for line in grid:
-		for col in range(line.size()):
-			line[col] = TILE_CLASS.load_from(line[col])
-			get_node("tiles").add_child(line[col])
+	for line in range(height):
+		grid.push_back([])
+		for col in range(width):
+			grid[line].push_back([])
+			grid[line][col] = TILE_CLASS.load_from(s.grid[line][col])
+			get_node("tiles").add_child(grid[line][col])
+	for line in range(height):
+		for col in range(width):
+			grid[line][col].load_refs_from(s.grid[line][col])
 	for id in robots:
 		robots[id] = ROBOT_CLASS.load_from(robots[id])
 		get_node("robots").add_child(robots[id])

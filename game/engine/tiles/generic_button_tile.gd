@@ -23,8 +23,7 @@ func remove_target(tile):
 func invert_state():
 	pushed = not pushed
 	for key in targets:
-		if targets[key].has_method("set_active"):
-			targets[key].active = !targets[key].active
+		targets[key].set_is_active(not targets[key].is_active())
 
 func _init(a, b, c).(a, b, c):
 	pass

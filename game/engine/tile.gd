@@ -6,7 +6,14 @@ var tile_type = null
 func set_rotation(value):
 	rotation = int(value)%4;
 	set_rot(float(rotation) * 2 * PI /4)
-	
+
+func is_active():
+	return true if not self.has_method("set_active") else self.active
+
+func set_is_active(value):
+	if self.has_method("set_active"):
+		self.active = value
+
 func get_entering_result(direction):
 	return {action = CONSTS.destroyed}
 
@@ -28,16 +35,21 @@ func save():
 	var s = .save()
 	s.tile_type = tile_type
 	s.rotation = rotation
+	s.active = self.is_active()
 	return s
 	
 func _load(s):
 	._load(s)
-	rotation = s.rotation
+	self.set_is_active(s.active)
+	self.rotation = s.rotation
 	
 static func load_from(s):
 	var tile = createTile(s.tile_type, s.line, s.col)
 	tile._load(s)
 	return tile
+
+func load_refs_from(s): # targets, links, etc... can't be created in "_load"
+	pass
 
 static func createTile(type, line, col):
 	var tileClass = load("res://engine/tiles/" + type + "_tile.gd")

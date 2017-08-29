@@ -7,6 +7,16 @@ var active = true setget set_active
 func _init(a, b, c).(a, b, c):
 	pass
 
+func save():
+	var s = .save()
+	if linked_to:
+		s.linked_to = {line = linked_to.line, col = linked_to.col}
+	return s
+
+func load_refs_from(s):
+	if s.has("linked_to"):
+		link_to(root.grid[s.linked_to.line][s.linked_to.col])
+
 func set_active(value):
 	value = true if value else false
 	active = value
@@ -19,6 +29,8 @@ func unlink():
 		linked_to = null
 
 func link_to(portal):
+	if linked_to == portal:
+		return
 	if not linked_to and portal.linked_to == self:
 		linked_to = portal
 	else:

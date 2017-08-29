@@ -1,8 +1,18 @@
 extends "floor_tile.gd"
 
 var pushed = false
-
 var targets = {}
+
+func save():
+	var s = .save()
+	s.targets = []
+	for key in targets:
+		s.targets.push_back({line = key.x, col = key.y})
+	return s
+
+func load_refs_from(s):
+	for pos in s.targets:
+		targets[Vector2(pos.line, pos.col)] = root.grid[pos.line][pos.col]
 
 func _remove_target_by_key(key):
 	targets[key].disconnect("exit_tree", self, "remove_target")

@@ -18,7 +18,7 @@ func _ready():
 	board.set_tile_type(4, 1, "wall")
 	board.set_tile_type(4, 4, "space")
 	
-	var b1 = board.set_tile_type(3, 1, "push_button")
+	var b1 = board.set_tile_type(3, 1, "big_button")
 	
 	var p1 = board.set_tile_type(6, 2, "portal")
 	var p2 = board.set_tile_type (1, 2, "portal")

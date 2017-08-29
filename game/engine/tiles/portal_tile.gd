@@ -2,9 +2,16 @@ extends "special_tile.gd"
 
 var linked_to = null setget link_to
 var FLOOR_CLASS = preload("res://engine/tiles/floor_tile.gd")
+var active = true setget set_active
 
 func _init(a, b, c).(a, b, c):
 	pass
+
+func set_active(value):
+	value = true if value else false
+	active = value
+	if linked_to and linked_to.active != active:
+		linked_to.active = active
 
 func unlink():
 	if linked_to:
@@ -19,6 +26,11 @@ func link_to(portal):
 		portal.unlink()
 		linked_to = portal
 		portal.linked_to = self
+		
+		if portal.active or active:
+			set_active(true)
+		else:
+			set_active(false)
 
 func close_propertie():
 	unlink()

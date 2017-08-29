@@ -22,6 +22,7 @@ func action_move(params):
 	emit_signal("signal_action_end")
 
 func action_blocked(params):
+	return null
 	emit_signal("signal_action_end")
 
 func action_destroyed(params):

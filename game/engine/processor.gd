@@ -2,7 +2,8 @@ extends Reference
 
 var board
 signal processing_end
-var previous_locations = {} # TODO: use this
+var previous_locations = {}
+var no_move_actions = [CONSTS.blocked, CONSTS.portal_blocked]
 
 func move_robot(id_robot, direction):
 	var robot = board.robots[str(id_robot)]
@@ -28,18 +29,27 @@ func move_robot(id_robot, direction):
 			action_result = next_tile.get_entering_result(enterSide)
 			action_result.tile_type = next_tile.tile_type
 		
+		if not action_result in no_move_actions and previous_locations.empty():
+			var tile = board.grid[robot.line][robot.col]
+			if tile.has_method("robot_exit"):
+				tile.robot_exit(robot)
+		
 		previous_locations[situation] = true
 
 		action_result.to_cell = next_pos
 		if action_result.has("direction"):
 			direction = int(action_result.direction)%4
 
-		if not action_result.action in [CONSTS.blocked, CONSTS.portal_blocked]:
+		if not action_result.action in no_move_actions:
 			robot.connect("signal_action_end", self, "move_robot", [id_robot, direction])
 			robot.call("action_" + action_result.action, action_result)
 		else:
 			move_robot(id_robot, null)
 	else:
+		if previous_locations.size() > 1:
+			var tile = board.grid[robot.line][robot.col]
+			if tile.has_method("robot_enter"):
+				tile.robot_exit(robot)
 		previous_locations = {}
 		emit_signal("processing_end")
 

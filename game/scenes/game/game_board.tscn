@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=2 format=1]
 
 [ext_resource path="res://engine/game_board.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
 
 [node name="board" type="Node2D"]
 
@@ -11,11 +10,5 @@ tile_size = 30
 [node name="tiles" type="Node2D" parent="."]
 
 [node name="robots" type="Node2D" parent="."]
-
-[node name="Sprite" type="Sprite" parent="."]
-
-visibility/visible = false
-transform/pos = Vector2( 68.9931, 49.4725 )
-texture = ExtResource( 2 )
 
 

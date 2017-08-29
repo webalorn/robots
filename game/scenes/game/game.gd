@@ -22,6 +22,7 @@ func _ready():
 	var p2 = board.set_tile_type (2, 2, "portal")
 	p2.linked_to = p1
 	p2.rotation = CONSTS.DIRS.DOWN;
+	p1.active = false
 	
 	save_manager.save_to("user://saves/first_save.dat", board.save())
 	

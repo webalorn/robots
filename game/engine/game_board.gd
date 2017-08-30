@@ -60,11 +60,6 @@ func resize_height(newHeight):
 	
 	height = newHeight
 	
-func pos_in_grid(line, col):
-	if line < 0 or col < 0 or line >= height or col >= width:
-		return false
-	return true
-	
 func resize_width(newWidth):
 	for line in range(height):
 		for col in range(newWidth, width):
@@ -74,6 +69,11 @@ func resize_width(newWidth):
 			grid[line].push_back(get_new_tile(line, col))
 	
 	width = newWidth
+	
+func pos_in_grid(line, col):
+	if line < 0 or col < 0 or line >= height or col >= width:
+		return false
+	return true
 
 func get_board_size():
 	return Vector2(width * tile_size, height * tile_size)

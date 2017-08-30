@@ -4,10 +4,12 @@ var processor
 var board
 var camera
 var input_manager
+var game_view
 
 func _ready():
-	board = get_node("view/board")
-	camera = get_node("view/camera")
+	game_view = get_node("view")
+	board = game_view.get_node("board")
+	camera = game_view.get_node("camera")
 	processor = preload("res://engine/processor.gd").new(board)
 	input_manager = preload("res://scenes/game/game_input_manager.gd").new(self)
 	
@@ -44,6 +46,7 @@ func tmp_gen_board():
 	board.load_from(save_manager.read("user://saves/first_save.dat"))
 	
 	processor.move_robot(1, CONSTS.DIRS.DOWN)
+	# camera.change_parent(board)
 	# camera.change_parent(board.robots['1'])
 	yield(processor, "processing_end")
 	

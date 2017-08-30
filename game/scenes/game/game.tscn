@@ -59,6 +59,7 @@ popup/exclusive = false
 
 [node name="menu" type="PopupPanel" parent="."]
 
+editor/display_folded = true
 visibility/visible = false
 anchor/left = 3
 anchor/right = 3
@@ -154,7 +155,7 @@ limit/right = 10000000
 limit/bottom = 10000000
 drag_margin/h_enabled = true
 drag_margin/v_enabled = true
-smoothing/enable = false
+smoothing/enable = true
 smoothing/speed = 5.0
 drag_margin/left = 0.2
 drag_margin/top = 0.2
@@ -168,8 +169,6 @@ margin_size = 0.2
 [connection signal="pressed" from="menu_button" to="menu" method="popup"]
 
 [connection signal="popup_hide" from="menu" to="menu_background" method="hide" flags=3]
-
-[connection signal="pressed" from="menu/VBoxContainer/button_exit" to="." method="exit"]
 
 [connection signal="pressed" from="menu/VBoxContainer/button_resume" to="menu" method="hide"]
 

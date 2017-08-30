@@ -7,6 +7,9 @@ var robots = Dictionary()
 export var tile_size = 30 setget resize_tiles
 var mode = "game"
 
+func _ready():
+	print("ready")
+
 const TILE_CLASS = preload("res://engine/tiles/floor_tile.gd")
 const ROBOT_CLASS = preload("res://engine/robot.gd")
 

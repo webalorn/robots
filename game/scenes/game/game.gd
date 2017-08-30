@@ -43,9 +43,8 @@ func tmp_gen_board():
 	save_manager.save_to("user://saves/first_save.dat", board.save())
 	board.load_from(save_manager.read("user://saves/first_save.dat"))
 	
-	
 	processor.move_robot(1, CONSTS.DIRS.DOWN)
-	#camera.change_parent(board.robots['1'])
+	# camera.change_parent(board.robots['1'])
 	yield(processor, "processing_end")
 	
 	processor.call_deferred("move_robot", 2, CONSTS.DIRS.DOWN)

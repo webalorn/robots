@@ -75,6 +75,9 @@ func resize_width(newWidth):
 	
 	width = newWidth
 
+func get_board_size():
+	return Vector2(width * tile_size, height * tile_size)
+
 func clear():
 	resize_width(0)
 	resize_height(0)

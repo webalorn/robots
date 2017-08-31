@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/main_menu/main_menu.gd" type="Script" id=2]
 [ext_resource path="res://scenes/main_menu/background.jpg" type="Texture" id=3]
+[ext_resource path="res://addons/resizable_gui/gui_node.gd" type="Script" id=4]
+[ext_resource path="res://addons/resizable_gui/icon.png" type="Texture" id=5]
 
 [node name="main_menu_scene" type="Control"]
 
@@ -34,21 +36,39 @@ margin/bottom = -771.0
 texture = ExtResource( 3 )
 stretch_mode = 0
 
-[node name="buttonsPanel" type="Panel" parent="."]
+[node name="gui" type="Control" parent="."]
 
-anchor/left = 3
-anchor/right = 3
+anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 150.0
+margin/left = 0.0
 margin/top = 0.0
-margin/right = -150.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+
+[node name="buttonsPanel" type="Panel" parent="gui"]
+
+editor/display_folded = true
+anchor/left = 2
+anchor/right = 2
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.377778
+margin/top = 0.0
+margin/right = 0.655556
 margin/bottom = 0.0
 
-[node name="buttonsContainer" type="VBoxContainer" parent="buttonsPanel"]
+[node name="buttonsContainer" type="VBoxContainer" parent="gui/buttonsPanel"]
 
 anchor/right = 1
 anchor/bottom = 1
@@ -62,7 +82,7 @@ margin/right = 0.0
 margin/bottom = 0.0
 alignment = 1
 
-[node name="start" type="Button" parent="buttonsPanel/buttonsContainer"]
+[node name="start" type="Button" parent="gui/buttonsPanel/buttonsContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -78,7 +98,7 @@ shortcut = null
 text = "Scene de test"
 flat = false
 
-[node name="menu_entry_2" type="Button" parent="buttonsPanel/buttonsContainer"]
+[node name="menu_entry_2" type="Button" parent="gui/buttonsPanel/buttonsContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -94,7 +114,7 @@ shortcut = null
 text = "Unusefull button"
 flat = false
 
-[node name="exit" type="Button" parent="buttonsPanel/buttonsContainer"]
+[node name="exit" type="Button" parent="gui/buttonsPanel/buttonsContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true

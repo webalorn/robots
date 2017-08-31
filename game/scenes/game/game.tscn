@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/game/game.gd" type="Script" id=2]
-[ext_resource path="res://scenes/game/menu_button.png" type="Texture" id=3]
-[ext_resource path="res://gui/second_plan_elements/background_panel.tres" type="StyleBox" id=4]
-[ext_resource path="res://scenes/game/game_board.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/game/camera.gd" type="Script" id=6]
+[ext_resource path="res://addons/resizable_gui/gui_node.gd" type="Script" id=3]
+[ext_resource path="res://addons/resizable_gui/icon.png" type="Texture" id=4]
+[ext_resource path="res://scenes/game/menu_button.png" type="Texture" id=5]
+[ext_resource path="res://gui/second_plan_elements/background_panel.tres" type="StyleBox" id=6]
+[ext_resource path="res://scenes/game/game_board.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/game/camera.gd" type="Script" id=8]
 
 [node name="game" type="Control"]
 
@@ -22,56 +24,24 @@ margin/right = 0.0
 margin/bottom = 0.0
 script/script = ExtResource( 2 )
 
-[node name="menu_button" type="TextureButton" parent="."]
-
-rect/scale = Vector2( 0.25, 0.25 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 10.0
-margin/right = 266.0
-margin/bottom = 266.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-textures/normal = ExtResource( 3 )
-params/resize_mode = 0
-params/stretch_mode = 0
-
-[node name="menu_background" type="PopupPanel" parent="."]
-
-visibility/visible = false
-visibility/opacity = 0.34
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
-custom_styles/panel = ExtResource( 4 )
-popup/exclusive = false
-
-[node name="menu" type="PopupPanel" parent="."]
+[node name="menu" type="PopupPanel" parent="." groups=[
+"auto_scale",
+"auto_center",
+]]
 
 editor/display_folded = true
-visibility/visible = false
 anchor/left = 3
+anchor/top = 3
 anchor/right = 3
-anchor/bottom = 1
+anchor/bottom = 3
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 300.0
-margin/top = 180.0
-margin/right = -300.0
-margin/bottom = 180.0
+margin/left = 304.0
+margin/top = 222.0
+margin/right = -296.0
+margin/bottom = -196.0
 popup/exclusive = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="menu"]
@@ -97,9 +67,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 84.0
+margin/top = 113.0
 margin/right = 300.0
-margin/bottom = 160.0
+margin/bottom = 189.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -113,17 +83,93 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 200.0
+margin/top = 229.0
 margin/right = 300.0
-margin/bottom = 276.0
+margin/bottom = 305.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "resume"
 flat = false
 
+[node name="resizable_gui" type="Control" parent="."]
+
+editor/display_folded = true
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 3 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="menu_button" type="TextureButton" parent="resizable_gui"]
+
+rect/scale = Vector2( 0.25, 0.25 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 266.0
+margin/bottom = 266.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 5 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="menu_button 2" type="TextureButton" parent="resizable_gui"]
+
+anchor/left = 1
+anchor/top = 1
+anchor/right = 1
+anchor/bottom = 1
+rect/scale = Vector2( 0.25, 0.25 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 64.0
+margin/top = 65.0
+margin/right = -192.0
+margin/bottom = -191.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 5 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="menu_background" type="PopupPanel" parent="resizable_gui"]
+
+visibility/visible = false
+visibility/opacity = 0.34
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+custom_styles/panel = ExtResource( 6 )
+popup/exclusive = false
+
 [node name="view" type="Viewport" parent="."]
 
+editor/display_folded = true
 rect = Rect2( 0, 0, 1080, 720 )
 own_world = false
 world = null
@@ -139,7 +185,7 @@ audio_listener/enable_3d = false
 physics/object_picking = false
 gui/disable_input = false
 
-[node name="board" parent="view" instance=ExtResource( 5 )]
+[node name="board" parent="view" instance=ExtResource( 7 )]
 
 tile_size = 100
 
@@ -161,15 +207,28 @@ drag_margin/left = 0.2
 drag_margin/top = 0.2
 drag_margin/right = 0.2
 drag_margin/bottom = 0.2
-script/script = ExtResource( 6 )
+script/script = ExtResource( 8 )
 margin_size = 0.2
 
-[connection signal="pressed" from="menu_button" to="menu_background" method="popup"]
+[node name="Control" type="Control" parent="."]
 
-[connection signal="pressed" from="menu_button" to="menu" method="popup"]
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
 
-[connection signal="popup_hide" from="menu" to="menu_background" method="hide" flags=3]
+[connection signal="popup_hide" from="menu" to="resizable_gui/menu_background" method="hide" flags=3]
+
+[connection signal="pressed" from="menu/VBoxContainer/button_exit" to="." method="exit"]
 
 [connection signal="pressed" from="menu/VBoxContainer/button_resume" to="menu" method="hide"]
+
+[connection signal="pressed" from="resizable_gui/menu_button" to="resizable_gui/menu_background" method="popup"]
+
+[connection signal="pressed" from="resizable_gui/menu_button" to="menu" method="popup"]
 
 

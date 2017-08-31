@@ -52,7 +52,6 @@ func move_robot(id_robot, direction):
 			if tile.has_method("robot_enter"):
 				tile.robot_enter(robot)
 		previous_locations = {}
-		# emit_signal("processing_end")
 		call_deferred("emit_signal", "processing_end")
 
 func _init(_board):

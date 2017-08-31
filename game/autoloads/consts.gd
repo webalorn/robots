@@ -31,3 +31,25 @@ func apply_move(line, col, move):
 	elif move == DIRS.RIGHT:
 		col += 1
 	return {"line" : line, "col" : col}
+
+func move_to_str(move):
+	if move == DIRS.UP:
+		return "up"
+	elif move == DIRS.DOWN:
+		return "down"
+	elif move == DIRS.LEFT:
+		return "left"
+	elif move == DIRS.RIGHT:
+		return "right"
+	return ""
+
+func get_move_id_from_dists(line_dist, col_dist):
+	if line_dist == -1 and col_dist == 0:
+		return DIRS.UP
+	elif line_dist == 1 and col_dist == 0:
+		return DIRS.DOWN
+	elif line_dist == 0 and col_dist == 1:
+		return DIRS.RIGHT
+	elif line_dist == 0 and col_dist == -1:
+		return DIRS.LEFT
+	return null

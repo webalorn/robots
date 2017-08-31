@@ -62,6 +62,25 @@ func action_portal_blocked(params):
 	emit_signal("signal_action_end")
 
 ####################
+##      GUI       ##
+####################
+
+var gui_childs = ["arrows"]
+
+func hide_gui():
+	for k in gui_childs:
+		view.get_node(k).set_hidden(true)
+
+func show_gui(element_name):
+	hide_gui()
+	view.get_node(element_name).set_hidden(false)
+
+func get_active_gui():
+	for k in gui_childs:
+		if not view.get_node(k).is_hidden():
+			return k
+
+####################
 ##     Init       ##
 ####################
 
@@ -69,6 +88,7 @@ func _create_view():
 	view = preload("res://engine/robot.tscn").instance()
 	view.set_texture(load("res://scenes/game/robots/robot_" + str(robot_id) + ".png"))
 	anim_node = view.get_node("moves_anims")
+	hide_gui()
 	
 func _init(_line, _col, _robot_id).(_line, _col):
 	robot_id = _robot_id

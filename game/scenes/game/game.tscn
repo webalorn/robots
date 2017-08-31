@@ -13,8 +13,8 @@
 
 anchor/right = 1
 anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
+focus/ignore_mouse = true
+focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 theme/theme = ExtResource( 1 )
@@ -114,8 +114,8 @@ popup/exclusive = false
 
 anchor/right = 1
 anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
+focus/ignore_mouse = true
+focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
@@ -171,7 +171,7 @@ tile_size = 100
 anchor_mode = 1
 rotating = false
 current = true
-zoom = Vector2( 0.5, 0.5 )
+zoom = Vector2( 1, 1 )
 limit/left = -10000000
 limit/top = -10000000
 limit/right = 10000000
@@ -204,8 +204,8 @@ margin/bottom = 40.0
 
 [connection signal="pressed" from="menu/VBoxContainer/button_resume" to="menu" method="hide"]
 
-[connection signal="pressed" from="gui/menu_button" to="menu_background" method="popup"]
-
 [connection signal="pressed" from="gui/menu_button" to="menu" method="popup" flags=3]
+
+[connection signal="pressed" from="gui/menu_button" to="menu_background" method="popup"]
 
 

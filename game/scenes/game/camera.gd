@@ -16,7 +16,7 @@ func change_parent(new_parent):
 func _ready():
 	root = get_parent()
 	game = get_node("/root/game")
-	board = get_node("../board")
+	board = game.board
 	set_process_input(true)
 
 ### Zoom and move utility functions ###

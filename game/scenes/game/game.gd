@@ -5,6 +5,23 @@ var board
 var camera
 var input_manager
 var game_view
+var in_action = false
+
+func action_move_robot(robot, move):
+	in_action = true
+	var cam_parent = camera.get_parent()
+	var robot_gui = robot.get_active_gui()
+	robot.hide_gui()
+	
+	processor.move_robot(robot.robot_id, move)
+	print("move deb")
+	yield(processor, "processing_end")
+	print("fin")
+	
+	if robot_gui:
+		robot.show_gui(robot_gui)
+	in_action = false
+	
 
 func _ready():
 	game_view = get_node("view")
@@ -13,10 +30,10 @@ func _ready():
 	processor = preload("res://engine/processor.gd").new(board)
 	input_manager = preload("res://scenes/game/game_input_manager.gd").new(self)
 	
-	#camera.change_parent(board)
-	add_child(input_manager)
-	
-	tmp_gen_board();
+	camera.change_parent(board)
+	game_view.add_child(input_manager)
+	tmp_gen_board()
+	camera.set_pos(Vector2(board.width * board.tile_size, board.height * board.tile_size)/2)
 
 func tmp_gen_board():
 	
@@ -44,26 +61,17 @@ func tmp_gen_board():
 	
 	save_manager.save_to("user://saves/first_save.dat", board.save())
 	board.load_from(save_manager.read("user://saves/first_save.dat"))
-	
-	processor.move_robot(1, CONSTS.DIRS.DOWN)
-	# camera.change_parent(board)
-	# camera.change_parent(board.robots['1'])
-	yield(processor, "processing_end")
-	
-	processor.call_deferred("move_robot", 2, CONSTS.DIRS.DOWN)
-	yield(processor, "processing_end")
-	
-	processor.call_deferred("move_robot", 1, CONSTS.DIRS.RIGHT)
-	yield(processor, "processing_end")
-	
-	processor.call_deferred("move_robot", 1, CONSTS.DIRS.DOWN)
-	yield(processor, "processing_end")
 
 func scene_init(params):
 	print("Game init with params: ", params)
 
 func exit():
 	global.goto_scene("main_menu")
+
+func is_game_input_active():
+	if get_node("menu").is_visible():
+		return false
+	return true
 
 func _notification(what):
 	if OS.get_name() == "Android" and global.is_android_return(what):

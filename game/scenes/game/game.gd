@@ -66,7 +66,7 @@ func exit():
 	global.goto_scene("main_menu")
 
 func _notification(what):
-	if global.is_android_return(what):
+	if OS.get_name() == "Android" and global.is_android_return(what):
 		var menu_popup = get_node("menu")
 		if menu_popup.is_visible():
 			menu_popup.hide()

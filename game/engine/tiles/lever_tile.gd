@@ -1,7 +1,6 @@
 extends "generic_button_tile.gd"
 
 func robot_enter(robot):
-	print("enter, pushed = ", pushed)
 	if not pushed:
 		invert_state()
 

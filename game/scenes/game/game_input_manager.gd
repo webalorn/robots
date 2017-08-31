@@ -1,8 +1,6 @@
 extends Node
 
 var game
-var zoom_min = 3
-var zoom_max = 0.5
 
 func get_board_top_left():
 	var decal = game.camera.quotient_by_zoom(game.camera.get_camera_pos())
@@ -28,13 +26,9 @@ func drag_event(move):
 
 func zoom_in_wheel():
 	game.camera.set_zoom(game.camera.get_zoom()*0.9)
-	if game.camera.get_zoom().x < zoom_max:
-		game.camera.set_zoom(Vector2(zoom_max, zoom_max))
 
 func zoom_out_wheel():
 	game.camera.set_zoom(game.camera.get_zoom()/0.9)
-	if game.camera.get_zoom().x > zoom_min:
-		game.camera.set_zoom(Vector2(zoom_min, zoom_min))
 
 func _input(ev):
 	#if ev.type == InputEvent.MOUSE_BUTTON:

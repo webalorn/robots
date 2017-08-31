@@ -19,3 +19,8 @@ func _deferred_goto_scene(path, params):
 		current_scene.scene_init(params)
 	get_tree().get_root().add_child(current_scene)
 	get_tree().set_current_scene(current_scene)
+
+func on_phone():
+	if OS.get_name() in ["Android", "iOS"]:
+		return true
+	return false

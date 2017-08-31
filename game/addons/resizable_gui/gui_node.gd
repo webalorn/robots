@@ -8,12 +8,13 @@ func set_size_and_scale():
 	if last_size != actual_size:
 		last_size = actual_size
 		var base_size = Vector2(Globals.get("display/width"), Globals.get("display/height"))
-		print(base_size)
 		var ratio = Vector2(actual_size.x / float(base_size.x), actual_size.y / float(base_size.y))
+		
 		if ratio.x < ratio.y:
 			ratio = Vector2(ratio.x, ratio.x)
 		else:
 			ratio = Vector2(ratio.y, ratio.y)
+		
 		set_scale(ratio)
 		set_size(Vector2(actual_size.x / ratio.x, actual_size.y / ratio.y))
 		
@@ -34,7 +35,8 @@ func center_elements():
 func _ready():
 	set_size_and_scale()
 	center_elements()
-	set_process(true)
+	if not global.on_phone():
+		set_process(true)
 
 func _process(delta):
 	if get_viewport().get_rect().size != last_size:

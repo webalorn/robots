@@ -30,6 +30,7 @@ script/script = ExtResource( 2 )
 ]]
 
 editor/display_folded = true
+visibility/visible = false
 anchor/left = 3
 anchor/top = 3
 anchor/right = 3
@@ -94,7 +95,6 @@ flat = false
 
 [node name="resizable_gui" type="Control" parent="."]
 
-editor/display_folded = true
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -128,28 +128,6 @@ textures/normal = ExtResource( 5 )
 params/resize_mode = 0
 params/stretch_mode = 0
 
-[node name="menu_button 2" type="TextureButton" parent="resizable_gui"]
-
-anchor/left = 1
-anchor/top = 1
-anchor/right = 1
-anchor/bottom = 1
-rect/scale = Vector2( 0.25, 0.25 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 64.0
-margin/top = 65.0
-margin/right = -192.0
-margin/bottom = -191.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-textures/normal = ExtResource( 5 )
-params/resize_mode = 0
-params/stretch_mode = 0
-
 [node name="menu_background" type="PopupPanel" parent="resizable_gui"]
 
 visibility/visible = false
@@ -169,7 +147,6 @@ popup/exclusive = false
 
 [node name="view" type="Viewport" parent="."]
 
-editor/display_folded = true
 rect = Rect2( 0, 0, 1080, 720 )
 own_world = false
 world = null

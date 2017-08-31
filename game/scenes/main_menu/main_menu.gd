@@ -17,6 +17,5 @@ func _ready():
 	print(OS.get_name(), " debug: ", OS.is_debug_build())
 
 func _notification(what):
-	pass
-#	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
-#		OS.alert("Ne pas quitter !")
+	if global.is_android_return(what):
+		exit_game()

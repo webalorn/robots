@@ -5,6 +5,8 @@ var current_scene = null
 func _ready():
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() -1)
+	if on_android():
+		get_tree().set_auto_accept_quit(false)
 
 func goto_scene(path, params = {}):
 	if not path.begins_with("res://"):
@@ -22,5 +24,14 @@ func _deferred_goto_scene(path, params):
 
 func on_phone():
 	if OS.get_name() in ["Android", "iOS"]:
+		return true
+	return false
+
+func is_android_return(what):
+	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST and global.on_android():
+		return true
+	return false
+func on_android():
+	if OS.get_name() == "Android":
 		return true
 	return false

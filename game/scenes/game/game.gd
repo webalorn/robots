@@ -14,9 +14,7 @@ func action_move_robot(robot, move):
 	robot.hide_gui()
 	
 	processor.move_robot(robot.robot_id, move)
-	print("move deb")
 	yield(processor, "processing_end")
-	print("fin")
 	
 	if robot_gui:
 		robot.show_gui(robot_gui)

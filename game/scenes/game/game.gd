@@ -24,11 +24,10 @@ func action_move_robot(robot, move):
 func _ready():
 	game_view = get_node("view")
 	board = game_view.get_node("board")
-	camera = game_view.get_node("camera")
+	camera = board.get_node("camera")
 	processor = preload("res://engine/processor.gd").new(board)
 	input_manager = preload("res://scenes/game/game_input_manager.gd").new(self)
 	
-	camera.change_parent(board)
 	game_view.add_child(input_manager)
 	tmp_gen_board()
 	camera.set_pos(Vector2(board.width * board.tile_size, board.height * board.tile_size)/2)
@@ -58,6 +57,7 @@ func tmp_gen_board():
 	b1.add_target(p1)
 	
 	save_manager.save_to("user://saves/first_save.dat", board.save())
+	board.clear()
 	board.load_from(save_manager.read("user://saves/first_save.dat"))
 
 func scene_init(params):

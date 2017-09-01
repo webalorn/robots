@@ -1,0 +1,150 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://scenes/editor/editor.gd" type="Script" id=1]
+[ext_resource path="res://addons/resizable_gui/gui_node.gd" type="Script" id=2]
+[ext_resource path="res://addons/resizable_gui/icon.png" type="Texture" id=3]
+[ext_resource path="res://scenes/game/game_board.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/game/camera.gd" type="Script" id=5]
+
+[node name="editor" type="Control"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 1 )
+active_panel = "main"
+
+[node name="gui" type="Control" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 2 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+
+[node name="sidebar" type="Control" parent="gui"]
+
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 420.0
+margin/bottom = 0.0
+
+[node name="main" type="ColorFrame" parent="gui/sidebar"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+color = Color( 0.128448, 0.591151, 0.714844, 1 )
+
+[node name="tiles" type="ColorFrame" parent="gui/sidebar"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+color = Color( 0.627801, 0.128448, 0.714844, 1 )
+
+[node name="robots" type="ColorFrame" parent="gui/sidebar"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+color = Color( 0.613893, 0.792969, 0.173462, 1 )
+
+[node name="level" type="Control" parent="gui"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 420.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="view" type="Viewport" parent="gui/level"]
+
+rect = Rect2( 0, 0, 660, 720 )
+own_world = false
+world = null
+transparent_bg = false
+render_target/enabled = false
+render_target/v_flip = false
+render_target/clear_on_new_frame = true
+render_target/filter = false
+render_target/gen_mipmaps = false
+render_target/update_mode = 2
+audio_listener/enable_2d = false
+audio_listener/enable_3d = false
+physics/object_picking = false
+gui/disable_input = false
+
+[node name="board" parent="gui/level/view" instance=ExtResource( 4 )]
+
+tile_size = 100
+
+[node name="camera" type="Camera2D" parent="gui/level/view/board"]
+
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+script/script = ExtResource( 5 )
+margin_size = 0.2
+
+

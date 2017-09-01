@@ -1,9 +1,7 @@
 extends Camera2D
 
 export var margin_size = 0.2
-var root
 var board
-var game
 
 var zoom_min = 3
 var zoom_max = 0.5
@@ -14,15 +12,14 @@ func change_parent(new_parent):
 	new_parent.add_child(self)
 
 func _ready():
-	root = get_parent()
-	game = get_node("/root/game")
-	board = game.board
+	print("ready parent")
+	board = get_parent()
 	set_process_input(true)
 
 ### Zoom and move utility functions ###
 
 func get_sizes_ratio():
-	var actual_size = get_viewport().get_rect().size
+	var actual_size = OS.get_window_size()
 	var base_size = Vector2(Globals.get("display/width"), Globals.get("display/height"))
 	var ratio = min(actual_size.x / float(base_size.x), actual_size.y / float(base_size.y))
 	return ratio
@@ -35,7 +32,8 @@ func product_by_zoom(vect):
 
 func get_board_top_left():
 	var decal = quotient_by_zoom(get_camera_pos())
-	return game.get_item_rect().size * 0.5 - decal
+	var board_container = board.get_parent().get_parent()
+	return board_container.get_item_rect().size * 0.5 - decal
 
 func pixel_to_grid_pos(pixel_pos):
 	return product_by_zoom(pixel_pos - get_board_top_left())
@@ -59,7 +57,7 @@ func drag_event(move):
 
 ### Zoom and move main functions ###
 
-var first_distance =0
+var first_distance = 0
 var events={}
 var percision = 1
 var current_zoom

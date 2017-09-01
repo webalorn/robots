@@ -25,8 +25,8 @@ margin/bottom = 0.0
 script/script = ExtResource( 2 )
 
 [node name="menu" type="PopupPanel" parent="." groups=[
-"auto_scale",
 "auto_center",
+"auto_scale",
 ]]
 
 editor/display_folded = true
@@ -166,7 +166,7 @@ gui/disable_input = false
 
 tile_size = 100
 
-[node name="camera" type="Camera2D" parent="view"]
+[node name="camera" type="Camera2D" parent="view/board"]
 
 anchor_mode = 1
 rotating = false
@@ -178,7 +178,7 @@ limit/right = 10000000
 limit/bottom = 10000000
 drag_margin/h_enabled = true
 drag_margin/v_enabled = true
-smoothing/enable = false
+smoothing/enable = true
 smoothing/speed = 5.0
 drag_margin/left = 0.2
 drag_margin/top = 0.2
@@ -186,17 +186,6 @@ drag_margin/right = 0.2
 drag_margin/bottom = 0.2
 script/script = ExtResource( 8 )
 margin_size = 0.2
-
-[node name="Control" type="Control" parent="."]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 40.0
-margin/bottom = 40.0
 
 [connection signal="popup_hide" from="menu" to="menu_background" method="hide" flags=3]
 

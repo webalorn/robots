@@ -7,3 +7,4 @@ RESUME,Resume,Continuer
 PROPERTIES,Properties,Propriétés
 TILES,Tiles,Tuiles
 ROBOTS,Robots,Robots
+TILE_CANT_BE_PLACED_UNDER_ROBOT,This tile can’t be placed under a robot,Cette tuile ne peut pas être placée sous un robot

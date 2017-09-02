@@ -51,8 +51,14 @@ static func load_from(s):
 func load_refs_from(s): # targets, links, etc... can't be created in "_load"
 	pass
 
+static func is_safe_for_robot():
+	return false
+
+static func get_type_class(type):
+	return load("res://engine/tiles/" + type + "_tile.gd")
+
 static func createTile(type, line, col):
-	var tileClass = load("res://engine/tiles/" + type + "_tile.gd")
+	var tileClass = get_type_class(type)
 	var tile = tileClass.new(line, col, type)
 	return tile
 

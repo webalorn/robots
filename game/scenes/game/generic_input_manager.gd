@@ -2,7 +2,7 @@ extends Node
 
 var game
 var touchs_events = {}
-var touch_dist_max = 5
+var touch_dist_max = 10
 
 func zoom_in_wheel():
 	game.camera.set_zoom(game.camera.get_zoom()*0.9)

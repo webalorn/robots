@@ -22,7 +22,7 @@ func _ready():
 	
 	# Sidebar
 	show_panel("main")
-
+	
 func load_level_gameboard():
 	board.load_from(save_manager.read("user://saves/first_save.dat"))
 

@@ -29,6 +29,7 @@ script/script = ExtResource( 2 )
 "auto_center",
 ]]
 
+visibility/visible = false
 anchor/left = 3
 anchor/top = 3
 anchor/right = 3
@@ -88,7 +89,7 @@ margin/bottom = 305.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "resume"
+text = "RESUME"
 flat = false
 
 [node name="menu_background" type="PopupPanel" parent="."]

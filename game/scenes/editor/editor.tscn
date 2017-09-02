@@ -45,7 +45,6 @@ __meta__ = {
 
 [node name="sidebar" type="Control" parent="gui"]
 
-editor/display_folded = true
 anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -363,8 +362,6 @@ alignment = 2
 [connection signal="pressed" from="gui/sidebar/main/content/menu/button_exit" to="." method="exit"]
 
 [connection signal="pressed" from="gui/sidebar/main/content/menu/button_tiles" to="." method="show_panel" binds= [ "tiles" ]]
-
-[connection signal="pressed" from="gui/sidebar/main/content/menu/button_robots" to="." method="notify" binds= [ "Nouvelle notification" ]]
 
 [connection signal="pressed" from="gui/sidebar/tiles/content/header/TextureButton" to="." method="show_panel" binds= [ "main" ]]
 

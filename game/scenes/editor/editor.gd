@@ -6,7 +6,7 @@ var sidebar
 var camera
 var input_manager
 
-export(String) var active_panel
+var active_panel
 
 func _ready():
 	sidebar = get_node("gui/sidebar")
@@ -22,7 +22,7 @@ func _ready():
 	# Sidebar
 	for panel in sidebar.get_children():
 		panel.set_hidden(true)
-	show_panel(active_panel)
+	show_panel("main")
 
 func load_level_gameboard():
 	board.load_from(save_manager.read("user://saves/first_save.dat"))

@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=9 format=1]
 
-[ext_resource path="res://scenes/editor/editor.gd" type="Script" id=1]
-[ext_resource path="res://addons/resizable_gui/gui_node.gd" type="Script" id=2]
-[ext_resource path="res://addons/resizable_gui/icon.png" type="Texture" id=3]
-[ext_resource path="res://scenes/game/game_board.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/game/camera.gd" type="Script" id=5]
+[ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/editor/editor.gd" type="Script" id=2]
+[ext_resource path="res://addons/resizable_gui/gui_node.gd" type="Script" id=3]
+[ext_resource path="res://addons/resizable_gui/icon.png" type="Texture" id=4]
+[ext_resource path="res://gui/editor/back_button.png" type="Texture" id=5]
+[ext_resource path="res://scenes/editor/editor_tile.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/game/game_board.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/game/camera.gd" type="Script" id=8]
 
 [node name="editor" type="Control"]
 
@@ -14,12 +17,12 @@ focus/ignore_mouse = true
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
-script/script = ExtResource( 1 )
-active_panel = "main"
+script/script = ExtResource( 2 )
 
 [node name="gui" type="Control" parent="."]
 
@@ -33,9 +36,9 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
-script/script = ExtResource( 2 )
+script/script = ExtResource( 3 )
 __meta__ = {
-"_editor_icon": ExtResource( 3 )
+"_editor_icon": ExtResource( 4 )
 }
 
 [node name="sidebar" type="Control" parent="gui"]
@@ -47,10 +50,117 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 420.0
+margin/right = 355.0
 margin/bottom = 0.0
 
-[node name="main" type="ColorFrame" parent="gui/sidebar"]
+[node name="main" type="Panel" parent="gui/sidebar"]
+
+editor/display_folded = true
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="content" type="Container" parent="gui/sidebar/main"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 10.0
+margin/bottom = 10.0
+
+[node name="menu" type="VBoxContainer" parent="gui/sidebar/main/content"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 30.0
+margin/top = 0.0
+margin/right = 30.0
+margin/bottom = 0.0
+custom_constants/separation = 40
+alignment = 1
+
+[node name="button_exit" type="Button" parent="gui/sidebar/main/content/menu"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 138.0
+margin/right = 275.0
+margin/bottom = 214.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Exit"
+flat = false
+
+[node name="button_properties" type="Button" parent="gui/sidebar/main/content/menu"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 254.0
+margin/right = 275.0
+margin/bottom = 330.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Properties"
+flat = false
+
+[node name="button_tiles" type="Button" parent="gui/sidebar/main/content/menu"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 370.0
+margin/right = 275.0
+margin/bottom = 446.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Tiles"
+flat = false
+
+[node name="button_robots" type="Button" parent="gui/sidebar/main/content/menu"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 486.0
+margin/right = 275.0
+margin/bottom = 562.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Robots"
+flat = false
+
+[node name="tiles" type="Panel" parent="gui/sidebar"]
 
 anchor/right = 1
 anchor/bottom = 1
@@ -62,9 +172,72 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
-color = Color( 0.128448, 0.591151, 0.714844, 1 )
 
-[node name="tiles" type="ColorFrame" parent="gui/sidebar"]
+[node name="content" type="Container" parent="gui/sidebar/tiles"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 10.0
+margin/bottom = 10.0
+
+[node name="header" type="Container" parent="gui/sidebar/tiles/content"]
+
+editor/display_folded = true
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 60.0
+
+[node name="TextureButton" type="TextureButton" parent="gui/sidebar/tiles/content/header"]
+
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 60.0
+margin/bottom = 0.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 5 )
+params/resize_mode = 0
+params/scale = Vector2( 0.234375, 0.234375 )
+params/stretch_mode = 0
+
+[node name="Label" type="Label" parent="gui/sidebar/tiles/content/header"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 59.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+text = "Tiles"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="scroll" type="ScrollContainer" parent="gui/sidebar/tiles/content"]
 
 anchor/right = 1
 anchor/bottom = 1
@@ -73,24 +246,100 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 0.0
+margin/top = 70.0
 margin/right = 0.0
 margin/bottom = 0.0
-color = Color( 0.627801, 0.128448, 0.714844, 1 )
+scroll/horizontal = false
+scroll/vertical = true
 
-[node name="robots" type="ColorFrame" parent="gui/sidebar"]
+[node name="GridContainer" type="GridContainer" parent="gui/sidebar/tiles/content/scroll"]
 
-anchor/right = 1
-anchor/bottom = 1
+rect/min_size = Vector2( 310, 0 )
 focus/ignore_mouse = false
-focus/stop_mouse = true
+focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
-color = Color( 0.613893, 0.792969, 0.173462, 1 )
+margin/right = 310.0
+margin/bottom = 920.0
+columns = 2
+
+[node name="Container" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
+
+margin/right = 150.0
+margin/bottom = 150.0
+
+[node name="Container1" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
+
+margin/left = 154.0
+margin/right = 304.0
+margin/bottom = 150.0
+
+[node name="Container2" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
+
+margin/top = 154.0
+margin/right = 150.0
+margin/bottom = 304.0
+
+[node name="Container3" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
+
+margin/left = 154.0
+margin/top = 154.0
+margin/right = 304.0
+margin/bottom = 304.0
+
+[node name="Container4" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
+
+margin/top = 308.0
+margin/right = 150.0
+margin/bottom = 458.0
+
+[node name="Container5" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
+
+margin/left = 154.0
+margin/top = 308.0
+margin/right = 304.0
+margin/bottom = 458.0
+
+[node name="Container6" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
+
+margin/top = 462.0
+margin/right = 150.0
+margin/bottom = 612.0
+
+[node name="Container7" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
+
+margin/left = 154.0
+margin/top = 462.0
+margin/right = 304.0
+margin/bottom = 612.0
+
+[node name="Container8" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
+
+margin/top = 616.0
+margin/right = 150.0
+margin/bottom = 766.0
+
+[node name="Container9" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
+
+margin/left = 154.0
+margin/top = 616.0
+margin/right = 304.0
+margin/bottom = 766.0
+
+[node name="Container10" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
+
+margin/top = 770.0
+margin/right = 150.0
+margin/bottom = 920.0
+
+[node name="Container11" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
+
+margin/left = 154.0
+margin/top = 770.0
+margin/right = 304.0
+margin/bottom = 920.0
 
 [node name="level" type="Control" parent="gui"]
 
@@ -100,14 +349,14 @@ focus/ignore_mouse = true
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 420.0
+margin/left = 355.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 
 [node name="view" type="Viewport" parent="gui/level"]
 
-rect = Rect2( 0, 0, 660, 720 )
+rect = Rect2( 0, 0, 725, 720 )
 own_world = false
 world = null
 transparent_bg = false
@@ -122,7 +371,7 @@ audio_listener/enable_3d = false
 physics/object_picking = false
 gui/disable_input = false
 
-[node name="board" parent="gui/level/view" instance=ExtResource( 4 )]
+[node name="board" parent="gui/level/view" instance=ExtResource( 7 )]
 
 tile_size = 100
 
@@ -144,7 +393,13 @@ drag_margin/left = 0.2
 drag_margin/top = 0.2
 drag_margin/right = 0.2
 drag_margin/bottom = 0.2
-script/script = ExtResource( 5 )
+script/script = ExtResource( 8 )
 margin_size = 0.2
+
+[connection signal="pressed" from="gui/sidebar/main/content/menu/button_exit" to="." method="exit"]
+
+[connection signal="pressed" from="gui/sidebar/main/content/menu/button_tiles" to="." method="show_panel" binds= [ "tiles" ]]
+
+[connection signal="pressed" from="gui/sidebar/tiles/content/header/TextureButton" to="." method="show_panel" binds= [ "main" ]]
 
 

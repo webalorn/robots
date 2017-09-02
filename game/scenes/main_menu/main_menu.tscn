@@ -55,7 +55,6 @@ __meta__ = {
 
 [node name="buttonsPanel" type="Panel" parent="gui"]
 
-editor/display_folded = true
 anchor/left = 2
 anchor/right = 2
 anchor/bottom = 1
@@ -80,6 +79,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
+custom_constants/separation = 30
 alignment = 1
 
 [node name="start" type="Button" parent="gui/buttonsPanel/buttonsContainer"]
@@ -89,16 +89,16 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 246.0
+margin/top = 216.0
 margin/right = 300.0
-margin/bottom = 322.0
+margin/bottom = 292.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Scene de test"
 flat = false
 
-[node name="menu_entry_2" type="Button" parent="gui/buttonsPanel/buttonsContainer"]
+[node name="editor" type="Button" parent="gui/buttonsPanel/buttonsContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -111,7 +111,7 @@ margin/bottom = 398.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Unusefull button"
+text = "Level editor"
 flat = false
 
 [node name="exit" type="Button" parent="gui/buttonsPanel/buttonsContainer"]
@@ -121,9 +121,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 398.0
+margin/top = 428.0
 margin/right = 300.0
-margin/bottom = 474.0
+margin/bottom = 504.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null

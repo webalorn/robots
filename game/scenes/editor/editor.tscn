@@ -45,6 +45,7 @@ __meta__ = {
 
 [node name="sidebar" type="Control" parent="gui"]
 
+editor/display_folded = true
 anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -57,8 +58,6 @@ margin/bottom = 0.0
 
 [node name="main" type="Panel" parent="gui/sidebar"]
 
-editor/display_folded = true
-visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -165,6 +164,8 @@ flat = false
 
 [node name="tiles" type="Panel" parent="gui/sidebar"]
 
+editor/display_folded = true
+visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -248,10 +249,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 70.0
-margin/right = 0.0
-margin/bottom = 0.0
+margin/left = 1.0
+margin/top = 69.0
+margin/right = -1.0
+margin/bottom = 1.0
 scroll/horizontal = false
 scroll/vertical = true
 
@@ -265,7 +266,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 310.0
-margin/bottom = 304.0
+margin/bottom = 0.0
 columns = 2
 
 [node name="Container" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 8 )]
@@ -289,6 +290,7 @@ type = "space"
 
 [node name="level" type="Control" parent="gui"]
 
+editor/display_folded = true
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = true
@@ -303,7 +305,7 @@ margin/bottom = 0.0
 [node name="view" type="Viewport" parent="gui/level"]
 
 rect = Rect2( 0, 0, 725, 720 )
-own_world = false
+own_world = true
 world = null
 transparent_bg = false
 render_target/enabled = false
@@ -342,9 +344,27 @@ drag_margin/bottom = 0.2
 script/script = ExtResource( 10 )
 margin_size = 0.2
 
+[node name="notifications" type="VBoxContainer" parent="gui"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 310.0
+margin/top = 10.0
+margin/right = 10.0
+margin/bottom = 10.0
+custom_constants/separation = 10
+alignment = 2
+
 [connection signal="pressed" from="gui/sidebar/main/content/menu/button_exit" to="." method="exit"]
 
 [connection signal="pressed" from="gui/sidebar/main/content/menu/button_tiles" to="." method="show_panel" binds= [ "tiles" ]]
+
+[connection signal="pressed" from="gui/sidebar/main/content/menu/button_robots" to="." method="notify" binds= [ "Nouvelle notification" ]]
 
 [connection signal="pressed" from="gui/sidebar/tiles/content/header/TextureButton" to="." method="show_panel" binds= [ "main" ]]
 

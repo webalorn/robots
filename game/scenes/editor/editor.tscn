@@ -45,7 +45,6 @@ __meta__ = {
 
 [node name="sidebar" type="Control" parent="gui"]
 
-editor/display_folded = true
 anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -113,7 +112,7 @@ margin/bottom = 214.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Exit"
+text = "EXIT"
 flat = false
 
 [node name="button_properties" type="Button" parent="gui/sidebar/main/content/menu"]
@@ -129,7 +128,7 @@ margin/bottom = 330.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Properties"
+text = "PROPERTIES"
 flat = false
 
 [node name="button_tiles" type="Button" parent="gui/sidebar/main/content/menu"]
@@ -145,7 +144,7 @@ margin/bottom = 446.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Tiles"
+text = "TILES"
 flat = false
 
 [node name="button_robots" type="Button" parent="gui/sidebar/main/content/menu"]
@@ -161,7 +160,7 @@ margin/bottom = 562.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Robots"
+text = "ROBOTS"
 flat = false
 
 [node name="tiles" type="Panel" parent="gui/sidebar"]
@@ -193,7 +192,6 @@ margin/bottom = 10.0
 
 [node name="header" type="Container" parent="gui/sidebar/tiles/content"]
 
-editor/display_folded = true
 anchor/right = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -235,7 +233,7 @@ margin/left = 59.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
-text = "Tiles"
+text = "TILES"
 align = 1
 valign = 1
 percent_visible = 1.0
@@ -274,7 +272,6 @@ columns = 2
 
 margin/right = 150.0
 margin/bottom = 150.0
-type = "floor"
 
 [node name="Container1" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 8 )]
 

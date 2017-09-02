@@ -62,9 +62,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.377778
+margin/left = 0.34
 margin/top = 0.0
-margin/right = 0.655556
+margin/right = 0.66
 margin/bottom = 0.0
 
 [node name="buttonsContainer" type="VBoxContainer" parent="gui/buttonsPanel"]
@@ -90,12 +90,12 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 216.0
-margin/right = 300.0
+margin/right = 345.0
 margin/bottom = 292.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Scene de test"
+text = "TEST_SCENE"
 flat = false
 
 [node name="editor" type="Button" parent="gui/buttonsPanel/buttonsContainer"]
@@ -106,12 +106,12 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 322.0
-margin/right = 300.0
+margin/right = 345.0
 margin/bottom = 398.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Level editor"
+text = "LEVEL_EDITOR"
 flat = false
 
 [node name="exit" type="Button" parent="gui/buttonsPanel/buttonsContainer"]
@@ -122,12 +122,12 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 428.0
-margin/right = 300.0
+margin/right = 345.0
 margin/bottom = 504.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Quitter"
+text = "EXIT"
 flat = false
 
 

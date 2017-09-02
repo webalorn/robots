@@ -25,12 +25,10 @@ margin/bottom = 0.0
 script/script = ExtResource( 2 )
 
 [node name="menu" type="PopupPanel" parent="." groups=[
-"auto_center",
 "auto_scale",
+"auto_center",
 ]]
 
-editor/display_folded = true
-visibility/visible = false
 anchor/left = 3
 anchor/top = 3
 anchor/right = 3
@@ -74,7 +72,7 @@ margin/bottom = 189.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "exit"
+text = "MAIN_MENU"
 flat = false
 
 [node name="button_resume" type="Button" parent="menu/VBoxContainer"]

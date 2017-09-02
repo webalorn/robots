@@ -1,13 +1,15 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=11 format=1]
 
 [ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/editor/editor.gd" type="Script" id=2]
 [ext_resource path="res://addons/resizable_gui/gui_node.gd" type="Script" id=3]
 [ext_resource path="res://addons/resizable_gui/icon.png" type="Texture" id=4]
-[ext_resource path="res://gui/editor/back_button.png" type="Texture" id=5]
-[ext_resource path="res://scenes/editor/editor_tile.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/game/game_board.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/game/camera.gd" type="Script" id=8]
+[ext_resource path="res://scenes/editor/editor_panel.gd" type="Script" id=5]
+[ext_resource path="res://scenes/editor/tiles_panel.gd" type="Script" id=6]
+[ext_resource path="res://gui/editor/back_button.png" type="Texture" id=7]
+[ext_resource path="res://scenes/editor/editor_tile.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/game/game_board.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/game/camera.gd" type="Script" id=10]
 
 [node name="editor" type="Control"]
 
@@ -43,6 +45,7 @@ __meta__ = {
 
 [node name="sidebar" type="Control" parent="gui"]
 
+editor/display_folded = true
 anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -67,6 +70,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
+script/script = ExtResource( 5 )
 
 [node name="content" type="Container" parent="gui/sidebar/main"]
 
@@ -172,6 +176,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
+script/script = ExtResource( 6 )
 
 [node name="content" type="Container" parent="gui/sidebar/tiles"]
 
@@ -213,7 +218,7 @@ margin/bottom = 0.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 5 )
+textures/normal = ExtResource( 7 )
 params/resize_mode = 0
 params/scale = Vector2( 0.234375, 0.234375 )
 params/stretch_mode = 0
@@ -262,84 +267,28 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 310.0
-margin/bottom = 920.0
+margin/bottom = 304.0
 columns = 2
 
-[node name="Container" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
+[node name="Container" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 8 )]
 
 margin/right = 150.0
 margin/bottom = 150.0
+type = "floor"
 
-[node name="Container1" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
+[node name="Container1" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 8 )]
 
 margin/left = 154.0
 margin/right = 304.0
 margin/bottom = 150.0
+type = "wall"
 
-[node name="Container2" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
+[node name="Container2" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 8 )]
 
 margin/top = 154.0
 margin/right = 150.0
 margin/bottom = 304.0
-
-[node name="Container3" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
-
-margin/left = 154.0
-margin/top = 154.0
-margin/right = 304.0
-margin/bottom = 304.0
-
-[node name="Container4" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
-
-margin/top = 308.0
-margin/right = 150.0
-margin/bottom = 458.0
-
-[node name="Container5" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
-
-margin/left = 154.0
-margin/top = 308.0
-margin/right = 304.0
-margin/bottom = 458.0
-
-[node name="Container6" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
-
-margin/top = 462.0
-margin/right = 150.0
-margin/bottom = 612.0
-
-[node name="Container7" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
-
-margin/left = 154.0
-margin/top = 462.0
-margin/right = 304.0
-margin/bottom = 612.0
-
-[node name="Container8" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
-
-margin/top = 616.0
-margin/right = 150.0
-margin/bottom = 766.0
-
-[node name="Container9" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
-
-margin/left = 154.0
-margin/top = 616.0
-margin/right = 304.0
-margin/bottom = 766.0
-
-[node name="Container10" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
-
-margin/top = 770.0
-margin/right = 150.0
-margin/bottom = 920.0
-
-[node name="Container11" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 6 )]
-
-margin/left = 154.0
-margin/top = 770.0
-margin/right = 304.0
-margin/bottom = 920.0
+type = "space"
 
 [node name="level" type="Control" parent="gui"]
 
@@ -371,7 +320,7 @@ audio_listener/enable_3d = false
 physics/object_picking = false
 gui/disable_input = false
 
-[node name="board" parent="gui/level/view" instance=ExtResource( 7 )]
+[node name="board" parent="gui/level/view" instance=ExtResource( 9 )]
 
 tile_size = 100
 
@@ -393,7 +342,7 @@ drag_margin/left = 0.2
 drag_margin/top = 0.2
 drag_margin/right = 0.2
 drag_margin/bottom = 0.2
-script/script = ExtResource( 8 )
+script/script = ExtResource( 10 )
 margin_size = 0.2
 
 [connection signal="pressed" from="gui/sidebar/main/content/menu/button_exit" to="." method="exit"]

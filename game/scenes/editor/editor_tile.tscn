@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/editor/editor_tile.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/tiles/wall.png" type="Texture" id=2]
 
-[node name="Container" type="Container"]
+[node name="tile_button" type="Container"]
 
 rect/min_size = Vector2( 150, 150 )
 focus/ignore_mouse = true
@@ -15,6 +15,7 @@ margin/top = 0.0
 margin/right = 115.0
 margin/bottom = 115.0
 script/script = ExtResource( 1 )
+type = "floor"
 
 [node name="activated" type="ColorFrame" parent="."]
 
@@ -31,7 +32,7 @@ margin/right = 0.0
 margin/bottom = 0.0
 color = Color( 0, 0.427612, 0.484375, 1 )
 
-[node name="TextureFrame" type="TextureFrame" parent="."]
+[node name="icon" type="TextureFrame" parent="."]
 
 rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false

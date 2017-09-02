@@ -20,8 +20,6 @@ func _ready():
 	camera.set_pos(Vector2(board.width * board.tile_size, board.height * board.tile_size)/2)
 	
 	# Sidebar
-	for panel in sidebar.get_children():
-		panel.set_hidden(true)
 	show_panel("main")
 
 func load_level_gameboard():
@@ -41,6 +39,9 @@ func show_panel(name):
 		sidebar.get_node(active_panel).set_hidden(true)
 	active_panel = name
 	sidebar.get_node(active_panel).set_hidden(false)
+
+func get_active_panel():
+	return sidebar.get_node(active_panel)
 
 func _notification(what):
 	if OS.get_name() == "Android" and global.is_android_return(what):

@@ -12,7 +12,6 @@ func change_parent(new_parent):
 	new_parent.add_child(self)
 
 func _ready():
-	print("ready parent")
 	board = get_parent()
 	set_process_input(true)
 
@@ -85,6 +84,9 @@ func map_pos(pos):
 	return p
 
 func handle_input(event):
+	if event.type == InputEvent.SCREEN_TOUCH or event.type == InputEvent.SCREEN_DRAG:
+		if event.pos.x < 0 or event.pos.y < 0:
+			return
 
 	if event.type == InputEvent.SCREEN_TOUCH and event.is_pressed():
 		events[event.index]=event

@@ -25,10 +25,15 @@ func set_active(value):
 
 func unlink():
 	if linked_to:
-		linked_to.linked_to = null
+		var portal = linked_to
 		linked_to = null
+		if portal:
+			portal.linked_to = null
 
 func link_to(portal):
+	if portal == null:
+		unlink()
+		return
 	if linked_to == portal:
 		return
 	if not linked_to and portal.linked_to == self:
@@ -44,7 +49,7 @@ func link_to(portal):
 		else:
 			set_active(false)
 
-func close_propertie():
+func close_properties():
 	unlink()
 	.close_properties()
 

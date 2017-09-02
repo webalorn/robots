@@ -27,7 +27,7 @@ func _init(_line, _col, type).(_line, _col):
 func change_type(type):
 	return root.set_tile_type(line, col, type)
 
-func close_propertie(): # Used to convert tiles: unlink portal, remove references...
+func close_properties(): # Used to convert tiles: unlink portal, remove references...
 	if self.has_method("set_active"):
 		set_active(true)
 
@@ -55,3 +55,6 @@ static func createTile(type, line, col):
 	var tileClass = load("res://engine/tiles/" + type + "_tile.gd")
 	var tile = tileClass.new(line, col, type)
 	return tile
+
+static func get_tile_icon_texture(type):
+	return load("res://scenes/game/tiles/" + type + ".png")

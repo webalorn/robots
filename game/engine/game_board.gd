@@ -19,7 +19,7 @@ func set_tile_type(line, col, type = "floor"):
 	var old = grid[line][col]
 	if old.tile_type == type:
 		return
-	old.close_propertie()
+	old.close_properties()
 	var new_tile = get_new_tile(line, col, type)
 	new_tile.rotation = old.rotation
 	grid[line][col] = new_tile

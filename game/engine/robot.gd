@@ -107,3 +107,6 @@ static func load_from(s):
 	var robot = new(s.line, s.col, s.robot_id)
 	robot._load(s)
 	return robot
+
+static func get_robot_icon(robot_id):
+	return load("res://scenes/game/robots/robot_" + str(robot_id) + ".png")

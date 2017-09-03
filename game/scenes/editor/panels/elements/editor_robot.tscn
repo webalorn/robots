@@ -1,0 +1,112 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://scenes/editor/panels/elements/editor_robot.gd" type="Script" id=1]
+[ext_resource path="res://scenes/game/robots/robot_1.png" type="Texture" id=2]
+[ext_resource path="res://gui/editor/cross.png" type="Texture" id=3]
+
+[node name="robot" type="Control"]
+
+rect/min_size = Vector2( 320, 180 )
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 320.0
+margin/bottom = 180.0
+script/script = ExtResource( 1 )
+name = null
+
+[node name="background" type="ColorFrame" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+color = Color( 0.385864, 0.796481, 0.90625, 1 )
+
+[node name="robot" type="TextureFrame" parent="."]
+
+rect/scale = Vector2( 0.5, 0.5 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 29.0
+margin/top = 3.0
+margin/right = 285.0
+margin/bottom = 259.0
+texture = ExtResource( 2 )
+stretch_mode = 0
+
+[node name="name" type="Label" parent="."]
+
+anchor/top = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 40.0
+margin/right = 0.0
+margin/bottom = 0.0
+text = "robot name here"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="button" type="TextureButton" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="delete" type="TextureButton" parent="."]
+
+anchor/left = 1
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 114.0
+margin/top = 51.0
+margin/right = 62.8
+margin/bottom = 102.2
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 3 )
+params/resize_mode = 0
+params/scale = Vector2( 0.2, 0.2 )
+params/stretch_mode = 0
+params/modulate = Color( 0.886719, 0.100449, 0.100449, 1 )
+
+[connection signal="pressed" from="button" to="." method="_on_press_select"]
+
+[connection signal="pressed" from="delete" to="." method="_on_press_delete"]
+
+

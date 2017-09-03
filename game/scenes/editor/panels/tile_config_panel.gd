@@ -15,6 +15,12 @@ func action_on_cell(line, col):
 	get_node("content/scroll/content/description").set_text("TILE_DESCRIPTION_" + tile.tile_type)
 	
 	get_node("content/rotate").set_hidden(not tile.has_rotation())
+	if tile.has_method("set_active"):
+		get_node("content/scroll/content/state").set_hidden(false)
+		get_node("content/scroll/content/state/check").set_pressed(tile.active)
+	else:
+		get_node("content/scroll/content/state").set_hidden(true)
+	
 	if tile.tile_type == "portal":
 		specific_config = preload("res://scenes/editor/panels/tiles_config/config_portal.tscn")
 	elif tile extends preload("res://engine/tiles/generic_button_tile.gd"):
@@ -28,6 +34,9 @@ func action_on_cell(line, col):
 
 func rotate_tile():
 	tile.rotation -= 1
+
+func set_tile_active(value):
+	tile.active = value
 
 func unselect_tile():
 	if tile:

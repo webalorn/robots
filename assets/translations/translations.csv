@@ -23,3 +23,7 @@ PORTAL_UNLINKED,,
 PORTAL_LINK_BUTTON,,
 PORTAL_UNLINK_BUTTON,,
 ACTION_LINK_TEXT,Press onto another portal…,Appuyez sur un autre portail…
+NOTIF_SELECT_A_PORTAL,Please select a portal tile,
+NOTIF_DONT_SELECT_SAME_PORTAL,Please don’t select the same portal,
+BUTTON_SELECT_TARGETS,,
+ACTION_SELECT_TARGETS_TEXT,,

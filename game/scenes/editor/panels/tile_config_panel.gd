@@ -17,6 +17,8 @@ func action_on_cell(line, col):
 	get_node("content/rotate").set_hidden(not tile.has_rotation())
 	if tile.tile_type == "portal":
 		specific_config = preload("res://scenes/editor/panels/tiles_config/config_portal.tscn")
+	elif tile extends preload("res://engine/tiles/generic_button_tile.gd"):
+		specific_config = preload("res://scenes/editor/panels/tiles_config/config_buttons.tscn")
 	
 	if specific_config:
 		specific_config = specific_config.instance()

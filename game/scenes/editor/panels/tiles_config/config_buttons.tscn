@@ -1,0 +1,109 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://gui/second_plan_elements_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/editor/panels/tiles_config/config_buttons.gd" type="Script" id=2]
+
+[node name="targeted_buttons" type="VBoxContainer"]
+
+rect/min_size = Vector2( 320, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 1.0
+margin/right = 358.0
+margin/bottom = 147.0
+alignment = 0
+script/script = ExtResource( 2 )
+
+[node name="head" type="Label" parent="."]
+
+rect/min_size = Vector2( 0, 40 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 358.0
+margin/bottom = 40.0
+text = "NUMBER_OF_TARGETS"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="nb" type="Label" parent="."]
+
+rect/min_size = Vector2( 0, 40 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 44.0
+margin/right = 358.0
+margin/bottom = 84.0
+text = "42"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="text_action" type="Label" parent="."]
+
+rect/min_size = Vector2( 0, 60 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 88.0
+margin/right = 358.0
+margin/bottom = 148.0
+text = "ACTION_SELECT_TARGETS_TEXT"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="select" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 152.0
+margin/right = 358.0
+margin/bottom = 178.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "BUTTON_SELECT_TARGETS"
+flat = false
+
+[node name="cancel" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 182.0
+margin/right = 358.0
+margin/bottom = 208.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "CANCEL"
+flat = false
+
+[connection signal="pressed" from="select" to="." method="_on_select_targets"]
+
+[connection signal="pressed" from="cancel" to="." method="_on_cancel_action"]
+
+

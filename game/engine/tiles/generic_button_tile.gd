@@ -32,8 +32,12 @@ func remove_target(tile):
 
 func invert_state():
 	pushed = not pushed
+	var linked_inverted = {}
 	for key in targets:
-		targets[key].set_is_active(not targets[key].is_active())
+		if not linked_inverted.has(key):
+			targets[key].set_is_active(not targets[key].is_active())
+		if targets[key].has_method("link_to") and targets[key].linked_to: # Do not invert twice the same couple of portals
+			linked_inverted[Vector2(targets[key].line, targets[key].col)] = true
 
 func _init(a, b, c).(a, b, c):
 	pass

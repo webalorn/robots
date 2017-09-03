@@ -10,3 +10,9 @@ func _ready():
 
 func action_on_cell(line, col):
 	pass
+
+func on_show_panel():
+	pass
+
+func on_hide_panel():
+	pass

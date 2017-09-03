@@ -37,9 +37,11 @@ func is_game_input_active(): #For popups, etc... If needed !
 
 func show_panel(name):
 	if active_panel:
+		sidebar.get_node(active_panel).on_hide_panel()
 		sidebar.get_node(active_panel).set_hidden(true)
 	active_panel = name
 	sidebar.get_node(active_panel).set_hidden(false)
+	sidebar.get_node(active_panel).on_show_panel()
 
 func get_active_panel():
 	return sidebar.get_node(active_panel)

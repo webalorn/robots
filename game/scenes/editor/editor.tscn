@@ -650,6 +650,8 @@ max_lines_visible = -1
 
 [connection signal="pressed" from="gui/sidebar/tile_config/content/header/TextureButton" to="." method="show_panel" binds= [ "main" ]]
 
+[connection signal="pressed" from="gui/sidebar/tile_config/content/rotate" to="gui/sidebar/tile_config" method="rotate_tile"]
+
 [connection signal="popup_hide" from="popups/exit_editor" to="popups/background" method="hide" flags=3]
 
 [connection signal="pressed" from="popups/exit_editor/exit_button" to="." method="exit"]

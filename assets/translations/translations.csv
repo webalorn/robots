@@ -10,3 +10,10 @@ ROBOTS,Robots,Robots
 TILE_CANT_BE_PLACED_UNDER_ROBOT,This tile can’t be placed under a robot,Cette tuile ne peut pas être placée sous un robot
 EXIT_EDITOR_CONFIRM,Do you want to save the level and exit the editor ?,Voulez-vous vraiment sauvegarder le niveau et quitter l’éditeur ?
 CANCEL,Cancel,Annuler
+TILE_DESCRIPTION_floor,"This is a floor tile, we can move on it","C’est une case de sol, on peut bouger dessus"
+TILE_DESCRIPTION_space,"When a robot enters this cell, he die, because he is lost in the space !","Quand un robot entre sur cette case, il meurt, car il est perdu dans l’espace !"
+TILE_DESCRIPTION_portal,"Allows to teleport from a portal to another. The cell past the exit portal must but empty: floor, button…","Permet de se téléporter d’un portail a un autre. La case devent le portail de sortie doit être libre: du sol, ou un boutton…"
+TILE_DESCRIPTION_wall,"The wall says: You shall not pass. So, you can’t","Le mur proclame: Vous ne passerez pas. Donc, vous ne pouvez pas"
+TILE_DESCRIPTION_big_button,A button that invert the state of all connected tiles only when there is a robot on this button,Un boutton qui inverse l’état de toutes les cases connectées uniquement quand un robot est dessus
+TILE_DESCRIPTION_push_button,A button that invert the state of all connected tiles each time a robot enter the tile,Un boutton qui inverse l’état de toutes les cases connectées chaque fois qu’un robot s’arrete dessus
+TILE_DESCRIPTION_lever,A lever invert the state of all connected tiles the first time a robot stop on it,Un levier inverse l’état de toutes les cases connectées quand un robot s’arrête dessus

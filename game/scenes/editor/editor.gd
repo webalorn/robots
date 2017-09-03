@@ -44,6 +44,10 @@ func show_panel(name):
 func get_active_panel():
 	return sidebar.get_node(active_panel)
 
+func show_popup(name):
+	get_node("popups/background").popup()
+	get_node("popups/" + name).popup()
+
 func notify(text):
 	var notifs = get_node("gui/notifications")
 	if notifs.get_children().size() >= MAX_NOTIFS:

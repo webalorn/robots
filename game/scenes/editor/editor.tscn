@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/editor/editor.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scenes/editor/editor_tile.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/game/game_board.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/game/camera.gd" type="Script" id=10]
+[ext_resource path="res://gui/second_plan_elements/background_panel.tres" type="StyleBox" id=11]
 
 [node name="editor" type="Control"]
 
@@ -359,10 +360,115 @@ margin/bottom = 10.0
 custom_constants/separation = 10
 alignment = 2
 
-[connection signal="pressed" from="gui/sidebar/main/content/menu/button_exit" to="." method="exit"]
+[node name="popups" type="Control" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="background" type="PopupPanel" parent="popups"]
+
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+custom_styles/panel = ExtResource( 11 )
+popup/exclusive = false
+
+[node name="exit_editor" type="PopupPanel" parent="popups" groups=[
+"auto_center",
+"auto_scale",
+]]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 204.0
+margin/top = 162.0
+margin/right = 894.0
+margin/bottom = 525.0
+popup/exclusive = false
+
+[node name="exit_button" type="Button" parent="popups/exit_editor"]
+
+anchor/right = 3
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 50.0
+margin/top = 250.0
+margin/right = 25.0
+margin/bottom = 316.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "EXIT"
+flat = false
+
+[node name="cancel_button" type="Button" parent="popups/exit_editor"]
+
+anchor/left = 3
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -25.0
+margin/top = 250.0
+margin/right = 50.0
+margin/bottom = 326.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "CANCEL"
+flat = false
+
+[node name="message" type="Label" parent="popups/exit_editor"]
+
+anchor/right = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 20.0
+margin/top = 20.0
+margin/right = 20.0
+margin/bottom = 198.0
+text = "EXIT_EDITOR_CONFIRM"
+align = 1
+valign = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[connection signal="pressed" from="gui/sidebar/main/content/menu/button_exit" to="." method="show_popup" binds= [ "exit_editor" ]]
 
 [connection signal="pressed" from="gui/sidebar/main/content/menu/button_tiles" to="." method="show_panel" binds= [ "tiles" ]]
 
 [connection signal="pressed" from="gui/sidebar/tiles/content/header/TextureButton" to="." method="show_panel" binds= [ "main" ]]
+
+[connection signal="popup_hide" from="popups/exit_editor" to="popups/background" method="hide" flags=3]
+
+[connection signal="pressed" from="popups/exit_editor/exit_button" to="." method="exit"]
+
+[connection signal="pressed" from="popups/exit_editor/cancel_button" to="popups/exit_editor" method="hide"]
 
 

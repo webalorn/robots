@@ -63,4 +63,5 @@ func notify(text):
 
 func _notification(what):
 	if OS.get_name() == "Android" and global.is_android_return(what):
-		pass
+		if active_panel:
+			sidebar.get_node(active_panel).handle_return_action()

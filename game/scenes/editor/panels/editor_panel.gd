@@ -16,3 +16,6 @@ func on_show_panel():
 
 func on_hide_panel():
 	pass
+
+func handle_return_action():
+	editor.show_panel("main")

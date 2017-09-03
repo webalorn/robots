@@ -35,6 +35,7 @@ script/script = ExtResource( 2 )
 
 [node name="gui" type="Control" parent="."]
 
+editor/display_folded = true
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = true
@@ -328,6 +329,7 @@ type = "lever"
 
 [node name="tile_config" type="Panel" parent="gui/sidebar"]
 
+editor/display_folded = true
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -866,6 +868,7 @@ popup/exclusive = false
 "auto_center",
 ]]
 
+editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true

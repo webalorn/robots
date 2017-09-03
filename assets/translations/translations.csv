@@ -18,3 +18,8 @@ TILE_DESCRIPTION_big_button,A button that invert the state of all connected tile
 TILE_DESCRIPTION_push_button,A button that invert the state of all connected tiles each time a robot enter the tile,Un boutton qui inverse l’état de toutes les cases connectées chaque fois qu’un robot s’arrete dessus
 TILE_DESCRIPTION_lever,A lever invert the state of all connected tiles the first time a robot stop on it,Un levier inverse l’état de toutes les cases connectées quand un robot s’arrête dessus
 PARAMETERS,Parameters,Paramètres
+PORTAL_LINKED,,
+PORTAL_UNLINKED,,
+PORTAL_LINK_BUTTON,,
+PORTAL_UNLINK_BUTTON,,
+ACTION_LINK_TEXT,Press onto another portal…,Appuyez sur un autre portail…

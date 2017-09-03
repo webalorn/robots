@@ -1,0 +1,131 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://gui/second_plan_elements_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/editor/panels/tiles_config/config_portal.gd" type="Script" id=2]
+
+[node name="linked_portal" type="VBoxContainer"]
+
+rect/min_size = Vector2( 320, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 1.0
+margin/right = 358.0
+margin/bottom = 147.0
+alignment = 0
+script/script = ExtResource( 2 )
+
+[node name="state_linked" type="Label" parent="."]
+
+rect/min_size = Vector2( 0, 40 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 358.0
+margin/bottom = 40.0
+custom_colors/font_color = Color( 0, 0.585938, 0.146485, 1 )
+text = "PORTAL_LINKED"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="state_unlinked" type="Label" parent="."]
+
+rect/min_size = Vector2( 0, 40 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 44.0
+margin/right = 358.0
+margin/bottom = 84.0
+custom_colors/font_color = Color( 0.589844, 0, 0, 1 )
+text = "PORTAL_UNLINKED"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="text_action" type="Label" parent="."]
+
+rect/min_size = Vector2( 0, 60 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 88.0
+margin/right = 358.0
+margin/bottom = 148.0
+text = "ACTION_LINK_TEXT"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="link" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 152.0
+margin/right = 358.0
+margin/bottom = 178.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "PORTAL_LINK_BUTTON"
+flat = false
+
+[node name="cancel" type="Button" parent="."]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 118.0
+margin/right = 358.0
+margin/bottom = 144.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "CANCEL"
+flat = false
+
+[node name="unlink" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 182.0
+margin/right = 358.0
+margin/bottom = 208.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "PORTAL_UNLINK_BUTTON"
+flat = false
+
+[connection signal="pressed" from="link" to="." method="_on_link_portal"]
+
+[connection signal="pressed" from="cancel" to="." method="_on_cancel_action"]
+
+[connection signal="pressed" from="unlink" to="." method="_on_unlink_action"]
+
+

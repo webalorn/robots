@@ -328,8 +328,6 @@ type = "lever"
 
 [node name="tile_config" type="Panel" parent="gui/sidebar"]
 
-editor/display_folded = true
-visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -408,7 +406,6 @@ max_lines_visible = -1
 
 [node name="scroll" type="ScrollContainer" parent="gui/sidebar/tile_config/content"]
 
-editor/display_folded = true
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -478,6 +475,8 @@ params/stretch_mode = 0
 
 [node name="parameters" type="Panel" parent="gui/sidebar"]
 
+editor/display_folded = true
+visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -598,6 +597,7 @@ max_lines_visible = -1
 
 [node name="height" type="Container" parent="gui/sidebar/parameters/content/scroll/params"]
 
+editor/display_folded = true
 rect/min_size = Vector2( 0, 60 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -693,6 +693,7 @@ max_lines_visible = -1
 
 [node name="width" type="Container" parent="gui/sidebar/parameters/content/scroll/params"]
 
+editor/display_folded = true
 rect/min_size = Vector2( 0, 60 )
 focus/ignore_mouse = false
 focus/stop_mouse = true

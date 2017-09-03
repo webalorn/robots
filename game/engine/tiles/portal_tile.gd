@@ -34,6 +34,8 @@ func unlink():
 			portal.linked_to = null
 
 func link_to(portal):
+	if portal == self:
+		return
 	if portal == null:
 		unlink()
 		return

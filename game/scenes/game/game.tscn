@@ -192,8 +192,8 @@ margin_size = 0.2
 
 [connection signal="pressed" from="menu/VBoxContainer/button_resume" to="menu" method="hide"]
 
-[connection signal="pressed" from="gui/menu_button" to="menu" method="popup" flags=3]
-
 [connection signal="pressed" from="gui/menu_button" to="menu_background" method="popup"]
+
+[connection signal="pressed" from="gui/menu_button" to="menu" method="popup" flags=3]
 
 

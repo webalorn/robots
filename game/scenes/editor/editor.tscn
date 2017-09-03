@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=1]
+[gd_scene load_steps=18 format=1]
 
 [ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/editor/editor.gd" type="Script" id=2]
@@ -11,9 +11,12 @@
 [ext_resource path="res://scenes/editor/panels/tile_config_panel.gd" type="Script" id=9]
 [ext_resource path="res://gui/second_plan_elements_theme.tres" type="Theme" id=10]
 [ext_resource path="res://gui/editor/rotate.png" type="Texture" id=11]
-[ext_resource path="res://scenes/game/game_board.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/game/camera.gd" type="Script" id=13]
-[ext_resource path="res://gui/second_plan_elements/background_panel.tres" type="StyleBox" id=14]
+[ext_resource path="res://scenes/editor/panels/parameters_panel.gd" type="Script" id=12]
+[ext_resource path="res://gui/editor/malus.png" type="Texture" id=13]
+[ext_resource path="res://gui/editor/plus.png" type="Texture" id=14]
+[ext_resource path="res://scenes/game/game_board.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/game/camera.gd" type="Script" id=16]
+[ext_resource path="res://gui/second_plan_elements/background_panel.tres" type="StyleBox" id=17]
 
 [node name="editor" type="Control"]
 
@@ -132,7 +135,7 @@ margin/bottom = 330.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "PROPERTIES"
+text = "PARAMETERS"
 flat = false
 
 [node name="button_tiles" type="Button" parent="gui/sidebar/main/content/menu"]
@@ -325,6 +328,8 @@ type = "lever"
 
 [node name="tile_config" type="Panel" parent="gui/sidebar"]
 
+editor/display_folded = true
+visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -471,6 +476,289 @@ params/resize_mode = 0
 params/scale = Vector2( 0.25, 0.25 )
 params/stretch_mode = 0
 
+[node name="parameters" type="Panel" parent="gui/sidebar"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 12 )
+
+[node name="content" type="Container" parent="gui/sidebar/parameters"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 10.0
+margin/bottom = 10.0
+
+[node name="header" type="Container" parent="gui/sidebar/parameters/content"]
+
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 60.0
+
+[node name="TextureButton" type="TextureButton" parent="gui/sidebar/parameters/content/header"]
+
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 60.0
+margin/bottom = 0.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 7 )
+params/resize_mode = 0
+params/scale = Vector2( 0.234375, 0.234375 )
+params/stretch_mode = 0
+
+[node name="Label" type="Label" parent="gui/sidebar/parameters/content/header"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 59.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+text = "PARAMETERS"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="scroll" type="ScrollContainer" parent="gui/sidebar/parameters/content"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 1.0
+margin/top = 69.0
+margin/right = -1.0
+margin/bottom = 1.0
+scroll/horizontal = false
+scroll/vertical = true
+
+[node name="params" type="VBoxContainer" parent="gui/sidebar/parameters/content/scroll"]
+
+rect/min_size = Vector2( 320, 600 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 320.0
+margin/bottom = 600.0
+alignment = 0
+
+[node name="label_height" type="Label" parent="gui/sidebar/parameters/content/scroll/params"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 320.0
+margin/bottom = 36.0
+text = "HEIGHT"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="height" type="Container" parent="gui/sidebar/parameters/content/scroll/params"]
+
+rect/min_size = Vector2( 0, 60 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 36.0
+margin/right = 320.0
+margin/bottom = 96.0
+
+[node name="malus" type="TextureButton" parent="gui/sidebar/parameters/content/scroll/params/height"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 13 )
+params/resize_mode = 0
+params/scale = Vector2( 0.375, 0.375 )
+params/stretch_mode = 0
+
+[node name="value" type="Label" parent="gui/sidebar/parameters/content/scroll/params/height"]
+
+anchor/right = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 60.0
+margin/top = 0.0
+margin/right = 60.0
+margin/bottom = 60.0
+text = "42"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="plus" type="TextureButton" parent="gui/sidebar/parameters/content/scroll/params/height"]
+
+anchor/left = 1
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 60.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 40.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 14 )
+params/resize_mode = 0
+params/scale = Vector2( 0.375, 0.375 )
+params/stretch_mode = 0
+
+[node name="HSeparator" type="HSeparator" parent="gui/sidebar/parameters/content/scroll/params"]
+
+rect/min_size = Vector2( 0, 20 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 96.0
+margin/right = 320.0
+margin/bottom = 116.0
+
+[node name="label_width" type="Label" parent="gui/sidebar/parameters/content/scroll/params"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 116.0
+margin/right = 320.0
+margin/bottom = 152.0
+text = "WIDTH"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="width" type="Container" parent="gui/sidebar/parameters/content/scroll/params"]
+
+rect/min_size = Vector2( 0, 60 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 152.0
+margin/right = 320.0
+margin/bottom = 212.0
+
+[node name="malus" type="TextureButton" parent="gui/sidebar/parameters/content/scroll/params/width"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 13 )
+params/resize_mode = 0
+params/scale = Vector2( 0.375, 0.375 )
+params/stretch_mode = 0
+
+[node name="value" type="Label" parent="gui/sidebar/parameters/content/scroll/params/width"]
+
+anchor/right = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 60.0
+margin/top = 0.0
+margin/right = 60.0
+margin/bottom = 60.0
+text = "42"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="plus" type="TextureButton" parent="gui/sidebar/parameters/content/scroll/params/width"]
+
+anchor/left = 1
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 60.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 40.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 14 )
+params/resize_mode = 0
+params/scale = Vector2( 0.375, 0.375 )
+params/stretch_mode = 0
+
 [node name="level" type="Control" parent="gui"]
 
 editor/display_folded = true
@@ -502,7 +790,7 @@ audio_listener/enable_3d = false
 physics/object_picking = false
 gui/disable_input = false
 
-[node name="board" parent="gui/level/view" instance=ExtResource( 12 )]
+[node name="board" parent="gui/level/view" instance=ExtResource( 15 )]
 
 tile_size = 100
 
@@ -524,7 +812,7 @@ drag_margin/left = 0.2
 drag_margin/top = 0.2
 drag_margin/right = 0.2
 drag_margin/bottom = 0.2
-script/script = ExtResource( 13 )
+script/script = ExtResource( 16 )
 margin_size = 0.2
 
 [node name="notifications" type="VBoxContainer" parent="gui"]
@@ -569,7 +857,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
-custom_styles/panel = ExtResource( 14 )
+custom_styles/panel = ExtResource( 17 )
 popup/exclusive = false
 
 [node name="exit_editor" type="PopupPanel" parent="popups" groups=[
@@ -644,6 +932,8 @@ max_lines_visible = -1
 
 [connection signal="pressed" from="gui/sidebar/main/content/menu/button_exit" to="." method="show_popup" binds= [ "exit_editor" ]]
 
+[connection signal="pressed" from="gui/sidebar/main/content/menu/button_properties" to="." method="show_panel" binds= [ "parameters" ]]
+
 [connection signal="pressed" from="gui/sidebar/main/content/menu/button_tiles" to="." method="show_panel" binds= [ "tiles" ]]
 
 [connection signal="pressed" from="gui/sidebar/tiles/content/header/TextureButton" to="." method="show_panel" binds= [ "main" ]]
@@ -651,6 +941,16 @@ max_lines_visible = -1
 [connection signal="pressed" from="gui/sidebar/tile_config/content/header/TextureButton" to="." method="show_panel" binds= [ "main" ]]
 
 [connection signal="pressed" from="gui/sidebar/tile_config/content/rotate" to="gui/sidebar/tile_config" method="rotate_tile"]
+
+[connection signal="pressed" from="gui/sidebar/parameters/content/header/TextureButton" to="." method="show_panel" binds= [ "main" ]]
+
+[connection signal="pressed" from="gui/sidebar/parameters/content/scroll/params/height/malus" to="gui/sidebar/parameters" method="change_height" binds= [ -1 ]]
+
+[connection signal="pressed" from="gui/sidebar/parameters/content/scroll/params/height/plus" to="gui/sidebar/parameters" method="change_height" binds= [ 1 ]]
+
+[connection signal="pressed" from="gui/sidebar/parameters/content/scroll/params/width/malus" to="gui/sidebar/parameters" method="change_width" binds= [ -1 ]]
+
+[connection signal="pressed" from="gui/sidebar/parameters/content/scroll/params/width/plus" to="gui/sidebar/parameters" method="change_width" binds= [ 1 ]]
 
 [connection signal="popup_hide" from="popups/exit_editor" to="popups/background" method="hide" flags=3]
 

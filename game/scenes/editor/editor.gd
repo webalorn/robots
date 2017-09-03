@@ -16,6 +16,7 @@ func _ready():
 	camera = board.get_node("camera")
 	input_manager = preload("res://scenes/editor/editor_input_manager.gd").new(self)
 	
+	camera.zoom_min *= 2
 	game_view.add_child(input_manager)
 	load_level_gameboard()
 	camera.set_pos(Vector2(board.width * board.tile_size, board.height * board.tile_size)/2)

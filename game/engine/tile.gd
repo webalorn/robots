@@ -7,6 +7,9 @@ func set_rotation(value):
 	rotation = int(value)%4;
 	set_rot(float(rotation) * 2 * PI /4)
 
+func has_rotation():
+	return false
+
 func is_active():
 	return true if not self.has_method("set_active") else self.active
 

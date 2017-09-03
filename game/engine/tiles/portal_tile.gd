@@ -7,6 +7,9 @@ var active = true setget set_active
 func _init(a, b, c).(a, b, c):
 	pass
 
+func has_rotation():
+	return true
+
 func save():
 	var s = .save()
 	if linked_to:

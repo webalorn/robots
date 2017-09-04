@@ -18,7 +18,7 @@ func save_to(file_name, content):
 
 func read(file_name):
 	var file = File.new()
-	if not file.file_exists(file_name):
+	if not file_name or not file.file_exists(file_name):
 		return null
 	file.open(file_name, file.READ)
 	var json = file.get_line()

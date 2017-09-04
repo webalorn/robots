@@ -27,13 +27,24 @@ func _ready():
 	show_panel("main")
 	
 func load_level_gameboard():
-	board.load_from(save_manager.read(level_file_path))
+	var save = save_manager.read(level_file_path)
+	if save != null:
+		board.load_from(save)
+	else:
+		board.height = Globals.get("levels/default_size")
+		board.width = Globals.get("levels/default_size")
+		save_level()
+
+func save_level():
+	if level_file_path:
+		save_manager.save_to(level_file_path, board.save())
 
 func scene_init(params):
 	level_file_path = params.level
 
 func exit():
-	global.goto_scene("main_menu")
+	save_level()
+	global.goto_scene("editor_files")
 
 func is_game_input_active(): #For popups, etc... If needed !
 	return true

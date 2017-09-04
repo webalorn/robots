@@ -67,7 +67,6 @@ margin/bottom = 0.0
 [node name="main" type="Panel" parent="gui/sidebar"]
 
 editor/display_folded = true
-visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -802,6 +801,7 @@ params/stretch_mode = 0
 [node name="robots" type="Panel" parent="gui/sidebar"]
 
 editor/display_folded = true
+visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -917,7 +917,6 @@ name = "2"
 
 [node name="level" type="Control" parent="gui"]
 
-editor/display_folded = true
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = true
@@ -955,7 +954,7 @@ tile_size = 100
 anchor_mode = 1
 rotating = false
 current = true
-zoom = Vector2( 1, 1 )
+zoom = Vector2( 2, 2 )
 limit/left = -10000000
 limit/top = -10000000
 limit/right = 10000000

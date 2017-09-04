@@ -1,5 +1,7 @@
 extends Control
 
+var level_file_path
+
 var game_view
 var board
 var sidebar
@@ -25,10 +27,10 @@ func _ready():
 	show_panel("main")
 	
 func load_level_gameboard():
-	board.load_from(save_manager.read("user://saves/first_save.dat"))
+	board.load_from(save_manager.read(level_file_path))
 
 func scene_init(params):
-	print("Editor init with params: ", params)
+	level_file_path = params.level
 
 func exit():
 	global.goto_scene("main_menu")
@@ -50,6 +52,7 @@ func get_active_panel():
 func show_popup(name):
 	get_node("popups/background").popup()
 	get_node("popups/" + name).popup()
+	get_node("gui").center_elements()
 
 func notify(text):
 	var notifs = get_node("gui/notifications")

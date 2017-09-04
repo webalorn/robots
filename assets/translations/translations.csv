@@ -27,3 +27,13 @@ NOTIF_SELECT_A_PORTAL,Please select a portal tile,
 NOTIF_DONT_SELECT_SAME_PORTAL,Please don’t select the same portal,
 BUTTON_SELECT_TARGETS,,
 ACTION_SELECT_TARGETS_TEXT,,
+NUMBER_OF_TARGETS,,
+STATE,State,État
+ALREADY_ROBOT_ON_CELL,There is already a robot on this cell,
+YOUR_LEVELS,Your levels,Vos niveaux
+SELECT_A_FILE,,
+NEW,,
+DELETE,,
+RENAME,,
+LOAD,,
+FILE_NAME_NEW_LEVEL,new_level,nouveau_niveau

@@ -1,0 +1,125 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/editor_files/popup_name.gd" type="Script" id=2]
+[ext_resource path="res://gui/second_plan_elements_theme.tres" type="Theme" id=3]
+
+[node name="popup_name_choice" type="PopupPanel" groups=[
+"auto_center",
+"auto_scale",
+]]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 731.0
+margin/bottom = 447.0
+popup/exclusive = false
+script/script = ExtResource( 2 )
+title_text = ""
+
+[node name="title" type="Label" parent="."]
+
+anchor/right = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 10.0
+margin/bottom = 99.0
+text = "Popup title"
+align = 1
+valign = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="error" type="Label" parent="."]
+
+anchor/right = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+theme/theme = ExtResource( 3 )
+margin/left = 50.0
+margin/top = 210.0
+margin/right = 50.0
+margin/bottom = 288.0
+custom_colors/font_color = Color( 0.949219, 0.129776, 0.129776, 1 )
+text = "Diplay here the errors"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="name" type="LineEdit" parent="."]
+
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 80.0
+margin/top = 126.0
+margin/right = 80.0
+margin/bottom = 172.0
+placeholder/alpha = 0.6
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="cancel" type="Button" parent="."]
+
+anchor/top = 1
+anchor/right = 3
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 60.0
+margin/top = 110.0
+margin/right = 30.0
+margin/bottom = 30.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "CANCEL"
+flat = false
+
+[node name="rename" type="Button" parent="."]
+
+anchor/left = 3
+anchor/top = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -30.0
+margin/top = 110.0
+margin/right = 60.0
+margin/bottom = 30.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "RENAME"
+flat = false
+
+[connection signal="text_changed" from="name" to="." method="_on_name_text_changed"]
+
+[connection signal="pressed" from="cancel" to="." method="_on_cancel"]
+
+[connection signal="pressed" from="rename" to="." method="_on_rename"]
+
+

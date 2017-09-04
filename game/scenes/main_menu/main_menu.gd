@@ -6,7 +6,7 @@ func load_test_game():
 	get_node("/root/global").goto_scene("game", {"level":"some_path"})
 
 func load_editor():
-	get_node("/root/global").goto_scene("editor", {"level":"level_name_in_user_editor_dir"})
+	get_node("/root/global").goto_scene("editor_files")
 
 func exit_game():
 	get_tree().quit()

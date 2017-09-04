@@ -1,0 +1,457 @@
+[gd_scene load_steps=11 format=1]
+
+[ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/editor_files/editor_files.gd" type="Script" id=2]
+[ext_resource path="res://addons/resizable_gui/gui_node.gd" type="Script" id=3]
+[ext_resource path="res://addons/resizable_gui/icon.png" type="Texture" id=4]
+[ext_resource path="res://gui/editor/back_button.png" type="Texture" id=5]
+[ext_resource path="res://gui/main_theme/Button/danger_button.tres" type="StyleBox" id=6]
+[ext_resource path="res://gui/main_theme/Button/highlighted_button.tres" type="StyleBox" id=7]
+[ext_resource path="res://gui/second_plan_elements_theme.tres" type="Theme" id=8]
+[ext_resource path="res://gui/second_plan_elements/background_panel.tres" type="StyleBox" id=9]
+[ext_resource path="res://scenes/editor_files/popup_name.tscn" type="PackedScene" id=10]
+
+[node name="editor_files" type="Control"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 2 )
+
+[node name="gui" type="Control" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 3 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="sidebar" type="Panel" parent="gui"]
+
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 350.0
+margin/bottom = 0.0
+
+[node name="content" type="VBoxContainer" parent="gui/sidebar"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+custom_constants/separation = 50
+alignment = 0
+
+[node name="header" type="Control" parent="gui/sidebar/content"]
+
+editor/display_folded = true
+rect/min_size = Vector2( 0, 80 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 350.0
+margin/bottom = 80.0
+
+[node name="back" type="TextureButton" parent="gui/sidebar/content/header"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 74.0
+margin/bottom = 74.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 5 )
+params/resize_mode = 0
+params/scale = Vector2( 0.25, 0.25 )
+params/stretch_mode = 0
+
+[node name="title" type="Label" parent="gui/sidebar/content/header"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 70.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+text = "YOUR_LEVELS"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="new" type="Button" parent="gui/sidebar/content"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 130.0
+margin/right = 350.0
+margin/bottom = 206.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "NEW"
+flat = false
+
+[node name="delete" type="Button" parent="gui/sidebar/content"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 256.0
+margin/right = 350.0
+margin/bottom = 332.0
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 6 )
+custom_styles/focus = ExtResource( 6 )
+custom_styles/disabled = ExtResource( 6 )
+custom_styles/normal = ExtResource( 6 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "DELETE"
+flat = false
+
+[node name="rename" type="Button" parent="gui/sidebar/content"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 382.0
+margin/right = 350.0
+margin/bottom = 458.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "RENAME"
+flat = false
+
+[node name="load" type="Button" parent="gui/sidebar/content"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 508.0
+margin/right = 350.0
+margin/bottom = 584.0
+custom_styles/hover = ExtResource( 7 )
+custom_styles/pressed = ExtResource( 7 )
+custom_styles/focus = ExtResource( 7 )
+custom_styles/disabled = ExtResource( 7 )
+custom_styles/normal = ExtResource( 7 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "LOAD"
+flat = false
+
+[node name="files" type="Control" parent="gui"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 350.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="background" type="ColorFrame" parent="gui/files"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+color = Color( 0.757812, 0.757812, 0.757812, 1 )
+
+[node name="header" type="Control" parent="gui/files"]
+
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 100.0
+
+[node name="ColorFrame" type="ColorFrame" parent="gui/files/header"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+color = Color( 0.23761, 0.709772, 0.894531, 1 )
+
+[node name="title" type="Label" parent="gui/files/header"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+text = "SELECT_A_FILE"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="scroll" type="ScrollContainer" parent="gui/files"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 60.0
+margin/top = 100.0
+margin/right = 50.0
+margin/bottom = 0.0
+scroll/horizontal = false
+scroll/vertical = true
+
+[node name="list" type="VBoxContainer" parent="gui/files/scroll"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 8 )
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+alignment = 0
+
+[node name="popups" type="Control" parent="."]
+
+editor/display_folded = true
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="background" type="PopupPanel" parent="popups"]
+
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+custom_styles/panel = ExtResource( 9 )
+popup/exclusive = false
+
+[node name="new_level" parent="popups" instance=ExtResource( 10 )]
+
+visibility/visible = false
+title_text = "TITLE_NEW_LEVEL"
+
+[node name="rename" parent="popups" instance=ExtResource( 10 )]
+
+visibility/visible = false
+title_text = "TITLE_RENAME"
+
+[node name="delete_confirm" type="PopupPanel" parent="popups"]
+
+editor/display_folded = true
+visibility/visible = false
+anchor/top = 1
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 187.0
+margin/top = 515.0
+margin/right = 194.0
+margin/bottom = 549.0
+popup/exclusive = false
+
+[node name="title" type="Label" parent="popups/delete_confirm"]
+
+anchor/right = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 10.0
+margin/bottom = 84.0
+text = "DELETE_LEVEL_CONFIRM"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="name" type="Label" parent="popups/delete_confirm"]
+
+anchor/right = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+theme/theme = ExtResource( 8 )
+margin/left = 50.0
+margin/top = 98.0
+margin/right = 50.0
+margin/bottom = 226.0
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="delete" type="Button" parent="popups/delete_confirm"]
+
+anchor/right = 3
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 50.0
+margin/top = 238.0
+margin/right = 25.5
+margin/bottom = 314.0
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 6 )
+custom_styles/focus = ExtResource( 6 )
+custom_styles/disabled = ExtResource( 6 )
+custom_styles/normal = ExtResource( 6 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "YES_DELETE"
+flat = false
+
+[node name="cancel" type="Button" parent="popups/delete_confirm"]
+
+anchor/left = 3
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -25.0
+margin/top = 238.0
+margin/right = 50.0
+margin/bottom = 314.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "CANCEL"
+flat = false
+
+[connection signal="pressed" from="gui/sidebar/content/header/back" to="." method="exit"]
+
+[connection signal="pressed" from="gui/sidebar/content/new" to="." method="_on_action_new"]
+
+[connection signal="pressed" from="gui/sidebar/content/delete" to="." method="_on_action_delete"]
+
+[connection signal="pressed" from="gui/sidebar/content/rename" to="." method="_on_action_rename"]
+
+[connection signal="pressed" from="gui/sidebar/content/load" to="." method="_on_action_load"]
+
+[connection signal="name_set" from="popups/new_level" to="." method="launch_editor"]
+
+[connection signal="popup_hide" from="popups/new_level" to="popups/background" method="hide"]
+
+[connection signal="name_set" from="popups/rename" to="." method="rename_file"]
+
+[connection signal="popup_hide" from="popups/rename" to="popups/background" method="hide"]
+
+[connection signal="popup_hide" from="popups/delete_confirm" to="popups/background" method="hide"]
+
+[connection signal="pressed" from="popups/delete_confirm/delete" to="." method="_on_delete_confirm"]
+
+[connection signal="pressed" from="popups/delete_confirm/delete" to="popups/delete_confirm" method="hide"]
+
+[connection signal="pressed" from="popups/delete_confirm/cancel" to="popups/delete_confirm" method="hide"]
+
+

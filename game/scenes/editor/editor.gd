@@ -12,6 +12,9 @@ var active_panel
 const MAX_NOTIFS = 3
 
 func _ready():
+	save_thread = Thread.new()
+	set_process(true)
+	
 	sidebar = get_node("gui/sidebar")
 	game_view = get_node("gui/level/view")
 	board = game_view.get_node("board")
@@ -25,7 +28,10 @@ func _ready():
 	
 	# Sidebar
 	show_panel("main")
-	
+
+func _process(delta):
+	process_auto_save(delta)
+
 func load_level_gameboard():
 	var save = save_manager.read(level_file_path)
 	if save != null:
@@ -34,10 +40,6 @@ func load_level_gameboard():
 		board.height = Globals.get("levels/default_size")
 		board.width = Globals.get("levels/default_size")
 		save_level()
-
-func save_level():
-	if level_file_path:
-		save_manager.save_to(level_file_path, board.save())
 
 func scene_init(params):
 	level_file_path = params.level
@@ -79,3 +81,43 @@ func _notification(what):
 	if OS.get_name() == "Android" and global.is_android_return(what):
 		if active_panel:
 			sidebar.get_node(active_panel).handle_return_action()
+
+##################
+##   Auto-save  ##
+##################
+
+var mutex_save_level = Mutex.new()
+func save_level(data = null):
+	if level_file_path:
+		mutex_save_level.lock()
+		if data == null:
+			data = board.save()
+		save_manager.save_to(level_file_path, data)
+		mutex_save_level.unlock()
+
+var SAVE_INTERVAL = Globals.get("levels/editor_autosave_time_interval")
+var time_to_next_save = SAVE_INTERVAL
+var is_save_thread_active = false
+var save_thread
+
+func process_auto_save(delta):
+	if not is_save_thread_active:
+		time_to_next_save -= delta
+		if time_to_next_save < 0:
+			is_save_thread_active = true
+			if save_thread.is_active():
+				save_thread.wait_to_finish()
+			save_thread.start(self, "test_method", board.save(), 1)
+			time_to_next_save = SAVE_INTERVAL
+
+var last_saved_hash = null
+func test_method(data):
+	var hash_val = data.hash()
+	if last_saved_hash != hash_val:
+		save_level(data)
+		last_saved_hash = hash_val
+	is_save_thread_active = false
+
+func _exit_tree():
+	if save_thread.is_active():
+		save_thread.wait_to_finish()

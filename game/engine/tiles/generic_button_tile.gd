@@ -37,7 +37,7 @@ func invert_state():
 		if not linked_inverted.has(key):
 			targets[key].set_is_active(not targets[key].is_active())
 		if targets[key].has_method("link_to") and targets[key].linked_to: # Do not invert twice the same couple of portals
-			linked_inverted[Vector2(targets[key].line, targets[key].col)] = true
+			linked_inverted[Vector2(targets[key].linked_to.line, targets[key].linked_to.col)] = true
 
 func _init(a, b, c).(a, b, c):
 	pass

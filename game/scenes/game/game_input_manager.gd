@@ -23,6 +23,8 @@ func handle_touch_cell(line, col):
 			if robot != active_robot:
 				robot.show_gui("arrows")
 				active_robot = robot
+			else:
+				active_robot = null
 		elif active_robot:
 			reset_active_robot()
 	else:

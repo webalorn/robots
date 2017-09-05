@@ -68,7 +68,7 @@ func get_portal_out_tile():
 	return tile
 
 func get_entering_special_action():
-	if !linked_to or not active:
+	if not linked_to or not active:
 		return {action = CONSTS.blocked}
 	var next_tile = linked_to.get_portal_out_tile()
 	if not next_tile:

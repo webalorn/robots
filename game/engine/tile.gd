@@ -4,7 +4,7 @@ var rotation = 0 setget set_rotation
 var tile_type = null
 
 func set_rotation(value):
-	rotation = int(value)%4;
+	rotation = (int(value)%4+4)%4;
 	set_rot(float(rotation) * 2 * PI /4)
 
 func has_rotation():

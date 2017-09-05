@@ -19,7 +19,7 @@ func play_anim(name):
 
 ####################
 ##    Actions     ##
-###################
+####################
 
 func action_move(params):
 	play_anim("robot_move")

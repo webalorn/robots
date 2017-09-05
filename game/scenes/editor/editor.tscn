@@ -1,24 +1,25 @@
-[gd_scene load_steps=20 format=1]
+[gd_scene load_steps=21 format=1]
 
 [ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/editor/editor.gd" type="Script" id=2]
-[ext_resource path="res://addons/resizable_gui/gui_node.gd" type="Script" id=3]
-[ext_resource path="res://addons/resizable_gui/icon.png" type="Texture" id=4]
-[ext_resource path="res://scenes/editor/panels/main_panel.gd" type="Script" id=5]
-[ext_resource path="res://scenes/editor/panels/tiles_panel.gd" type="Script" id=6]
-[ext_resource path="res://gui/editor/back_button.png" type="Texture" id=7]
-[ext_resource path="res://scenes/editor/panels/elements/editor_tile.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/editor/panels/tile_config_panel.gd" type="Script" id=9]
-[ext_resource path="res://gui/second_plan_elements_theme.tres" type="Theme" id=10]
-[ext_resource path="res://gui/editor/rotate.png" type="Texture" id=11]
-[ext_resource path="res://scenes/editor/panels/parameters_panel.gd" type="Script" id=12]
-[ext_resource path="res://gui/editor/malus.png" type="Texture" id=13]
-[ext_resource path="res://gui/editor/plus.png" type="Texture" id=14]
-[ext_resource path="res://scenes/editor/panels/robots_panel.gd" type="Script" id=15]
-[ext_resource path="res://scenes/editor/panels/elements/editor_robot.tscn" type="PackedScene" id=16]
-[ext_resource path="res://scenes/game/game_board.tscn" type="PackedScene" id=17]
-[ext_resource path="res://scenes/game/camera.gd" type="Script" id=18]
-[ext_resource path="res://gui/second_plan_elements/background_panel.tres" type="StyleBox" id=19]
+[ext_resource path="res://scenes/editor/level_container_script.gd" type="Script" id=3]
+[ext_resource path="res://scenes/game/game_board.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/game/camera.gd" type="Script" id=5]
+[ext_resource path="res://addons/resizable_gui/gui_node.gd" type="Script" id=6]
+[ext_resource path="res://addons/resizable_gui/icon.png" type="Texture" id=7]
+[ext_resource path="res://scenes/editor/panels/main_panel.gd" type="Script" id=8]
+[ext_resource path="res://scenes/editor/panels/tiles_panel.gd" type="Script" id=9]
+[ext_resource path="res://gui/editor/back_button.png" type="Texture" id=10]
+[ext_resource path="res://scenes/editor/panels/elements/editor_tile.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/editor/panels/tile_config_panel.gd" type="Script" id=12]
+[ext_resource path="res://gui/second_plan_elements_theme.tres" type="Theme" id=13]
+[ext_resource path="res://gui/editor/rotate.png" type="Texture" id=14]
+[ext_resource path="res://scenes/editor/panels/parameters_panel.gd" type="Script" id=15]
+[ext_resource path="res://gui/editor/malus.png" type="Texture" id=16]
+[ext_resource path="res://gui/editor/plus.png" type="Texture" id=17]
+[ext_resource path="res://scenes/editor/panels/robots_panel.gd" type="Script" id=18]
+[ext_resource path="res://scenes/editor/panels/elements/editor_robot.tscn" type="PackedScene" id=19]
+[ext_resource path="res://gui/second_plan_elements/background_panel.tres" type="StyleBox" id=20]
 
 [node name="editor" type="Control"]
 
@@ -35,6 +36,64 @@ margin/right = 0.0
 margin/bottom = 0.0
 script/script = ExtResource( 2 )
 
+[node name="level" type="Control" parent="." groups=[
+"auto_resize_notify",
+]]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 355.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 3 )
+
+[node name="view" type="Viewport" parent="level"]
+
+rect = Rect2( 0, 0, 725, 720 )
+own_world = true
+world = null
+transparent_bg = false
+render_target/enabled = false
+render_target/v_flip = false
+render_target/clear_on_new_frame = true
+render_target/filter = false
+render_target/gen_mipmaps = false
+render_target/update_mode = 2
+audio_listener/enable_2d = false
+audio_listener/enable_3d = false
+physics/object_picking = false
+gui/disable_input = false
+
+[node name="board" parent="level/view" instance=ExtResource( 4 )]
+
+tile_size = 100
+
+[node name="camera" type="Camera2D" parent="level/view/board"]
+
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 2, 2 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+script/script = ExtResource( 5 )
+margin_size = 0.2
+
 [node name="gui" type="Control" parent="."]
 
 anchor/right = 1
@@ -47,9 +106,9 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
-script/script = ExtResource( 3 )
+script/script = ExtResource( 6 )
 __meta__ = {
-"_editor_icon": ExtResource( 4 )
+"_editor_icon": ExtResource( 7 )
 }
 
 [node name="sidebar" type="Control" parent="gui"]
@@ -78,7 +137,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
-script/script = ExtResource( 5 )
+script/script = ExtResource( 8 )
 
 [node name="content" type="Container" parent="gui/sidebar/main"]
 
@@ -186,7 +245,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
-script/script = ExtResource( 6 )
+script/script = ExtResource( 9 )
 
 [node name="content" type="Container" parent="gui/sidebar/tiles"]
 
@@ -227,7 +286,7 @@ margin/bottom = 0.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 7 )
+textures/normal = ExtResource( 10 )
 params/resize_mode = 0
 params/scale = Vector2( 0.234375, 0.234375 )
 params/stretch_mode = 0
@@ -279,26 +338,26 @@ margin/right = 310.0
 margin/bottom = 0.0
 columns = 2
 
-[node name="floor" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 8 )]
+[node name="floor" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 11 )]
 
 margin/right = 150.0
 margin/bottom = 150.0
 
-[node name="wall" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 8 )]
+[node name="wall" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 11 )]
 
 margin/left = 154.0
 margin/right = 304.0
 margin/bottom = 150.0
 type = "wall"
 
-[node name="space" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 8 )]
+[node name="space" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 11 )]
 
 margin/top = 154.0
 margin/right = 150.0
 margin/bottom = 304.0
 type = "space"
 
-[node name="portal" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 8 )]
+[node name="portal" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 11 )]
 
 margin/left = 154.0
 margin/top = 154.0
@@ -306,14 +365,14 @@ margin/right = 304.0
 margin/bottom = 304.0
 type = "portal"
 
-[node name="big_button" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 8 )]
+[node name="big_button" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 11 )]
 
 margin/top = 308.0
 margin/right = 150.0
 margin/bottom = 458.0
 type = "big_button"
 
-[node name="push_button" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 8 )]
+[node name="push_button" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 11 )]
 
 margin/left = 154.0
 margin/top = 308.0
@@ -321,7 +380,7 @@ margin/right = 304.0
 margin/bottom = 458.0
 type = "push_button"
 
-[node name="lever" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 8 )]
+[node name="lever" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 11 )]
 
 margin/top = 462.0
 margin/right = 150.0
@@ -342,7 +401,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
-script/script = ExtResource( 9 )
+script/script = ExtResource( 12 )
 
 [node name="content" type="Container" parent="gui/sidebar/tile_config"]
 
@@ -384,7 +443,7 @@ margin/bottom = 0.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 7 )
+textures/normal = ExtResource( 10 )
 params/resize_mode = 0
 params/scale = Vector2( 0.234375, 0.234375 )
 params/stretch_mode = 0
@@ -443,7 +502,7 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-theme/theme = ExtResource( 10 )
+theme/theme = ExtResource( 13 )
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 320.0
@@ -507,7 +566,7 @@ margin/bottom = 0.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 11 )
+textures/normal = ExtResource( 14 )
 params/resize_mode = 0
 params/scale = Vector2( 0.25, 0.25 )
 params/stretch_mode = 0
@@ -526,7 +585,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
-script/script = ExtResource( 12 )
+script/script = ExtResource( 15 )
 
 [node name="content" type="Container" parent="gui/sidebar/parameters"]
 
@@ -567,7 +626,7 @@ margin/bottom = 0.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 7 )
+textures/normal = ExtResource( 10 )
 params/resize_mode = 0
 params/scale = Vector2( 0.234375, 0.234375 )
 params/stretch_mode = 0
@@ -660,7 +719,7 @@ margin/bottom = 40.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 13 )
+textures/normal = ExtResource( 16 )
 params/resize_mode = 0
 params/scale = Vector2( 0.375, 0.375 )
 params/stretch_mode = 0
@@ -698,7 +757,7 @@ margin/bottom = 40.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 14 )
+textures/normal = ExtResource( 17 )
 params/resize_mode = 0
 params/scale = Vector2( 0.375, 0.375 )
 params/stretch_mode = 0
@@ -756,7 +815,7 @@ margin/bottom = 40.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 13 )
+textures/normal = ExtResource( 16 )
 params/resize_mode = 0
 params/scale = Vector2( 0.375, 0.375 )
 params/stretch_mode = 0
@@ -794,7 +853,7 @@ margin/bottom = 40.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 14 )
+textures/normal = ExtResource( 17 )
 params/resize_mode = 0
 params/scale = Vector2( 0.375, 0.375 )
 params/stretch_mode = 0
@@ -813,7 +872,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
-script/script = ExtResource( 15 )
+script/script = ExtResource( 18 )
 
 [node name="content" type="Container" parent="gui/sidebar/robots"]
 
@@ -854,7 +913,7 @@ margin/bottom = 0.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 7 )
+textures/normal = ExtResource( 10 )
 params/resize_mode = 0
 params/scale = Vector2( 0.234375, 0.234375 )
 params/stretch_mode = 0
@@ -906,71 +965,15 @@ margin/right = 320.0
 margin/bottom = 600.0
 alignment = 0
 
-[node name="robot 1" parent="gui/sidebar/robots/content/scroll/robots" instance=ExtResource( 16 )]
+[node name="robot 1" parent="gui/sidebar/robots/content/scroll/robots" instance=ExtResource( 19 )]
 
 name = "1"
 
-[node name="robot 2" parent="gui/sidebar/robots/content/scroll/robots" instance=ExtResource( 16 )]
+[node name="robot 2" parent="gui/sidebar/robots/content/scroll/robots" instance=ExtResource( 19 )]
 
 margin/top = 180.0
 margin/bottom = 360.0
 name = "2"
-
-[node name="level" type="Control" parent="gui"]
-
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = true
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 355.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
-
-[node name="view" type="Viewport" parent="gui/level"]
-
-editor/display_folded = true
-rect = Rect2( 0, 0, 725, 720 )
-own_world = true
-world = null
-transparent_bg = false
-render_target/enabled = false
-render_target/v_flip = false
-render_target/clear_on_new_frame = true
-render_target/filter = false
-render_target/gen_mipmaps = false
-render_target/update_mode = 2
-audio_listener/enable_2d = false
-audio_listener/enable_3d = false
-physics/object_picking = false
-gui/disable_input = false
-
-[node name="board" parent="gui/level/view" instance=ExtResource( 17 )]
-
-tile_size = 100
-
-[node name="camera" type="Camera2D" parent="gui/level/view/board"]
-
-anchor_mode = 1
-rotating = false
-current = true
-zoom = Vector2( 2, 2 )
-limit/left = -10000000
-limit/top = -10000000
-limit/right = 10000000
-limit/bottom = 10000000
-drag_margin/h_enabled = true
-drag_margin/v_enabled = true
-smoothing/enable = false
-smoothing/speed = 5.0
-drag_margin/left = 0.2
-drag_margin/top = 0.2
-drag_margin/right = 0.2
-drag_margin/bottom = 0.2
-script/script = ExtResource( 18 )
-margin_size = 0.2
 
 [node name="notifications" type="VBoxContainer" parent="gui"]
 
@@ -1014,7 +1017,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
-custom_styles/panel = ExtResource( 19 )
+custom_styles/panel = ExtResource( 20 )
 popup/exclusive = false
 
 [node name="exit_editor" type="PopupPanel" parent="popups" groups=[

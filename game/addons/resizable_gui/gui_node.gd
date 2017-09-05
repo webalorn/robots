@@ -22,6 +22,8 @@ func set_size_and_scale():
 		last_ratio = ratio
 		for el in get_tree().get_nodes_in_group("auto_scale"):
 			el.set_scale(Vector2(el.get_scale().x * apply_ratio.x, el.get_scale().y * apply_ratio.y))
+		for el in get_tree().get_nodes_in_group("auto_resize_notify"):
+			el.auto_resize_notify(ratio, actual_size)
 
 func center_node(el):
 	var actual_size = get_viewport().get_rect().size

@@ -3,7 +3,7 @@ extends "res://scenes/base_scene.gd"
 var buttons
 
 func load_test_game():
-	get_node("/root/global").goto_scene("game", {"level":"some_path"})
+	get_node("/root/global").goto_scene("game", {"level":"user://editor/level de test.dat"})
 
 func load_editor():
 	get_node("/root/global").goto_scene("editor_files")

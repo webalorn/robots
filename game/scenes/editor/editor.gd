@@ -42,7 +42,17 @@ func load_level_gameboard():
 		save_level()
 
 func scene_init(params):
+	.scene_init(params)
 	level_file_path = params.level
+
+func action_play_level():
+	save_level()
+	global.goto_scene("game", {
+		level = level_file_path,
+		exit_goto = "editor",
+		exit_text = tr("LEVEL_EDITOR"),
+		exit_goto_params = scene_params
+	})
 
 func exit():
 	save_level()

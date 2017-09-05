@@ -6,6 +6,20 @@ func _ready():
 	pass
 
 #####################
+##   Scene params  ##
+#####################
+
+var scene_params
+
+func scene_init(params):
+	scene_params = params
+
+func get_parameter(name, default_value = null):
+	if scene_params.has(name):
+		return scene_params[name]
+	return default_value
+
+#####################
 ##  Popups system  ##
 #####################
 

@@ -116,11 +116,10 @@ margin/right = 0.0
 margin/bottom = 0.0
 
 [node name="menu" type="PopupPanel" parent="popups" groups=[
-"auto_center",
 "auto_scale",
+"auto_center",
 ]]
 
-editor/display_folded = true
 visibility/visible = false
 anchor/left = 3
 anchor/top = 3
@@ -136,7 +135,7 @@ margin/right = -296.0
 margin/bottom = -196.0
 popup/exclusive = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="popups/menu"]
+[node name="buttons" type="VBoxContainer" parent="popups/menu"]
 
 anchor/left = 3
 anchor/right = 3
@@ -152,7 +151,7 @@ margin/bottom = 0.0
 custom_constants/separation = 40
 alignment = 1
 
-[node name="button_exit" type="Button" parent="popups/menu/VBoxContainer"]
+[node name="button_exit" type="Button" parent="popups/menu/buttons"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -168,7 +167,7 @@ shortcut = null
 text = "MAIN_MENU"
 flat = false
 
-[node name="button_resume" type="Button" parent="popups/menu/VBoxContainer"]
+[node name="button_resume" type="Button" parent="popups/menu/buttons"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -205,8 +204,8 @@ popup/exclusive = false
 
 [connection signal="popup_hide" from="popups/menu" to="popups/background" method="hide" flags=3]
 
-[connection signal="pressed" from="popups/menu/VBoxContainer/button_exit" to="." method="exit"]
+[connection signal="pressed" from="popups/menu/buttons/button_exit" to="." method="exit"]
 
-[connection signal="pressed" from="popups/menu/VBoxContainer/button_resume" to="popups/menu" method="hide"]
+[connection signal="pressed" from="popups/menu/buttons/button_resume" to="popups/menu" method="hide"]
 
 

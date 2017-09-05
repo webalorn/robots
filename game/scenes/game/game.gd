@@ -28,42 +28,23 @@ func _ready():
 	input_manager = preload("res://scenes/game/game_input_manager.gd").new(self)
 	
 	game_view.add_child(input_manager)
-	tmp_gen_board()
+	load_level()
 	camera.set_pos(Vector2(board.width * board.tile_size, board.height * board.tile_size)/2)
+	
+	if get_parameter("exit_text"):
+		get_node("popups/menu/buttons/button_exit").set_text(get_parameter("exit_text"))
 
-func tmp_gen_board():
-	
-	board.width = 10
-	board.height = 8
-	board.add_new_robot(1, 1, 1)
-	board.add_new_robot(3, 4, 2)
-	
-	var wall_class = preload("res://engine/tiles/wall_tile.gd")
-	
-	board.set_tile_type(1, 3, "wall")
-	board.set_tile_type(2, 3, "wall")
-	board.set_tile_type(3, 3, "wall")
-	board.set_tile_type(4, 1, "wall")
-	board.set_tile_type(4, 4, "space")
-	
-	var b1 = board.set_tile_type(3, 1, "push_button")
-	
-	var p1 = board.set_tile_type(6, 2, "portal")
-	var p2 = board.set_tile_type (1, 2, "portal")
-	p2.linked_to = p1
-	p2.rotation = CONSTS.DIRS.DOWN;
-	p1.set_is_active(false)
-	b1.add_target(p1)
-	
-	save_manager.save_to("user://saves/first_save.dat", board.save())
-	board.clear()
-	board.load_from(save_manager.read("user://saves/first_save.dat"))
-
-func scene_init(params):
-	print("Game init with params: ", params)
+func load_level():
+	var save = save_manager.read(get_parameter("level"))
+	if save != null:
+		board.load_from(save)
+	else:
+		exit()
 
 func exit():
-	global.goto_scene("main_menu")
+	global.goto_scene(get_parameter("exit_goto", "main_menu"),
+		get_parameter("exit_goto_params", {})
+	)
 
 func is_game_input_active():
 	if get_node("popups/menu").is_visible():

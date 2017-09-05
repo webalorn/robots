@@ -1,4 +1,4 @@
-extends Control
+extends "res://scenes/base_scene.gd"
 
 var buttons
 

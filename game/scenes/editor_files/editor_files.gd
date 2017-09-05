@@ -1,4 +1,4 @@
-extends Control
+extends "res://scenes/base_scene.gd"
 
 var path = Globals.get("levels/editor_store_path")
 var extension = Globals.get("levels/extension")
@@ -30,11 +30,6 @@ func _ready():
 
 func exit():
 	global.goto_scene("main_menu")
-
-func show_popup(name):
-	get_node("popups/background").popup()
-	get_node("popups/" + name).popup()
-	get_node("gui").center_elements()
 
 func show_gui_selected(is_level_selected):
 	var side = get_node("gui/sidebar/content")

@@ -1,4 +1,4 @@
-extends Control
+extends "res://scenes/base_scene.gd"
 
 var processor
 var board
@@ -19,7 +19,6 @@ func action_move_robot(robot, move):
 	if robot_gui:
 		robot.show_gui(robot_gui)
 	in_action = false
-	
 
 func _ready():
 	game_view = get_node("view")
@@ -67,16 +66,15 @@ func exit():
 	global.goto_scene("main_menu")
 
 func is_game_input_active():
-	if get_node("menu").is_visible():
+	if get_node("popups/menu").is_visible():
 		return false
 	return true
 
 func _notification(what):
 	if OS.get_name() == "Android" and global.is_android_return(what):
-		var menu_popup = get_node("menu")
+		var menu_popup = get_node("popups/menu")
 		if menu_popup.is_visible():
 			menu_popup.hide()
 		else:
-			get_node("menu_background").popup()
-			menu_popup.call_deferred("popup")
+			show_popup("menu")
 		

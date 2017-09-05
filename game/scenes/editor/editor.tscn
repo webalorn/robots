@@ -54,6 +54,7 @@ __meta__ = {
 
 [node name="sidebar" type="Control" parent="gui"]
 
+editor/display_folded = true
 anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -930,6 +931,7 @@ margin/bottom = 0.0
 
 [node name="view" type="Viewport" parent="gui/level"]
 
+editor/display_folded = true
 rect = Rect2( 0, 0, 725, 720 )
 own_world = true
 world = null

@@ -1,4 +1,4 @@
-extends Control
+extends "res://scenes/base_scene.gd"
 
 var level_file_path
 
@@ -62,11 +62,6 @@ func show_panel(name):
 func get_active_panel():
 	return sidebar.get_node(active_panel)
 
-func show_popup(name):
-	get_node("popups/background").popup()
-	get_node("popups/" + name).popup()
-	get_node("gui").center_elements()
-
 func notify(text):
 	var notifs = get_node("gui/notifications")
 	if notifs.get_children().size() >= MAX_NOTIFS:
@@ -99,6 +94,7 @@ var SAVE_INTERVAL = Globals.get("levels/editor_autosave_time_interval")
 var time_to_next_save = SAVE_INTERVAL
 var is_save_thread_active = false
 var save_thread
+var last_saved_hash = null
 
 func process_auto_save(delta):
 	if not is_save_thread_active:
@@ -107,10 +103,9 @@ func process_auto_save(delta):
 			is_save_thread_active = true
 			if save_thread.is_active():
 				save_thread.wait_to_finish()
-			save_thread.start(self, "test_method", board.save(), 1)
+			save_thread.start(self, "test_method", board.save(), Thread.PRIORITY_LOW)
 			time_to_next_save = SAVE_INTERVAL
 
-var last_saved_hash = null
 func test_method(data):
 	var hash_val = data.hash()
 	if last_saved_hash != hash_val:

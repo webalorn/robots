@@ -10,7 +10,7 @@ var list_node
 func get_path_to(level):
 	return path + "/" + level + extension
 
-func _ready():
+func show_files():
 	var levels_files = save_manager.list_files(path)
 	var levels = []
 	var f = File.new()
@@ -21,12 +21,20 @@ func _ready():
 	levels.sort_custom(self, "files_comp")
 	
 	list_node = get_node("gui/files/scroll/list")
+	for old_file in list_node.get_children():
+		old_file.queue_free()
 	for level in levels:
 		var item = FILE_ITEM_CLASS.instance()
 		item.name = level[1]
 		list_node.add_child(item)
 	
 	show_gui_selected(false)
+	
+func _ready():
+	show_files()
+	
+	if Globals.get("application/master_build"):
+		_init_master_build()
 
 func exit():
 	global.goto_scene("main_menu")
@@ -88,3 +96,20 @@ func files_comp(file1, file2):
 	if file1[0] > file2[0]:
 		return true
 	return false
+
+######################
+##  admin features  ##
+######################
+
+func _init_master_build():
+	set_process_input(true)
+
+func _input(event):
+	if event.is_action_pressed("config_f1"):
+		var p = show_popup("change_folder")
+		p.set_current_dir("res://data/levels")
+
+func change_folder(dir):
+	path = dir
+	Globals.set("levels/editor_store_path", path)
+	show_files()

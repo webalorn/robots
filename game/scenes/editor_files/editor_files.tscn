@@ -45,6 +45,7 @@ __meta__ = {
 
 [node name="sidebar" type="Panel" parent="gui"]
 
+editor/display_folded = true
 anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -296,7 +297,6 @@ alignment = 0
 
 [node name="popups" type="Control" parent="."]
 
-editor/display_folded = true
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = true
@@ -307,6 +307,25 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
+
+[node name="change_folder" type="FileDialog" parent="popups"]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 242.0
+margin/top = 70.0
+margin/right = 960.0
+margin/bottom = 636.0
+popup/exclusive = false
+window/title = "Ouvrir un répertoire"
+dialog/hide_on_ok = false
+mode = 2
+access = 0
+filters = StringArray(  )
+show_hidden_files = false
 
 [node name="background" type="PopupPanel" parent="popups"]
 
@@ -438,6 +457,10 @@ flat = false
 
 [connection signal="pressed" from="gui/sidebar/content/load" to="." method="_on_action_load"]
 
+[connection signal="dir_selected" from="popups/change_folder" to="." method="change_folder"]
+
+[connection signal="popup_hide" from="popups/change_folder" to="popups/background" method="hide"]
+
 [connection signal="name_set" from="popups/new_level" to="." method="launch_editor"]
 
 [connection signal="popup_hide" from="popups/new_level" to="popups/background" method="hide"]
@@ -448,9 +471,9 @@ flat = false
 
 [connection signal="popup_hide" from="popups/delete_confirm" to="popups/background" method="hide"]
 
-[connection signal="pressed" from="popups/delete_confirm/delete" to="." method="_on_delete_confirm"]
-
 [connection signal="pressed" from="popups/delete_confirm/delete" to="popups/delete_confirm" method="hide"]
+
+[connection signal="pressed" from="popups/delete_confirm/delete" to="." method="_on_delete_confirm"]
 
 [connection signal="pressed" from="popups/delete_confirm/cancel" to="popups/delete_confirm" method="hide"]
 

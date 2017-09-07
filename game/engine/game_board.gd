@@ -31,6 +31,14 @@ func add_new_robot(line, col, id_robot):
 	get_node("robots").add_child(robot)
 	robots[str(id_robot)] = robot
 
+func get_robot(id_robot):
+	if robots.has(id_robot):
+		return robots[id_robot]
+
+func remove_robot(id_robot):
+	robots[id_robot].queue_free()
+	robots.erase(id_robot)
+
 func robot_on_cell(line, col):
 	for id in robots:
 		if robots[id].line == line and robots[id].col == col and not robots[id].destroyed:

@@ -113,10 +113,11 @@ func process_auto_save(delta):
 			is_save_thread_active = true
 			if save_thread.is_active():
 				save_thread.wait_to_finish()
-			save_thread.start(self, "test_method", board.save(), Thread.PRIORITY_LOW)
+			var save_data = board.save()
+			save_thread.start(self, "auto_save", save_data, Thread.PRIORITY_LOW)
 			time_to_next_save = SAVE_INTERVAL
 
-func test_method(data):
+func auto_save(data):
 	var hash_val = data.hash()
 	if last_saved_hash != hash_val:
 		save_level(data)

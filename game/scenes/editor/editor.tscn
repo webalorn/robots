@@ -97,7 +97,6 @@ margin_size = 0.2
 
 [node name="gui" type="Control" parent="."]
 
-editor/display_folded = true
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = true
@@ -127,6 +126,7 @@ margin/bottom = 0.0
 
 [node name="main" type="Panel" parent="gui/sidebar"]
 
+editor/display_folded = true
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -1037,8 +1037,8 @@ custom_styles/panel = ExtResource( 20 )
 popup/exclusive = false
 
 [node name="exit_editor" type="PopupPanel" parent="popups" groups=[
-"auto_scale",
 "auto_center",
+"auto_scale",
 ]]
 
 visibility/visible = false

@@ -28,8 +28,7 @@ func on_hide_panel():
 
 func remove_robot(name):
 	if board.robots.has(name):
-		board.robots[name].queue_free()
-		board.robots.erase(name)
+		board.remove_robot(name)
 		robot_list[name].set_on_board(false)
 
 func add_robot(name, line, col):

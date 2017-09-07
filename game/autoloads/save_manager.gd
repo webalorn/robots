@@ -16,6 +16,28 @@ func save_to(file_name, content):
 	file.store_string(content.to_json())
 	file.close()
 
+func copy_array(array):
+	var output = []
+	for value in array:
+		if typeof(value) == TYPE_DICTIONARY:
+			output.push_back(copy_dictionary(value))
+		elif typeof(value) == TYPE_ARRAY:
+			output.push_back(copy_array(value))
+		else:
+			output.push_back(value)
+
+func copy_dictionary(dictionary):
+	var output = {}
+	for key in dictionary.keys():
+		var value = dictionary[key]
+		if typeof(value) == TYPE_DICTIONARY:
+			output[key] = copy_dictionary(value)
+		elif typeof(value) == TYPE_ARRAY:
+			output[key] = copy_array(value)
+		else:
+			output[key] = value
+	return output
+
 func read(file_name):
 	var file = File.new()
 	if not file_name or not file.file_exists(file_name):

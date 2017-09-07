@@ -56,8 +56,7 @@ func list_files(path):
 		
 		var read = dir.get_next()
 		while read:
-			if dir.file_exists(read):
-				files.push_back(read)
+			files.push_back(read)
 			read = dir.get_next()
 		return files
 	else:

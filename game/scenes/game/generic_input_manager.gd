@@ -14,6 +14,8 @@ func handle_touch_cell(line, col):
 	pass
 
 func game_touch_manage(pos):
+	if pos.x < 0 or pos.y < 0:
+		return
 	pos = game.camera.pixel_to_grid_pos(pos) / game.board.tile_size # Get pos in term of cells
 	var line = floor(pos.y) # Get cell coords with integers
 	var col = floor(pos.x)

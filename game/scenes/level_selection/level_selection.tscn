@@ -1,0 +1,261 @@
+[gd_scene load_steps=8 format=1]
+
+[ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/level_selection/level_selection.gd" type="Script" id=2]
+[ext_resource path="res://addons/resizable_gui/gui_node.gd" type="Script" id=3]
+[ext_resource path="res://addons/resizable_gui/icon.png" type="Texture" id=4]
+[ext_resource path="res://gui/editor/back_button.png" type="Texture" id=5]
+[ext_resource path="res://scenes/level_selection/chapters/chapter.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/level_selection/levels/levels_view.gd" type="Script" id=7]
+
+[node name="level_selection" type="Control"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 2 )
+
+[node name="gui" type="Control" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 3 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="sidebar" type="Panel" parent="gui"]
+
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 350.0
+margin/bottom = 0.0
+
+[node name="header" type="Control" parent="gui/sidebar"]
+
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 80.0
+
+[node name="back" type="TextureButton" parent="gui/sidebar/header"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 74.0
+margin/bottom = 74.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 5 )
+params/resize_mode = 0
+params/scale = Vector2( 0.25, 0.25 )
+params/stretch_mode = 0
+
+[node name="title" type="Label" parent="gui/sidebar/header"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 80.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+text = "LEVELS"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="buttons" type="VBoxContainer" parent="gui/sidebar"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 80.0
+margin/right = 0.0
+margin/bottom = 0.0
+custom_constants/separation = 30
+alignment = 1
+
+[node name="Button" type="Button" parent="gui/sidebar/buttons"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 282.0
+margin/right = 350.0
+margin/bottom = 358.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "LEVELS"
+flat = false
+
+[node name="content" type="Control" parent="gui"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 350.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="background" type="ColorFrame" parent="gui/content"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+color = Color( 0.140625, 0.140625, 0.140625, 1 )
+
+[node name="chapters" type="Control" parent="gui/content"]
+
+editor/display_folded = true
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="scroll" type="ScrollContainer" parent="gui/content/chapters"]
+
+anchor/left = 3
+anchor/top = 3
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 365.0
+margin/top = 360.0
+margin/right = 0.0
+margin/bottom = 0.0
+scroll/horizontal = false
+scroll/vertical = true
+
+[node name="list" type="VBoxContainer" parent="gui/content/chapters/scroll"]
+
+rect/min_size = Vector2( 730, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 730.0
+margin/bottom = 250.0
+alignment = 0
+
+[node name="chapter 1" parent="gui/content/chapters/scroll/list" instance=ExtResource( 6 )]
+
+margin/right = 730.0
+margin/bottom = 250.0
+name = "Chapter I: Where all begins"
+description = "It is about the story of two little robots in a gigantic, chaotic and dangerous world"
+directory = "chapter_1"
+
+[node name="levels" type="Control" parent="gui/content"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 7 )
+
+[node name="scroll" type="ScrollContainer" parent="gui/content/levels"]
+
+anchor/left = 3
+anchor/top = 3
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 365.0
+margin/top = 360.0
+margin/right = 0.0
+margin/bottom = 0.0
+scroll/horizontal = false
+scroll/vertical = true
+
+[node name="list" type="VBoxContainer" parent="gui/content/levels/scroll"]
+
+rect/min_size = Vector2( 730, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 730.0
+margin/bottom = 0.0
+alignment = 0
+
+[connection signal="pressed" from="gui/sidebar/header/back" to="." method="exit"]
+
+

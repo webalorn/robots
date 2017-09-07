@@ -45,7 +45,6 @@ __meta__ = {
 
 [node name="sidebar" type="Panel" parent="gui"]
 
-editor/display_folded = true
 anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -73,7 +72,6 @@ alignment = 0
 
 [node name="header" type="Control" parent="gui/sidebar/content"]
 
-editor/display_folded = true
 rect/min_size = Vector2( 0, 80 )
 focus/ignore_mouse = false
 focus/stop_mouse = true

@@ -1,0 +1,106 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/level_selection/chapters/chapter.gd" type="Script" id=2]
+[ext_resource path="res://gui/second_plan_elements_theme.tres" type="Theme" id=3]
+
+[node name="chapter" type="Control"]
+
+rect/min_size = Vector2( 730, 250 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 600.0
+margin/bottom = 200.0
+script/script = ExtResource( 2 )
+name = ""
+description = ""
+directory = null
+
+[node name="content" type="Control" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 10.0
+margin/bottom = 10.0
+
+[node name="background" type="ColorFrame" parent="content"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+color = Color( 0.878906, 0.878906, 0.878906, 1 )
+
+[node name="title" type="Label" parent="content"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 24.0
+margin/top = 25.0
+margin/right = 487.0
+margin/bottom = 113.0
+text = "Chapter name"
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="description" type="Label" parent="content"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+theme/theme = ExtResource( 3 )
+margin/left = 20.0
+margin/top = 122.0
+margin/right = 673.0
+margin/bottom = 212.0
+text = "Here, the chapter description"
+valign = 2
+autowrap = true
+clip_text = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="area_button" type="TextureButton" parent="content"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[connection signal="pressed" from="content/area_button" to="." method="_on_chapter_pressed"]
+
+

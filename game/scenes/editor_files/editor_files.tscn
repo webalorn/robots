@@ -28,6 +28,7 @@ script/script = ExtResource( 2 )
 
 [node name="gui" type="Control" parent="."]
 
+editor/display_folded = true
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -45,6 +46,7 @@ __meta__ = {
 
 [node name="sidebar" type="Panel" parent="gui"]
 
+editor/display_folded = true
 anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -195,6 +197,7 @@ flat = false
 
 [node name="files" type="Control" parent="gui"]
 
+editor/display_folded = true
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -351,19 +354,20 @@ title_text = "TITLE_NEW_LEVEL"
 visibility/visible = false
 title_text = "TITLE_RENAME"
 
-[node name="delete_confirm" type="PopupPanel" parent="popups"]
+[node name="delete_confirm" type="PopupPanel" parent="popups" groups=[
+"auto_scale",
+"auto_center",
+]]
 
 editor/display_folded = true
 visibility/visible = false
-anchor/top = 1
-anchor/right = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 187.0
-margin/top = 515.0
-margin/right = 194.0
+margin/top = 205.0
+margin/right = 886.0
 margin/bottom = 549.0
 popup/exclusive = false
 
@@ -377,7 +381,7 @@ size_flags/vertical = 0
 margin/left = 10.0
 margin/top = 10.0
 margin/right = 10.0
-margin/bottom = 84.0
+margin/bottom = 126.0
 text = "DELETE_LEVEL_CONFIRM"
 align = 1
 valign = 1
@@ -396,11 +400,13 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 theme/theme = ExtResource( 8 )
 margin/left = 50.0
-margin/top = 98.0
+margin/top = 124.0
 margin/right = 50.0
 margin/bottom = 226.0
 align = 1
 valign = 1
+autowrap = true
+clip_text = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -469,9 +475,9 @@ flat = false
 
 [connection signal="popup_hide" from="popups/delete_confirm" to="popups/background" method="hide"]
 
-[connection signal="pressed" from="popups/delete_confirm/delete" to="popups/delete_confirm" method="hide"]
-
 [connection signal="pressed" from="popups/delete_confirm/delete" to="." method="_on_delete_confirm"]
+
+[connection signal="pressed" from="popups/delete_confirm/delete" to="popups/delete_confirm" method="hide"]
 
 [connection signal="pressed" from="popups/delete_confirm/cancel" to="popups/delete_confirm" method="hide"]
 

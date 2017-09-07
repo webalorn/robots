@@ -61,7 +61,7 @@ func _on_rename():
 	elif name.length() > max_size:
 		set_error("ERROR_NAME_TOO_LONG")
 	elif get_invalids_characters(name) != "":
-		set_error("ERROR_INVALID_CHARACTERS" + " : " + get_invalids_characters(name))
+		set_error(tr("ERROR_INVALID_CHARACTERS") + " : " + get_invalids_characters(name))
 	elif name == base_name: # Do not change the name
 		hide()
 	elif does_level_exist(name):

@@ -5,7 +5,10 @@ var active_view = null
 func _ready():
 	for view in get_node("gui/content").get_children():
 		view.set_hidden(true)
-	show_view("chapters")
+	# show_view("chapters")
+	show_view(get_parameter("default_view", "chapters"),
+		get_parameter("default_view_params", {})
+	)
 
 func exit():
 	global.goto_scene("main_menu")

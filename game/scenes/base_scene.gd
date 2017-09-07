@@ -9,7 +9,7 @@ func _ready():
 ##   Scene params  ##
 #####################
 
-var scene_params
+var scene_params = {}
 
 func scene_init(params):
 	scene_params = params

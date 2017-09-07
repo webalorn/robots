@@ -116,7 +116,7 @@ margin/bottom = 0.0
 custom_constants/separation = 30
 alignment = 1
 
-[node name="Button" type="Button" parent="gui/sidebar/buttons"]
+[node name="button_levels" type="Button" parent="gui/sidebar/buttons"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -243,19 +243,20 @@ margin/bottom = 0.0
 scroll/horizontal = false
 scroll/vertical = true
 
-[node name="list" type="VBoxContainer" parent="gui/content/levels/scroll"]
+[node name="list" type="GridContainer" parent="gui/content/levels/scroll"]
 
-rect/min_size = Vector2( 730, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 730.0
-margin/bottom = 0.0
-alignment = 0
+margin/right = 128.0
+margin/bottom = 128.0
+columns = 5
 
 [connection signal="pressed" from="gui/sidebar/header/back" to="." method="exit"]
+
+[connection signal="pressed" from="gui/sidebar/buttons/button_levels" to="." method="show_view" binds= [ "chapters" ]]
 
 

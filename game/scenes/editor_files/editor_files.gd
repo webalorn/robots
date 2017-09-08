@@ -36,9 +36,6 @@ func _ready():
 	if Globals.get("application/master_build"):
 		_init_master_build()
 
-func exit():
-	global.goto_scene("main_menu")
-
 func show_gui_selected(is_level_selected):
 	var side = get_node("gui/sidebar/content")
 	side.get_node("delete").set_hidden(!is_level_selected)
@@ -87,10 +84,6 @@ func rename_file(new_name):
 func launch_editor(level_name):
 	var filename = get_path_to(level_name)
 	global.goto_scene("editor", {level = filename})
-
-func _notification(what):
-	if OS.get_name() == "Android" and global.is_android_return(what):
-		exit()
 
 func files_comp(file1, file2):
 	if file1[0] > file2[0]:

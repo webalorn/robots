@@ -24,3 +24,6 @@ func _on_show(_params):
 		item.id = id
 		item.path = path + "/" + id + extension
 		list.add_child(item)
+
+func handle_return_action(root):
+	root.show_view("chapters")

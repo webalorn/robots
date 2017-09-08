@@ -51,11 +51,5 @@ func is_game_input_active():
 		return false
 	return true
 
-func _notification(what):
-	if OS.get_name() == "Android" and global.is_android_return(what):
-		var menu_popup = get_node("popups/menu")
-		if menu_popup.is_visible():
-			menu_popup.hide()
-		else:
-			show_popup("menu")
-		
+func handle_return_action():
+	show_popup("menu")

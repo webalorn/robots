@@ -82,10 +82,9 @@ func notify(text):
 	new_notif.set_text(text)
 	notifs.add_child(new_notif)
 
-func _notification(what):
-	if OS.get_name() == "Android" and global.is_android_return(what):
-		if active_panel:
-			sidebar.get_node(active_panel).handle_return_action()
+func handle_return_action():
+	if active_panel:
+		sidebar.get_node(active_panel).handle_return_action()
 
 ##################
 ##   Auto-save  ##

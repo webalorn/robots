@@ -6,8 +6,6 @@ var loading_screen = preload("res://autoloads/loading_screen.tscn")
 func _ready():
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() -1)
-	if on_android():
-		get_tree().set_auto_accept_quit(false)
 
 func goto_scene(path, params = {}):
 	if not path.begins_with("res://"):

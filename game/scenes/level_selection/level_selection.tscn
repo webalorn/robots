@@ -251,8 +251,8 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 128.0
-margin/bottom = 128.0
+margin/right = 0.0
+margin/bottom = 0.0
 columns = 5
 
 [connection signal="pressed" from="gui/sidebar/header/back" to="." method="exit"]

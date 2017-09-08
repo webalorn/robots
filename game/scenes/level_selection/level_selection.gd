@@ -10,9 +10,6 @@ func _ready():
 		get_parameter("default_view_params", {})
 	)
 
-func exit():
-	global.goto_scene("main_menu")
-
 func show_view(name, params = null):
 	if active_view:
 		active_view.set_hidden(true)
@@ -21,6 +18,8 @@ func show_view(name, params = null):
 	if active_view.has_method("_on_show"):
 		active_view._on_show(params)
 
-func _notification(what):
-	if OS.get_name() == "Android" and global.is_android_return(what):
+func handle_return_action():
+	if active_view and active_view.has_method("handle_return_action"):
+		active_view.handle_return_action(self)
+	else:
 		exit()

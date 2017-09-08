@@ -8,18 +8,13 @@ func play():
 func load_editor():
 	global.goto_scene("editor_files")
 
-func exit_game():
+func exit():
 	get_tree().quit()
 
 func _ready():
 	buttons = get_node("gui/buttonsPanel/buttonsContainer")
 	buttons.get_node("start").connect("pressed", self, "play")
 	buttons.get_node("editor").connect("pressed", self, "load_editor")
-	buttons.get_node("exit").connect("pressed", self, "exit_game")
+	buttons.get_node("exit").connect("pressed", self, "exit")
 	
-#	get_tree().set_auto_accept_quit(false)
 	print(OS.get_name(), " debug: ", OS.is_debug_build())
-
-func _notification(what):
-	if OS.get_name() == "Android" and global.is_android_return(what):
-		exit_game()

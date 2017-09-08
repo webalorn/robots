@@ -3,8 +3,9 @@ extends "generic_input_manager.gd"
 var active_robot = null
 
 func reset_active_robot():
-	active_robot.hide_gui()
-	active_robot = null
+	if active_robot:
+		active_robot.hide_gui()
+		active_robot = null
 
 func handle_touch_cell(line, col):
 	if game.in_action:

@@ -141,7 +141,6 @@ margin/bottom = 0.0
 "auto_center",
 ]]
 
-visibility/visible = false
 anchor/left = 3
 anchor/top = 3
 anchor/right = 3
@@ -179,13 +178,29 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 113.0
+margin/top = 55.0
 margin/right = 300.0
-margin/bottom = 189.0
+margin/bottom = 131.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "MAIN_MENU"
+flat = false
+
+[node name="button_restart" type="Button" parent="popups/menu/buttons"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 171.0
+margin/right = 300.0
+margin/bottom = 247.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "RESTART"
 flat = false
 
 [node name="button_resume" type="Button" parent="popups/menu/buttons"]
@@ -195,9 +210,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 229.0
+margin/top = 287.0
 margin/right = 300.0
-margin/bottom = 305.0
+margin/bottom = 363.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -228,6 +243,10 @@ popup/exclusive = false
 [connection signal="popup_hide" from="popups/menu" to="popups/background" method="hide" flags=3]
 
 [connection signal="pressed" from="popups/menu/buttons/button_exit" to="." method="exit"]
+
+[connection signal="pressed" from="popups/menu/buttons/button_restart" to="." method="_on_restart"]
+
+[connection signal="pressed" from="popups/menu/buttons/button_restart" to="popups/menu" method="hide"]
 
 [connection signal="pressed" from="popups/menu/buttons/button_resume" to="popups/menu" method="hide"]
 

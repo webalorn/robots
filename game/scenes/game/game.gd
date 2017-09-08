@@ -49,6 +49,10 @@ func exit():
 		get_parameter("exit_goto_params", {})
 	)
 
+func _on_restart():
+	input_manager.reset_active_robot()
+	load_level()
+
 func _on_cancel_move():
 	var active_robot = input_manager.active_robot
 	if active_robot:

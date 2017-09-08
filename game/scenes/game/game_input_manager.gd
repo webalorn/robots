@@ -22,14 +22,21 @@ func handle_touch_cell(line, col):
 			if active_robot:
 				active_robot.hide_gui()
 			if robot != active_robot:
-				robot.show_gui("arrows")
-				active_robot = robot
+				set_active_robot(robot)
 			else:
 				active_robot = null
 		elif active_robot:
 			reset_active_robot()
 	else:
 		reset_active_robot()
+
+func set_active_robot(robot):
+	robot.show_gui("arrows")
+	active_robot = robot
+
+func set_active_from_id(robot_id):
+	if robot_id and game.board.robots.has(robot_id):
+		set_active_robot(game.board.robots[robot_id])
 
 func _init(_game).(_game):
 	pass

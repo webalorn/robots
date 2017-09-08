@@ -4,6 +4,7 @@ var processor
 var board
 var camera
 var input_manager
+var changes_manager
 var game_view
 var in_action = false
 
@@ -16,6 +17,7 @@ func action_move_robot(robot, move):
 	processor.move_robot(robot.robot_id, move)
 	yield(processor, "processing_end")
 	
+	changes_manager.add_step(board.save())
 	if robot_gui:
 		robot.show_gui(robot_gui)
 	in_action = false
@@ -30,6 +32,7 @@ func _ready():
 	game_view.add_child(input_manager)
 	load_level()
 	camera.set_pos(Vector2(board.width * board.tile_size, board.height * board.tile_size)/2)
+	changes_manager = preload("res://engine/changes_manager.gd").new(board.save())
 	
 	if get_parameter("exit_text"):
 		get_node("popups/menu/buttons/button_exit").set_text(get_parameter("exit_text"))
@@ -39,12 +42,22 @@ func load_level():
 	if save != null:
 		board.load_from(save)
 	else:
-		exit()
+		board.load_from(save_manager.read("res://data/levels/chapter_1/1.dat"))
 
 func exit():
 	global.goto_scene(get_parameter("exit_goto", "main_menu"),
 		get_parameter("exit_goto_params", {})
 	)
+
+func _on_cancel_move():
+	var active_robot = input_manager.active_robot
+	if active_robot:
+		active_robot = active_robot.robot_id
+		
+	changes_manager.revert_last_change()
+	board.load_from(changes_manager.get_state())
+	
+	input_manager.set_active_from_id(active_robot)
 
 func is_game_input_active():
 	if get_node("popups/menu").is_visible():

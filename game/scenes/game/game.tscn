@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/game/game.gd" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://scenes/game/game_board.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/game/camera.gd" type="Script" id=8]
 [ext_resource path="res://gui/second_plan_elements/background_panel.tres" type="StyleBox" id=9]
+[ext_resource path="res://addons/static_popup_panel/StaticPopupPanel.gd" type="Script" id=10]
+[ext_resource path="res://addons/static_popup_panel/icon.png" type="Texture" id=11]
 
 [node name="game" type="Control"]
 
@@ -137,10 +139,12 @@ margin/right = 0.0
 margin/bottom = 0.0
 
 [node name="menu" type="PopupPanel" parent="popups" groups=[
-"auto_scale",
 "auto_center",
+"auto_scale",
 ]]
 
+editor/display_folded = true
+visibility/visible = false
 anchor/left = 3
 anchor/top = 3
 anchor/right = 3
@@ -236,6 +240,25 @@ margin/bottom = 0.0
 custom_styles/panel = ExtResource( 9 )
 popup/exclusive = false
 
+[node name="end_level" type="PopupPanel" parent="popups" groups=[
+"auto_center",
+"auto_scale",
+]]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 342.0
+margin/top = 46.0
+margin/right = 799.0
+margin/bottom = 640.0
+popup/exclusive = false
+script/script = ExtResource( 10 )
+__meta__ = {
+"_editor_icon": ExtResource( 11 )
+}
+
 [connection signal="pressed" from="gui/menu_button" to="." method="show_popup" binds= [ "menu" ]]
 
 [connection signal="pressed" from="gui/cancel_button" to="." method="_on_cancel_move"]
@@ -249,5 +272,7 @@ popup/exclusive = false
 [connection signal="pressed" from="popups/menu/buttons/button_restart" to="popups/menu" method="hide"]
 
 [connection signal="pressed" from="popups/menu/buttons/button_resume" to="popups/menu" method="hide"]
+
+[connection signal="popup_hide" from="popups/end_level" to="popups/background" method="hide"]
 
 

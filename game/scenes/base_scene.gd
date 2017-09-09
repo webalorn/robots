@@ -8,7 +8,6 @@ var popups_node = "popups"
 func _ready():
 	if global.on_android():
 		get_tree().set_auto_accept_quit(false)
-	pass
 
 #######################
 ##  Return and exit  ##
@@ -25,8 +24,11 @@ func _notification(what):
 		var active_popups = false
 		if has_node(popups_node):
 			for popup in get_node(popups_node).get_children():
-				if popup.is_visible():
-					popup.hide()
+				if popup.is_visible() and popup.get_name() != "background":
+					if popup.has_method("handle_return_action"):
+						popup.handle_return_action()
+					else:
+						popup.hide()
 					active_popups = true
 		if not active_popups:
 			handle_return_action()
@@ -49,9 +51,11 @@ func get_parameter(name, default_value = null):
 ##  Popups system  ##
 #####################
 
+var last_active_popup = null
+
 func show_popup(name):
-	get_node(popups_node).get_node("background").popup()
-	var popup = get_node(popups_node).get_node(name)
-	popup.popup()
-	get_node(gui_resize_node).center_node(popup)
-	return popup
+	get_node(popups_node).get_node("background").show()
+	var last_active_popup = get_node(popups_node).get_node(name)
+	last_active_popup.popup()
+	get_node(gui_resize_node).center_node(last_active_popup)
+	return last_active_popup

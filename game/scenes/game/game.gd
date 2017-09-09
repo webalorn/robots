@@ -64,7 +64,7 @@ func _on_cancel_move():
 	input_manager.set_active_from_id(active_robot)
 
 func is_game_input_active():
-	if get_node("popups/menu").is_visible():
+	if last_active_popup and last_active_popup.is_visible():
 		return false
 	return true
 

@@ -21,6 +21,9 @@ func action_move_robot(robot, move):
 	if robot_gui:
 		robot.show_gui(robot_gui)
 	in_action = false
+	
+	if board.is_level_done():
+		set_level_to_done()
 
 func _ready():
 	game_view = get_node("view")
@@ -48,6 +51,14 @@ func exit():
 	global.goto_scene(get_parameter("exit_goto", "main_menu"),
 		get_parameter("exit_goto_params", {})
 	)
+
+func set_level_to_done():
+	input_manager.reset_active_robot()
+	show_popup("end_level")
+
+##################
+## Manage input ##
+##################
 
 func _on_restart():
 	input_manager.reset_active_robot()

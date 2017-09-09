@@ -6,3 +6,6 @@ func popup():
 
 func handle_return_action():
 	pass
+
+func hide():
+	.hide()

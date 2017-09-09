@@ -10,6 +10,10 @@ var mode = "game"
 const TILE_CLASS = preload("res://engine/tiles/floor_tile.gd")
 const ROBOT_CLASS = preload("res://engine/robot.gd")
 
+###########################
+## Manage game elements  ##
+###########################
+
 func get_new_tile(line, col, type = "floor"):
 	var tile = TILE_CLASS.createTile(type, line, col)
 	get_node("tiles").add_child(tile)
@@ -44,6 +48,10 @@ func robot_on_cell(line, col):
 		if robots[id].line == line and robots[id].col == col and not robots[id].destroyed:
 			return robots[id]
 	return null
+
+###############################
+##  Gameboar size and tiles  ##
+###############################
 
 func resize_tiles(value):
 	tile_size = value
@@ -89,6 +97,32 @@ func clear():
 	for id in robots:
 		robots[id].queue_free()
 	robots = []
+
+####################
+## End of levels  ##
+####################
+
+var end_doors = {}
+
+func register_door(end_tile):
+	var key = end_tile.get_coords()
+	if end_doors.has(key):
+		unregister_door(end_doors[key])
+	end_doors[key] = end_tile
+
+func unregister_door(end_tile):
+	var key = end_tile.get_coords()
+	end_doors.erase(key)
+
+func is_level_done():
+	for key in end_doors:
+		if not end_doors[key].door_active:
+			return false
+	return true
+
+##############################
+##  Serialization function  ##
+##############################
 
 func save():
 	var s = {

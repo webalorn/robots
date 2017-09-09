@@ -11,6 +11,9 @@ func set_sprite_pos_size():
 	var texture_size = 256.0
 	set_scale(Vector2(tile_size / texture_size, tile_size / texture_size)) # Assuming that all tiles, texture are 256*256
 
+func get_coords():
+	return Vector2(line, col)
+
 func _create_view():
 	pass
 

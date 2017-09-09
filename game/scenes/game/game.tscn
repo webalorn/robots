@@ -139,8 +139,8 @@ margin/right = 0.0
 margin/bottom = 0.0
 
 [node name="menu" type="PopupPanel" parent="popups" groups=[
-"auto_center",
 "auto_scale",
+"auto_center",
 ]]
 
 editor/display_folded = true
@@ -241,8 +241,8 @@ custom_styles/panel = ExtResource( 9 )
 popup/exclusive = false
 
 [node name="end_level" type="PopupPanel" parent="popups" groups=[
-"auto_center",
 "auto_scale",
+"auto_center",
 ]]
 
 focus/ignore_mouse = false
@@ -259,6 +259,89 @@ __meta__ = {
 "_editor_icon": ExtResource( 11 )
 }
 
+[node name="title" type="Label" parent="popups/end_level"]
+
+anchor/right = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 15.0
+margin/top = 15.0
+margin/right = 15.0
+margin/bottom = 167.0
+text = "LEVEL_FINISHED"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="buttons" type="VBoxContainer" parent="popups/end_level"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 60.0
+margin/top = 160.0
+margin/right = 60.0
+margin/bottom = 20.0
+custom_constants/separation = 40
+alignment = 1
+
+[node name="exit" type="Button" parent="popups/end_level/buttons"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 53.0
+margin/right = 337.0
+margin/bottom = 129.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "EXIT"
+flat = false
+
+[node name="restart" type="Button" parent="popups/end_level/buttons"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 169.0
+margin/right = 337.0
+margin/bottom = 245.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "RESTART"
+flat = false
+
+[node name="next_level" type="Button" parent="popups/end_level/buttons"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 285.0
+margin/right = 337.0
+margin/bottom = 361.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "NEXT_LEVEL"
+flat = false
+
 [connection signal="pressed" from="gui/menu_button" to="." method="show_popup" binds= [ "menu" ]]
 
 [connection signal="pressed" from="gui/cancel_button" to="." method="_on_cancel_move"]
@@ -267,12 +350,20 @@ __meta__ = {
 
 [connection signal="pressed" from="popups/menu/buttons/button_exit" to="." method="exit"]
 
-[connection signal="pressed" from="popups/menu/buttons/button_restart" to="." method="_on_restart"]
-
 [connection signal="pressed" from="popups/menu/buttons/button_restart" to="popups/menu" method="hide"]
+
+[connection signal="pressed" from="popups/menu/buttons/button_restart" to="." method="_on_restart"]
 
 [connection signal="pressed" from="popups/menu/buttons/button_resume" to="popups/menu" method="hide"]
 
 [connection signal="popup_hide" from="popups/end_level" to="popups/background" method="hide"]
+
+[connection signal="pressed" from="popups/end_level/buttons/exit" to="." method="exit"]
+
+[connection signal="pressed" from="popups/end_level/buttons/restart" to="popups/background" method="hide"]
+
+[connection signal="pressed" from="popups/end_level/buttons/restart" to="." method="_on_restart"]
+
+[connection signal="pressed" from="popups/end_level/buttons/restart" to="popups/end_level" method="hide"]
 
 

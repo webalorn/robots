@@ -58,7 +58,7 @@ func set_level_to_done():
 	input_manager.reset_active_robot()
 	var window = show_popup("end_level")
 	var next_level_button = window.get_node("buttons/next_level")
-	if not level_manager.get_next_level(get_parameter("level")):
+	if get_parameter("from_editor") or not level_manager.get_next_level(get_parameter("level")):
 		next_level_button.set_hidden(true)
 	else:
 		next_level_button.set_hidden(false)

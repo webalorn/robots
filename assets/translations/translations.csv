@@ -52,4 +52,7 @@ CHAPTERS_TITLE,Chapters,Chapitres
 RESTART,Restart,Recommencer
 LEVEL_FINISHED,Level finished,Niveau terminé
 NEXT_LEVEL,Next level,Niveau suivant
-SELECT_ROBOT,,
+SELECT_ROBOT,Select a robot,Sélectionner un robot
+TILE_DESCRIPTION_end,"The tile can be activated by any robot (if none of theme selected), or only by a specific one","La case peut-être activée par n’importe quel robot (si aucun d’entre eux n’est sélectionné), ou uniquement par l’un d’entre eux."
+NO_ROBOT_SELECTED,No robot selected,Aucun robot sélectionné
+SELECTED_ROBOT,Selected robot:,Robot sélectionné:

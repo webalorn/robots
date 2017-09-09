@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://gui/second_plan_elements_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/editor/panels/tiles_config/config_end.gd" type="Script" id=2]
 [ext_resource path="res://scenes/editor/panels/tiles_config/robot_selector.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/game/robots/robot_1.png" type="Texture" id=4]
 
 [node name="linked_portal" type="VBoxContainer"]
 
@@ -15,13 +16,83 @@ theme/theme = ExtResource( 1 )
 margin/left = 0.0
 margin/top = 1.0
 margin/right = 320.0
-margin/bottom = 147.0
+margin/bottom = 309.0
 alignment = 0
 script/script = ExtResource( 2 )
 
 [node name="robot_selector" parent="." instance=ExtResource( 3 )]
 
 margin/right = 320.0
+margin/bottom = 76.0
+
+[node name="state" type="Label" parent="."]
+
+rect/min_size = Vector2( 0, 60 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 80.0
+margin/right = 320.0
+margin/bottom = 140.0
+custom_colors/font_color = Color( 0, 0.419525, 0.910156, 1 )
+text = "NO_ROBOT_SELECTED"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="state_selected" type="Control" parent="."]
+
+rect/min_size = Vector2( 0, 100 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 144.0
+margin/right = 320.0
+margin/bottom = 244.0
+
+[node name="robot" type="TextureFrame" parent="state_selected"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 100.0
+margin/bottom = 100.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 0
+
+[node name="name" type="Label" parent="state_selected"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 100.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [connection signal="robot_selected" from="robot_selector" to="." method="_on_robot_selected"]
 

@@ -52,7 +52,8 @@ func action_play_level():
 		level = level_file_path,
 		exit_goto = "editor",
 		exit_text = tr("LEVEL_EDITOR"),
-		exit_goto_params = scene_params
+		exit_goto_params = scene_params,
+		from_editor = true
 	})
 
 func exit():

@@ -366,4 +366,6 @@ flat = false
 
 [connection signal="pressed" from="popups/end_level/buttons/restart" to="popups/end_level" method="hide"]
 
+[connection signal="pressed" from="popups/end_level/buttons/next_level" to="." method="_on_next_level"]
+
 

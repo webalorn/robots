@@ -3,6 +3,16 @@ extends Reference
 var state
 var changes_list = []
 
+func reset_to(reset_state):
+	state = reset_state
+	changes_list = []
+
+func _init(base_state):
+	state = base_state
+
+func get_state():
+	return copy_data(state)
+
 func add_step(new_state):
 	changes_list.push_back(compute_changes(state, new_state))
 	state = new_state
@@ -80,9 +90,6 @@ func compute_changes(value_current, value_next):
 		return [changes]
 	return false
 
-func _init(base_state):
-	state = base_state
-
 func copy_data(data):
 	var v = null
 	if typeof(data) == TYPE_DICTIONARY:
@@ -96,6 +103,3 @@ func copy_data(data):
 	else:
 		v = data
 	return v
-
-func get_state():
-	return copy_data(state)

@@ -6,23 +6,17 @@ var params
 
 func _on_show(_params):
 	params = _params
-	var path = params.path
-	var files = []
-	var extension = Globals.get("levels/extension")
-	var list = get_node("scroll/list")
 	
+	var list = get_node("scroll/list")
 	for child in list.get_children():
 		child.queue_free()
 	
-	for f in save_manager.list_files(path):
-		if f.ends_with(extension):
-			files.append(f)
-	files.sort()
+	var files = level_manager.get_levels_list(params.path)
 	for level in files:
-		var id = level.substr(0, level.length() - extension.length())
+		var id = level_manager.get_level_name(level)
 		var item = LEVEL_ITEM_CLASS.instance()
 		item.id = id
-		item.path = path + "/" + id + extension
+		item.path = level_manager.get_level_path(params.path, id)
 		list.add_child(item)
 
 func handle_return_action(root):

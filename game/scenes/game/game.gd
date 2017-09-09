@@ -44,8 +44,10 @@ func load_level():
 	var save = save_manager.read(get_parameter("level"))
 	if save != null:
 		board.load_from(save)
-	else:
+	elif global.debug_version(): # Only for debug
 		board.load_from(save_manager.read("res://data/levels/chapter_1/1.dat"))
+	else:
+		exit()
 
 func exit():
 	global.goto_scene(get_parameter("exit_goto", "main_menu"),
@@ -54,7 +56,17 @@ func exit():
 
 func set_level_to_done():
 	input_manager.reset_active_robot()
-	show_popup("end_level")
+	var window = show_popup("end_level")
+	var next_level_button = window.get_node("buttons/next_level")
+	if not level_manager.get_next_level(get_parameter("level")):
+		next_level_button.set_hidden(true)
+	else:
+		next_level_button.set_hidden(false)
+
+func _on_next_level():
+	var next_path = level_manager.get_next_level(get_parameter("level"))
+	scene_params.level = next_path
+	global.goto_scene("game", scene_params)
 
 ##################
 ## Manage input ##
@@ -63,6 +75,7 @@ func set_level_to_done():
 func _on_restart():
 	input_manager.reset_active_robot()
 	load_level()
+	changes_manager.reset_to(board.save())
 
 func _on_cancel_move():
 	var active_robot = input_manager.active_robot

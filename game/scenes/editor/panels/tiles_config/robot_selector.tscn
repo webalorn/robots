@@ -1,0 +1,97 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/editor/panels/tiles_config/robot_selector.gd" type="Script" id=2]
+[ext_resource path="res://scenes/editor/panels/tiles_config/robot_selector_popup.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0.808594, 0.808594, 0.808594, 1 )
+light_color = Color( 0.8, 0.8, 0.8, 1 )
+dark_color = Color( 0.8, 0.8, 0.8, 1 )
+border_size = 0
+border_blend = true
+draw_bg = true
+
+[node name="robot_selector" type="Control"]
+
+rect/min_size = Vector2( 320, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 2 )
+
+[node name="select_button" type="Button" parent="."]
+
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 76.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "SELECT_ROBOT"
+flat = false
+clip_text = true
+
+[node name="anchor" type="Control" parent="select_button"]
+
+anchor/top = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="popup" type="PopupPanel" parent="select_button" groups=[
+"auto_resize_notify",
+]]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 2.0
+margin/top = 82.0
+margin/right = 606.0
+margin/bottom = 401.0
+custom_styles/panel = SubResource( 1 )
+popup/exclusive = false
+script/script = ExtResource( 3 )
+
+[node name="list" type="GridContainer" parent="select_button/popup"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+columns = 4
+
+[connection signal="pressed" from="select_button" to="select_button/popup" method="popup"]
+
+

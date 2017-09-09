@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://gui/second_plan_elements_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/editor/panels/tiles_config/config_end.gd" type="Script" id=2]
+[ext_resource path="res://scenes/editor/panels/tiles_config/robot_selector.tscn" type="PackedScene" id=3]
+
+[node name="linked_portal" type="VBoxContainer"]
+
+rect/min_size = Vector2( 320, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 1.0
+margin/right = 320.0
+margin/bottom = 147.0
+alignment = 0
+script/script = ExtResource( 2 )
+
+[node name="robot_selector" parent="." instance=ExtResource( 3 )]
+
+margin/right = 320.0
+
+[connection signal="robot_selected" from="robot_selector" to="." method="_on_robot_selected"]
+
+

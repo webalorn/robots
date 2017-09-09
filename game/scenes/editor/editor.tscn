@@ -278,6 +278,7 @@ margin/bottom = 10.0
 
 [node name="header" type="Container" parent="gui/sidebar/tiles/content"]
 
+editor/display_folded = true
 anchor/right = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -402,6 +403,14 @@ margin/top = 462.0
 margin/right = 150.0
 margin/bottom = 612.0
 type = "lever"
+
+[node name="end" parent="gui/sidebar/tiles/content/scroll/GridContainer" instance=ExtResource( 11 )]
+
+margin/left = 154.0
+margin/top = 462.0
+margin/right = 304.0
+margin/bottom = 612.0
+type = "end"
 
 [node name="tile_config" type="Panel" parent="gui/sidebar"]
 
@@ -1016,9 +1025,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 0.0
+margin/top = -2.0
 margin/right = 0.0
-margin/bottom = 0.0
+margin/bottom = 2.0
 
 [node name="background" type="PopupPanel" parent="popups"]
 

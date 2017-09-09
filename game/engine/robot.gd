@@ -5,6 +5,8 @@ var destroyed = false setget set_destroyed
 var anim_nodes = []
 signal signal_action_end
 
+const existants_ids = ["1", "2"]
+
 ####################
 ##   Animations   ##
 ####################

@@ -18,6 +18,7 @@ func _ready():
 	sidebar = get_node("gui/sidebar")
 	game_view = get_node("level/view")
 	board = game_view.get_node("board")
+	board.mode = "editor"
 	camera = board.get_node("camera")
 	input_manager = preload("res://scenes/editor/editor_input_manager.gd").new(self)
 	

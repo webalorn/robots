@@ -2,8 +2,17 @@ extends "game_element.gd"
 
 var robot_id = 1
 var destroyed = false setget set_destroyed
-var anim_node
+var anim_nodes = []
 signal signal_action_end
+
+####################
+##   Animations   ##
+####################
+
+func get_player_of(anim_name):
+	for name in anim_nodes:
+		if anim_nodes[name].has_animation(anim_name):
+			return anim_nodes[name]
 
 func set_destroyed(val):
 	if val:
@@ -11,23 +20,35 @@ func set_destroyed(val):
 		destroyed = true
 
 func play_anim(name):
-	anim_node.play(name)
-	yield(anim_node, "finished")
-	anim_node.play(name)
-	anim_node.seek(0, true)
-	anim_node.stop(true)
+	var player = get_player_of(name)
+	player.play(name)
+	yield(player, "finished")
+	player.play(name)
+	player.seek(0, true)
+	player.stop(true)
+
+func play_anim_move(direction):
+	var dir = CONSTS.move_to_str(direction)
+	play_anim("move_" + dir)
+
+#######################
+##  ACtions effects  ##
+#######################
+
+func set_pos_from_params(params, pos_property = "to_cell"):
+	line = params[pos_property].line
+	col = params[pos_property].col
+	set_sprite_pos_size()
 
 ####################
 ##    Actions     ##
 ####################
 
 func action_move(params):
-	play_anim("robot_move")
-	yield(anim_node, "finished")
+	play_anim_move(params.action_direction)
+	yield(anim_nodes.moves, "finished")
 	
-	line = params.to_cell.line
-	col = params.to_cell.col
-	set_sprite_pos_size()
+	set_pos_from_params(params)
 	emit_signal("signal_action_end")
 
 func action_blocked(params):
@@ -36,29 +57,24 @@ func action_blocked(params):
 
 func action_destroyed(params):
 	play_anim("robot_dead")
-	yield(anim_node, "finished")
+	play_anim_move(params.action_direction)
+	yield(anim_nodes.moves, "finished")
 	
+	set_pos_from_params(params)
 	self.destroyed = true
 	emit_signal("signal_action_end")
 
 func action_lost_in_space(params):
-	play_anim("robot_dead")
-	yield(anim_node, "finished")
-	
-	self.destroyed = true
-	emit_signal("signal_action_end")
+	action_destroyed(params)
 
 func action_teleport(params):
 	play_anim("robot_teleport")
-	yield(anim_node, "finished")
+	yield(anim_nodes.effects, "finished")
 	
-	line = params.teleport_to.line
-	col = params.teleport_to.col
-	set_sprite_pos_size()
+	set_pos_from_params(params, "teleport_to")
 	emit_signal("signal_action_end")
 
 func action_portal_blocked(params):
-	print("Can't teleport")
 	emit_signal("signal_action_end")
 
 ####################
@@ -87,7 +103,10 @@ func get_active_gui():
 func _create_view():
 	view = preload("res://engine/robot.tscn").instance()
 	view.set_texture(load("res://scenes/game/robots/robot_" + str(robot_id) + ".png"))
-	anim_node = view.get_node("moves_anims")
+	anim_nodes = {
+		moves = view.get_node("moves_anims"),
+		effects = view.get_node("effects_anims")
+	}
 	hide_gui()
 	
 func _init(_line, _col, _robot_id).(_line, _col):

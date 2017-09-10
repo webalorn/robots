@@ -112,7 +112,8 @@ func register_door(end_tile):
 
 func unregister_door(end_tile):
 	var key = end_tile.get_coords()
-	end_doors.erase(key)
+	if end_doors.has(key) and end_doors[key] == end_tile:
+		end_doors.erase(key)
 
 func is_level_done():
 	for key in end_doors:

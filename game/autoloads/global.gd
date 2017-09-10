@@ -49,6 +49,3 @@ func on_android():
 	if OS.get_name() == "Android":
 		return true
 	return false
-
-func debug_version():
-	return not on_android()

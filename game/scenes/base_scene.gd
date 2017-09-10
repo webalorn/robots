@@ -27,7 +27,7 @@ func _notification(what):
 				if popup.is_visible() and popup.get_name() != "background":
 					if popup.has_method("handle_return_action"):
 						popup.handle_return_action()
-					else:
+					if (not popup.has_method("handle_return_action")) and not popup.is_exclusive():
 						popup.hide()
 					active_popups = true
 		if not active_popups:

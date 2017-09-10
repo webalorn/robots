@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/game/game.gd" type="Script" id=2]
@@ -9,8 +9,6 @@
 [ext_resource path="res://scenes/game/game_board.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/game/camera.gd" type="Script" id=8]
 [ext_resource path="res://gui/second_plan_elements/background_panel.tres" type="StyleBox" id=9]
-[ext_resource path="res://addons/static_popup_panel/StaticPopupPanel.gd" type="Script" id=10]
-[ext_resource path="res://addons/static_popup_panel/icon.png" type="Texture" id=11]
 
 [node name="game" type="Control"]
 
@@ -245,20 +243,15 @@ popup/exclusive = false
 "auto_scale",
 ]]
 
-visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 342.0
-margin/top = 46.0
-margin/right = 799.0
-margin/bottom = 640.0
-popup/exclusive = false
-script/script = ExtResource( 10 )
-__meta__ = {
-"_editor_icon": ExtResource( 11 )
-}
+margin/left = 324.0
+margin/top = 91.0
+margin/right = 817.0
+margin/bottom = 625.0
+popup/exclusive = true
 
 [node name="title" type="Label" parent="popups/end_level"]
 
@@ -270,7 +263,7 @@ size_flags/vertical = 0
 margin/left = 15.0
 margin/top = 15.0
 margin/right = 15.0
-margin/bottom = 167.0
+margin/bottom = 107.0
 text = "LEVEL_FINISHED"
 align = 1
 valign = 1
@@ -289,9 +282,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 60.0
-margin/top = 160.0
+margin/top = 110.0
 margin/right = 60.0
-margin/bottom = 20.0
+margin/bottom = 0.0
 custom_constants/separation = 40
 alignment = 1
 
@@ -302,9 +295,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 53.0
-margin/right = 337.0
-margin/bottom = 129.0
+margin/top = 58.0
+margin/right = 373.0
+margin/bottom = 134.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -318,9 +311,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 169.0
-margin/right = 337.0
-margin/bottom = 245.0
+margin/top = 174.0
+margin/right = 373.0
+margin/bottom = 250.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -334,9 +327,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 285.0
-margin/right = 337.0
-margin/bottom = 361.0
+margin/top = 290.0
+margin/right = 373.0
+margin/bottom = 366.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -351,21 +344,19 @@ flat = false
 
 [connection signal="pressed" from="popups/menu/buttons/button_exit" to="." method="exit"]
 
-[connection signal="pressed" from="popups/menu/buttons/button_restart" to="popups/menu" method="hide"]
-
 [connection signal="pressed" from="popups/menu/buttons/button_restart" to="." method="_on_restart"]
 
-[connection signal="pressed" from="popups/menu/buttons/button_resume" to="popups/menu" method="hide"]
+[connection signal="pressed" from="popups/menu/buttons/button_restart" to="popups/menu" method="hide"]
 
-[connection signal="popup_hide" from="popups/end_level" to="popups/background" method="hide"]
+[connection signal="pressed" from="popups/menu/buttons/button_resume" to="popups/menu" method="hide"]
 
 [connection signal="pressed" from="popups/end_level/buttons/exit" to="." method="exit"]
 
 [connection signal="pressed" from="popups/end_level/buttons/restart" to="popups/end_level" method="hide"]
 
-[connection signal="pressed" from="popups/end_level/buttons/restart" to="popups/background" method="hide"]
-
 [connection signal="pressed" from="popups/end_level/buttons/restart" to="." method="_on_restart"]
+
+[connection signal="pressed" from="popups/end_level/buttons/restart" to="popups/background" method="hide"]
 
 [connection signal="pressed" from="popups/end_level/buttons/next_level" to="." method="_on_next_level"]
 

@@ -44,7 +44,7 @@ func load_level():
 	var save = save_manager.read(get_parameter("level"))
 	if save != null:
 		board.load_from(save)
-	elif global.debug_version(): # Only for debug
+	elif OS.is_debug_build():
 		board.load_from(save_manager.read("res://data/levels/chapter_1/1.dat"))
 	else:
 		exit()
@@ -88,8 +88,9 @@ func _on_cancel_move():
 	input_manager.set_active_from_id(active_robot)
 
 func is_game_input_active():
-	if last_active_popup and last_active_popup.is_visible():
-		return false
+	for p in get_node("popups").get_children():
+		if p.is_visible():
+			return false
 	return true
 
 func handle_return_action():

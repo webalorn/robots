@@ -145,6 +145,7 @@ func load_from(s):
 	height = s.height
 	width = s.width
 	grid = []
+	end_doors = {}
 	robots = s.robots
 	for line in range(height):
 		grid.push_back([])

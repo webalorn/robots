@@ -16,5 +16,3 @@ func _ready():
 	buttons.get_node("start").connect("pressed", self, "play")
 	buttons.get_node("editor").connect("pressed", self, "load_editor")
 	buttons.get_node("exit").connect("pressed", self, "exit")
-	
-	print(OS.get_name(), " debug: ", OS.is_debug_build())

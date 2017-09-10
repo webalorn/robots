@@ -26,4 +26,14 @@ func robot_exit(robot):
 
 func set_door_state(state):
 	door_active = state
-	
+
+func save():
+	var s = .save()
+	if robot_id:
+		s.robot_id = robot_id
+	return s
+
+func _load(s):
+	._load(s)
+	if s.has("robot_id"):
+		robot_id = s.robot_id

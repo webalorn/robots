@@ -29,9 +29,9 @@ func play_anim(name):
 	player.seek(0, true)
 	player.stop(true)
 
-func play_anim_move(direction):
+func play_anim_move(direction, type = null):
 	var dir = CONSTS.move_to_str(direction)
-	play_anim("move_" + dir)
+	play_anim("move_" + dir + ("_" + type if type else ""))
 
 #######################
 ##  ACtions effects  ##
@@ -59,7 +59,7 @@ func action_blocked(params):
 
 func action_destroyed(params):
 	play_anim("robot_dead")
-	play_anim_move(params.action_direction)
+	play_anim_move(params.action_direction, "slow")
 	yield(anim_nodes.moves, "finished")
 	
 	set_pos_from_params(params)

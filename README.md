@@ -1,3 +1,4 @@
-# robots
-"Robot" (temporary name) is a logic game developed for android, with godot engine. The goal of the game is to reach the end of the level with the robots, that only move by going in one direction and stop their move on obstacles
+# Droids' journey
+Droid's journey is a logic game for android, developed with [Godot engine](https://godotengine.org/)
 
+The purpose of the game is to lead the droids (the robots) through the levels, folloing one rule: when a droid starts to move in one direction, he can't stop before he reached a wall or other kind of obstacle... or die. Player must also use portals, buttons and doors to reach the end of the levels.

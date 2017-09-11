@@ -42,6 +42,15 @@ func set_pos_from_params(params, pos_property = "to_cell"):
 	col = params[pos_property].col
 	set_sprite_pos_size()
 
+###############
+##  Effects  ##
+###############
+
+func effect_lost_in_space():
+	play_anim("robot_dead")
+	yield(anim_nodes.effects, "finished")
+	self.destroyed = true
+
 ####################
 ##    Actions     ##
 ####################
@@ -60,7 +69,7 @@ func action_blocked(params):
 func action_destroyed(params):
 	play_anim("robot_dead")
 	play_anim_move(params.action_direction, "slow")
-	yield(anim_nodes.moves, "finished")
+	yield(anim_nodes.effects, "finished")
 	
 	set_pos_from_params(params)
 	self.destroyed = true

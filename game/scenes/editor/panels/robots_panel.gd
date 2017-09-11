@@ -18,7 +18,11 @@ func action_on_cell(line, col):
 
 func on_show_panel():
 	if robot_list.empty():
-		for robot_item in get_node("content/scroll/robots").get_children():
+		var ROBOT_CLASS = preload("res://engine/robot.gd")
+		for robot_name in ROBOT_CLASS.existants_ids:
+			var robot_item = preload("elements/editor_robot.tscn").instance()
+			robot_item.name = robot_name
+			get_node("content/scroll/robots").add_child(robot_item)
 			robot_list[robot_item.name] = robot_item
 			robot_item.panel = self
 			robot_item.set_on_board(board.robots.has(robot_item.name))

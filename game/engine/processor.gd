@@ -47,7 +47,7 @@ func move_robot(id_robot, direction):
 		else:
 			move_robot(id_robot, null)
 	else:
-		if previous_locations.size() > 1:
+		if previous_locations.size() > 1 and not robot.destroyed:
 			var tile = board.grid[robot.line][robot.col]
 			if tile.has_method("robot_enter"):
 				tile.robot_enter(robot)

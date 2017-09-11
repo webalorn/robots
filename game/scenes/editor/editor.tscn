@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=1]
+[gd_scene load_steps=20 format=1]
 
 [ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/editor/editor.gd" type="Script" id=2]
@@ -18,8 +18,7 @@
 [ext_resource path="res://gui/editor/malus.png" type="Texture" id=16]
 [ext_resource path="res://gui/editor/plus.png" type="Texture" id=17]
 [ext_resource path="res://scenes/editor/panels/robots_panel.gd" type="Script" id=18]
-[ext_resource path="res://scenes/editor/panels/elements/editor_robot.tscn" type="PackedScene" id=19]
-[ext_resource path="res://gui/second_plan_elements/background_panel.tres" type="StyleBox" id=20]
+[ext_resource path="res://gui/second_plan_elements/background_panel.tres" type="StyleBox" id=19]
 
 [node name="editor" type="Control"]
 
@@ -885,7 +884,6 @@ params/stretch_mode = 0
 
 [node name="robots" type="Panel" parent="gui/sidebar"]
 
-editor/display_folded = true
 visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
@@ -990,16 +988,6 @@ margin/right = 320.0
 margin/bottom = 600.0
 alignment = 0
 
-[node name="robot 1" parent="gui/sidebar/robots/content/scroll/robots" instance=ExtResource( 19 )]
-
-name = "1"
-
-[node name="robot 2" parent="gui/sidebar/robots/content/scroll/robots" instance=ExtResource( 19 )]
-
-margin/top = 180.0
-margin/bottom = 360.0
-name = "2"
-
 [node name="notifications" type="VBoxContainer" parent="gui"]
 
 anchor/left = 1
@@ -1042,7 +1030,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
-custom_styles/panel = ExtResource( 20 )
+custom_styles/panel = ExtResource( 19 )
 popup/exclusive = false
 
 [node name="exit_editor" type="PopupPanel" parent="popups" groups=[

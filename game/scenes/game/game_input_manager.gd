@@ -14,13 +14,13 @@ func handle_touch_cell(line, col):
 	if active_robot and active_robot.destroyed:
 		reset_active_robot()
 	
-	if active_robot and int(abs(line - active_robot.line) + abs(col - active_robot.col)) == 1:
+	var robot = game.board.robot_on_cell(line, col)
+	if not robot and active_robot and int(abs(line - active_robot.line) + abs(col - active_robot.col)) == 1:
 		var move = CONSTS.get_move_id_from_dists(line - active_robot.line, col - active_robot.col)
 		game.action_move_robot(active_robot, move)
 	elif game.board.pos_in_grid(line, col):
 		
 		var robots = game.board.robots
-		var robot = game.board.robot_on_cell(line, col)
 		if robot:
 			if active_robot:
 				active_robot.hide_gui()

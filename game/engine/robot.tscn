@@ -200,7 +200,7 @@ tracks/1/keys = {
 [node name="robot" type="Sprite"]
 
 transform/rot = 360.0
-z/z = 1
+z/z = 5
 texture = ExtResource( 1 )
 
 [node name="moves_anims" type="AnimationPlayer" parent="."]
@@ -236,8 +236,7 @@ autoplay = ""
 
 [node name="arrows" type="Node2D" parent="."]
 
-editor/display_folded = true
-z/z = 3
+z/z = -1
 
 [node name="up" type="Sprite" parent="arrows"]
 

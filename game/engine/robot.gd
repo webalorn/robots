@@ -3,7 +3,6 @@ extends "game_element.gd"
 var robot_id = 1
 var destroyed = false setget set_destroyed
 var anim_nodes = []
-signal signal_action_end
 
 const existants_ids = ["1", "2"]
 
@@ -21,9 +20,14 @@ func set_destroyed(val):
 		set_hidden(true)
 		destroyed = true
 
-func play_anim(name):
+func play_anim(name, type_action):
 	var player = get_player_of(name)
 	player.play(name)
+	
+	if type_action == "action":
+		root.wait_action(player)
+	elif type_action == "effect":
+		root.wait_effect(player)
 	yield(player, "finished")
 	player.play(name)
 	player.seek(0, true)
@@ -31,7 +35,7 @@ func play_anim(name):
 
 func play_anim_move(direction, type = null):
 	var dir = CONSTS.move_to_str(direction)
-	play_anim("move_" + dir + ("_" + type if type else ""))
+	play_anim("move_" + dir + ("_" + type if type else ""), "action")
 
 #######################
 ##  ACtions effects  ##
@@ -47,9 +51,10 @@ func set_pos_from_params(params, pos_property = "to_cell"):
 ###############
 
 func effect_lost_in_space():
-	play_anim("robot_dead")
-	yield(anim_nodes.effects, "finished")
-	self.destroyed = true
+	if root.game_active():
+		play_anim("robot_dead", "effect")
+		yield(anim_nodes.effects, "finished")
+		self.destroyed = true
 
 ####################
 ##    Actions     ##
@@ -60,33 +65,29 @@ func action_move(params):
 	yield(anim_nodes.moves, "finished")
 	
 	set_pos_from_params(params)
-	emit_signal("signal_action_end")
 
 func action_blocked(params):
-	return null
-	emit_signal("signal_action_end")
+	pass
 
 func action_destroyed(params):
-	play_anim("robot_dead")
+	play_anim("robot_dead", "action")
 	play_anim_move(params.action_direction, "slow")
 	yield(anim_nodes.effects, "finished")
 	
 	set_pos_from_params(params)
 	self.destroyed = true
-	emit_signal("signal_action_end")
 
 func action_lost_in_space(params):
 	action_destroyed(params)
 
 func action_teleport(params):
-	play_anim("robot_teleport")
+	play_anim("robot_teleport", "action")
 	yield(anim_nodes.effects, "finished")
 	
 	set_pos_from_params(params, "teleport_to")
-	emit_signal("signal_action_end")
 
 func action_portal_blocked(params):
-	emit_signal("signal_action_end")
+	pass
 
 ####################
 ##      GUI       ##

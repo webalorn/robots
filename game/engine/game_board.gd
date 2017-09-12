@@ -6,6 +6,7 @@ var grid = []
 var robots = Dictionary()
 export var tile_size = 30 setget resize_tiles
 var mode = "game"
+var linked_processor = null
 
 const TILE_CLASS = preload("res://engine/tiles/floor_tile.gd")
 const ROBOT_CLASS = preload("res://engine/robot.gd")
@@ -160,3 +161,21 @@ func load_from(s):
 	for id in robots:
 		robots[id] = ROBOT_CLASS.load_from(robots[id])
 		get_node("robots").add_child(robots[id])
+
+###################################
+## Game_element acces functions  ##
+###################################
+
+func game_active():
+	return mode == "game"
+
+func editor_active():
+	return mode == "editor"
+
+func wait_action(object, event = "finished"):
+	if linked_processor:
+		linked_processor.wait_action(object, event)
+
+func wait_effect(object, event = "finished"):
+	if linked_processor:
+		linked_processor.wait_effect(object, event)

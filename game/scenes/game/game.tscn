@@ -243,6 +243,7 @@ popup/exclusive = false
 "auto_scale",
 ]]
 
+visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -352,11 +353,11 @@ flat = false
 
 [connection signal="pressed" from="popups/end_level/buttons/exit" to="." method="exit"]
 
-[connection signal="pressed" from="popups/end_level/buttons/restart" to="popups/end_level" method="hide"]
-
 [connection signal="pressed" from="popups/end_level/buttons/restart" to="." method="_on_restart"]
 
 [connection signal="pressed" from="popups/end_level/buttons/restart" to="popups/background" method="hide"]
+
+[connection signal="pressed" from="popups/end_level/buttons/restart" to="popups/end_level" method="hide"]
 
 [connection signal="pressed" from="popups/end_level/buttons/next_level" to="." method="_on_next_level"]
 

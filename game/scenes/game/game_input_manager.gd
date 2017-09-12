@@ -11,6 +11,9 @@ func handle_touch_cell(line, col):
 	if game.in_action:
 		return
 	
+	if active_robot and active_robot.destroyed:
+		reset_active_robot()
+	
 	if active_robot and int(abs(line - active_robot.line) + abs(col - active_robot.col)) == 1:
 		var move = CONSTS.get_move_id_from_dists(line - active_robot.line, col - active_robot.col)
 		game.action_move_robot(active_robot, move)

@@ -345,19 +345,19 @@ flat = false
 
 [connection signal="pressed" from="popups/menu/buttons/button_exit" to="." method="exit"]
 
-[connection signal="pressed" from="popups/menu/buttons/button_restart" to="." method="_on_restart"]
-
 [connection signal="pressed" from="popups/menu/buttons/button_restart" to="popups/menu" method="hide"]
+
+[connection signal="pressed" from="popups/menu/buttons/button_restart" to="." method="_on_restart"]
 
 [connection signal="pressed" from="popups/menu/buttons/button_resume" to="popups/menu" method="hide"]
 
 [connection signal="pressed" from="popups/end_level/buttons/exit" to="." method="exit"]
 
+[connection signal="pressed" from="popups/end_level/buttons/restart" to="popups/end_level" method="hide"]
+
 [connection signal="pressed" from="popups/end_level/buttons/restart" to="." method="_on_restart"]
 
 [connection signal="pressed" from="popups/end_level/buttons/restart" to="popups/background" method="hide"]
-
-[connection signal="pressed" from="popups/end_level/buttons/restart" to="popups/end_level" method="hide"]
 
 [connection signal="pressed" from="popups/end_level/buttons/next_level" to="." method="_on_next_level"]
 

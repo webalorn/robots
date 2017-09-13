@@ -1,11 +1,14 @@
 extends Node
 
 var current_scene = null
-var loading_screen = preload("res://autoloads/loading_screen.tscn")
+var loading_screen = preload("res://autoloads/loading/loading_screen.tscn")
+var ress_loader
 
 func _ready():
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() -1)
+	ress_loader = preload("loading/resource_queue.gd").new()
+	ress_loader.start()
 
 ##################
 ##    Scenes    ##
@@ -17,19 +20,9 @@ func goto_scene(path, params = {}):
 	call_deferred("_deferred_goto_scene", path, params)
 
 func _deferred_goto_scene(path, params):
-	current_scene.free()
 	var loading = loading_screen.instance()
 	get_tree().get_root().add_child(loading)
-	
-	yield(get_tree(), "idle_frame")
-	var s = ResourceLoader.load(path)
-	current_scene = s.instance()
-	if current_scene.has_method("scene_init"):
-		current_scene.scene_init(params)
-	
-	loading.free()
-	get_tree().get_root().add_child(current_scene)
-	get_tree().set_current_scene(current_scene)
+	loading.init(path, params)
 
 #################
 ##  Platforms  ##

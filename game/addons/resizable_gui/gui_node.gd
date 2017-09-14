@@ -37,13 +37,12 @@ func center_elements():
 	for el in get_tree().get_nodes_in_group("auto_center"):
 		center_node(el)
 
-func _ready():
-	set_size_and_scale()
-	center_elements()
-	if not global.on_phone():
-		set_process(true)
-
-func _process(delta):
+func _on_resize():
 	if get_viewport().get_rect().size != last_size:
 		set_size_and_scale()
 		center_elements()
+
+func _ready():
+	set_size_and_scale()
+	center_elements()
+	connect("resized", self, "_on_resize")

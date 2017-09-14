@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/editor/panels/elements/tile_category.gd" type="Script" id=2]
+
+[node name="tile_category" type="Control"]
+
+rect/min_size = Vector2( 330, 70 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 330.0
+margin/bottom = 70.0
+script/script = ExtResource( 2 )
+name = "Name"
+
+[node name="name" type="Label" parent="."]
+
+anchor/right = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 13.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 52.0
+text = "Name"
+valign = 1
+clip_text = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="HSeparator" type="HSeparator" parent="."]
+
+anchor/top = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 30.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=9 format=1]
+[gd_resource type="Theme" load_steps=10 format=1]
 
 [ext_resource path="res://gui/main_theme/Button/button_normal.tres" type="StyleBox" id=1]
 [ext_resource path="res://gui/main_theme/Button/button_hover.tres" type="StyleBox" id=2]
@@ -7,6 +7,19 @@
 [ext_resource path="res://gui/editor/checkbox_on.png" type="Texture" id=5]
 [ext_resource path="res://gui/main_theme/popup_panel.tres" type="StyleBox" id=6]
 [ext_resource path="res://gui/fonts/dynamic_sensation_bold.tres" type="DynamicFont" id=7]
+
+[sub_resource type="StyleBoxFlat" id=2]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0.660156, 0.660156, 0.660156, 1 )
+light_color = Color( 0, 0, 0, 1 )
+dark_color = Color( 0, 0, 0, 1 )
+border_size = 2
+border_blend = false
+draw_bg = true
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -49,6 +62,8 @@ CheckButton/styles/focus = null
 CheckButton/styles/hover = null
 CheckButton/styles/normal = null
 CheckButton/styles/pressed = null
+HSeparator/constants/separation = 10
+HSeparator/styles/separator = SubResource( 2 )
 Label/colors/font_color = Color( 0.128906, 0.128906, 0.128906, 1 )
 Label/colors/font_color_shadow = Color( 0, 0, 0, 0 )
 Label/constants/line_spacing = 3

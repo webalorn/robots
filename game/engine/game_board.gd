@@ -5,7 +5,7 @@ var width = 0 setget resize_width
 var grid = []
 var robots = Dictionary()
 export var tile_size = 30 setget resize_tiles
-var mode = "game"
+export(String) var mode = "game"
 var linked_processor = null
 
 const TILE_CLASS = preload("res://engine/tiles/floor_tile.gd")

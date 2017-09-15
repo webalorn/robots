@@ -120,6 +120,7 @@ func _create_view():
 		effects = view.get_node("effects_anims")
 	}
 	hide_gui()
+	._create_view()	
 	
 func _init(_line, _col, _robot_id).(_line, _col):
 	robot_id = _robot_id

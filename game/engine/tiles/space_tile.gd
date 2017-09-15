@@ -11,6 +11,7 @@ func set_active(value):
 		var robot = root.robot_on_cell(line, col)
 		if robot:
 			robot.effect_lost_in_space()
+	set_view_active()
 
 func get_entering_result(direction):
 	if active:

@@ -21,9 +21,14 @@ func get_entering_result(direction):
 	return {action = CONSTS.destroyed}
 
 func _create_view():
-	view = Sprite.new()
-	view.set_texture(load("res://scenes/game/tiles/" + tile_type + ".png"))
-	
+	var scene_path = "res://scenes/game/tiles/" + tile_type + "/" + tile_type + ".tscn"
+	if global.file_exists(scene_path):
+		view = load(scene_path).instance()
+	else:
+		view = Sprite.new()
+		view.set_texture(get_tile_icon_texture(tile_type))
+	._create_view()
+
 func _init(_line, _col, type).(_line, _col):
 	tile_type = type
 
@@ -66,4 +71,21 @@ static func createTile(type, line, col):
 	return tile
 
 static func get_tile_icon_texture(type):
-	return load("res://scenes/game/tiles/" + type + ".png")
+	return load("res://scenes/game/tiles/" + type + "/" + type + ".png")
+
+##################
+##  Animations  ##
+##################
+
+func set_anim(anim):
+	if not view:
+		yield(self, "view_ready")
+	if anim != view.get_animation():
+		view.set_animation(anim)
+
+func set_view_active():
+	if self.has_method("set_active"):
+		if self.active:
+			set_anim("active")
+		else:
+			set_anim("inactive")

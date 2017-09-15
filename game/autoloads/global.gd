@@ -10,6 +10,14 @@ func _ready():
 	ress_loader = preload("loading/resource_queue.gd").new()
 	ress_loader.start()
 
+#############
+##  Files  ##
+#############
+
+func file_exists(path):
+	var f = File.new()
+	return f.file_exists(path)
+
 ##################
 ##    Scenes    ##
 ##################

@@ -4,6 +4,7 @@ var view = null
 var line
 var col
 var root = null
+signal view_ready
 
 func set_sprite_pos_size():
 	var tile_size = root.tile_size
@@ -15,7 +16,7 @@ func get_coords():
 	return Vector2(line, col)
 
 func _create_view():
-	pass
+	emit_signal("view_ready")
 
 func _ready():
 	root = get_parent().get_parent()

@@ -350,7 +350,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 330.0
-margin/bottom = 2046.0
+margin/bottom = 968.0
 alignment = 0
 
 [node name="category_basic" parent="gui/sidebar/tiles/content/scroll/VBoxContainer" instance=ExtResource( 11 )]

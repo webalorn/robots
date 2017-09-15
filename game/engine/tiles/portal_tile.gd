@@ -25,6 +25,7 @@ func set_active(value):
 	active = value
 	if linked_to and linked_to.active != active:
 		linked_to.active = active
+	set_view_active()
 
 func unlink():
 	if linked_to:

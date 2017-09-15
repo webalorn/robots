@@ -5,6 +5,13 @@ var destroyed = false setget set_destroyed
 var anim_nodes = []
 
 const existants_ids = ["1", "2"]
+const robots_colors = {
+	"1" : "red",
+	"2" : "green"
+}
+
+func get_color():
+	return robots_colors[robot_id]
 
 ####################
 ##   Animations   ##

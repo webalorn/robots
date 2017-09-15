@@ -39,5 +39,11 @@ func invert_state():
 		if targets[key].has_method("link_to") and targets[key].linked_to: # Do not invert twice the same couple of portals
 			linked_inverted[Vector2(targets[key].linked_to.line, targets[key].linked_to.col)] = true
 
+func convert_from(old_tile):
+	.convert_from(old_tile)
+	if old_tile.has_method("add_target"):
+		for key in old_tile.targets:
+			add_target(old_tile.targets[key])
+
 func _init(a, b, c).(a, b, c):
 	pass

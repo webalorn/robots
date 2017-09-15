@@ -26,7 +26,7 @@ func set_tile_type(line, col, type = "floor"):
 		return
 	old.close_properties()
 	var new_tile = get_new_tile(line, col, type)
-	new_tile.rotation = old.rotation
+	new_tile.convert_from(old)
 	grid[line][col] = new_tile
 	old.queue_free()
 	return new_tile

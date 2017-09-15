@@ -36,8 +36,13 @@ func change_type(type):
 	return root.set_tile_type(line, col, type)
 
 func close_properties(): # Used to convert tiles: unlink portal, remove references...
-	if self.has_method("set_active"):
-		set_active(true)
+	pass
+
+func convert_from(old_tile):
+	if has_rotation():
+		self.rotation = old_tile.rotation
+	if has_method("set_active") and old_tile.has_method("set_active"):
+		set_active(old_tile.active)
 
 func save():
 	var s = .save()

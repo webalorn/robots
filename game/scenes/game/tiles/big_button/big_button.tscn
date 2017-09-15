@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://scenes/game/tiles/big_button/big_button_spriteframes.tres" type="SpriteFrames" id=1]
+
+[node name="big_button" type="AnimatedSprite"]
+
+frames = ExtResource( 1 )
+animation = "default"
+
+

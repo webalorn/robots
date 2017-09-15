@@ -1,0 +1,19 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=1]
+
+[ext_resource path="res://scenes/game/tiles/big_button/big_button.png" type="Texture" id=1]
+[ext_resource path="res://scenes/game/tiles/big_button/pushed.png" type="Texture" id=2]
+
+[resource]
+
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "pushed",
+"speed": 5.0
+} ]
+

@@ -38,12 +38,19 @@ func invert_state():
 			targets[key].set_is_active(not targets[key].is_active())
 		if targets[key].has_method("link_to") and targets[key].linked_to: # Do not invert twice the same couple of portals
 			linked_inverted[Vector2(targets[key].linked_to.line, targets[key].linked_to.col)] = true
+	set_view_pushed_state()
 
 func convert_from(old_tile):
 	.convert_from(old_tile)
 	if old_tile.has_method("add_target"):
 		for key in old_tile.targets:
 			add_target(old_tile.targets[key])
+
+func set_view_pushed_state():
+	if self.pushed:
+		set_anim("pushed")
+	else:
+		set_anim("default")
 
 func _init(a, b, c).(a, b, c):
 	pass

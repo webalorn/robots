@@ -9,7 +9,9 @@ func action_on_cell(line, col):
 			if not TYPE_CLASS.is_safe_for_robot():
 				editor.notify(tr("TILE_CANT_BE_PLACED_UNDER_ROBOT"))
 				return
-		board.set_tile_type(line, col, active.type)
+		var tile = board.set_tile_type(line, col, active.type)
+		if tile != null:
+			editor.add_step()
 
 func set_active_type(type):
 	if active:

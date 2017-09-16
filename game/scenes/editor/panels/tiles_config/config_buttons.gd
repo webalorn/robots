@@ -29,9 +29,11 @@ func handle_action(action_tile):
 		targets[key].queue_free()
 		targets.erase(key)
 		tile.remove_target(action_tile)
+		add_step()
 	elif action_tile.has_method("set_active"):
 		tile.add_target(action_tile)
 		add_marker(action_tile, key)
+		add_step()
 	display_elements()
 
 func _on_select_targets():

@@ -9,3 +9,6 @@ func _ready():
 
 func handle_action(tile):
 	pass
+
+func add_step():
+	panel.editor.add_step()

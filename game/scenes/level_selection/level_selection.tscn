@@ -255,7 +255,7 @@ margin/right = 0.0
 margin/bottom = 0.0
 columns = 5
 
-[connection signal="pressed" from="gui/sidebar/header/back" to="." method="exit"]
+[connection signal="pressed" from="gui/sidebar/header/back" to="." method="handle_return_action"]
 
 [connection signal="pressed" from="gui/sidebar/buttons/button_levels" to="." method="show_view" binds= [ "chapters" ]]
 

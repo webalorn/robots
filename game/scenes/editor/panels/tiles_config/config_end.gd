@@ -14,5 +14,7 @@ func display_state():
 		get_node("state").set_text(tr("NO_ROBOT_SELECTED"))
 
 func _on_robot_selected(robot_id):
-	tile.robot_id = robot_id
-	display_state()
+	if robot_id != tile.robot_id:
+		tile.robot_id = robot_id
+		display_state()
+		add_step()

@@ -7,6 +7,7 @@ var board
 var sidebar
 var camera
 var input_manager
+var changes_manager
 
 var active_panel
 const MAX_NOTIFS = 3
@@ -25,6 +26,7 @@ func _ready():
 	game_view.add_child(input_manager)
 	load_level_gameboard()
 	camera.set_pos(Vector2(board.width * board.tile_size, board.height * board.tile_size)/2)
+	changes_manager = preload("res://engine/changes_manager.gd").new(board.save())
 	
 	# Sidebar
 	show_panel("main")
@@ -127,3 +129,19 @@ func auto_save(data):
 func _exit_tree():
 	if save_thread.is_active():
 		save_thread.wait_to_finish()
+
+####################
+##  Undo actions  ##
+####################
+
+func undo_action():
+	var panel = sidebar.get_node(active_panel)
+	var panel_datas = panel.save_state_before_undo()
+	
+	changes_manager.revert_last_change()
+	board.load_from(changes_manager.get_state())
+	
+	panel.on_undo_action(panel_datas)
+
+func add_step():
+	changes_manager.add_step(board.save())

@@ -50,3 +50,20 @@ func unselect_tile():
 func on_hide_panel():
 	unselect_tile()
 	.on_hide_panel()
+
+####################
+##  Undo changes  ##
+####################
+
+func save_state_before_undo():
+	var datas = {line = tile.line, col = tile.col}
+	unselect_tile()
+	return datas
+
+func on_undo_action(datas):
+	var line = datas.line
+	var col = datas.col
+	if not board.pos_in_grid(line, col):
+		exit_panel()
+		return
+	action_on_cell(line, col)

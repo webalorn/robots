@@ -40,12 +40,14 @@ func _on_unlink_action():
 	tile.unlink()
 	display_state()
 	display_buttons()
+	add_step()
 
 func handle_action(tile_action):
 	if tile_action == tile:
 		panel.editor.notify("NOTIF_DONT_SELECT_SAME_PORTAL")
 	elif tile_action.has_method("link_to"):
 		tile_action.link_to(tile)
+		add_step()
 	else:
 		panel.editor.notify("NOTIF_SELECT_A_PORTAL")
 	intercept_action = false

@@ -15,7 +15,9 @@ func on_show_panel():
 func change_height(add):
 	board.height += add
 	display_size()
+	editor.add_step()
 
 func change_width(add):
 	board.width += add
 	display_size()
+	editor.add_step()

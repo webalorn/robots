@@ -9,12 +9,14 @@ func action_on_cell(line, col):
 		if on_cell:
 			if on_cell.robot_id == selected:
 				remove_robot(selected)
+				editor.add_step()
 			else:
 				editor.notify("ALREADY_ROBOT_ON_CELL")
 		else:
 			if board.robots.has(selected):
 				remove_robot(selected)
 			add_robot(selected, line, col)
+			editor.add_step()
 
 func on_show_panel():
 	if robot_list.empty():
@@ -26,6 +28,9 @@ func on_show_panel():
 			robot_list[robot_item.name] = robot_item
 			robot_item.panel = self
 			robot_item.set_on_board(board.robots.has(robot_item.name))
+	else:
+		for robot_name in robot_list:
+			robot_list[robot_name].set_on_board(board.robots.has(robot_name))
 
 func on_hide_panel():
 	pass

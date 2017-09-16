@@ -9,7 +9,8 @@ func _ready():
 	board = get_node("/root/editor/level/view/board")
 
 func action_on_cell(line, col):
-	pass
+	editor.show_panel("tile_config")
+	editor.sidebar.get_node("tile_config").action_on_cell(line, col)
 
 func on_show_panel():
 	pass
@@ -17,5 +18,14 @@ func on_show_panel():
 func on_hide_panel():
 	pass
 
-func handle_return_action():
+func exit_panel():
 	editor.show_panel("main")
+
+func handle_return_action():
+	exit_panel()
+
+func save_state_before_undo():
+	return {}
+
+func on_undo_action(datas):
+	on_show_panel()

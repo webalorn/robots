@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=1]
+[gd_scene load_steps=22 format=1]
 
 [ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/editor/editor.gd" type="Script" id=2]
@@ -19,7 +19,8 @@
 [ext_resource path="res://gui/editor/malus.png" type="Texture" id=17]
 [ext_resource path="res://gui/editor/plus.png" type="Texture" id=18]
 [ext_resource path="res://scenes/editor/panels/robots_panel.gd" type="Script" id=19]
-[ext_resource path="res://gui/second_plan_elements/background_panel.tres" type="StyleBox" id=20]
+[ext_resource path="res://gui/game/back.png" type="Texture" id=20]
+[ext_resource path="res://gui/second_plan_elements/background_panel.tres" type="StyleBox" id=21]
 
 [node name="editor" type="Control"]
 
@@ -114,6 +115,7 @@ __meta__ = {
 
 [node name="sidebar" type="Control" parent="gui"]
 
+editor/display_folded = true
 anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -1057,6 +1059,25 @@ margin/bottom = 10.0
 custom_constants/separation = 10
 alignment = 2
 
+[node name="undo_button" type="TextureButton" parent="gui"]
+
+anchor/left = 1
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 74.0
+margin/top = 10.0
+margin/right = 10.0
+margin/bottom = 74.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 20 )
+params/resize_mode = 1
+params/stretch_mode = 0
+
 [node name="popups" type="Control" parent="."]
 
 anchor/right = 1
@@ -1083,7 +1104,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
-custom_styles/panel = ExtResource( 20 )
+custom_styles/panel = ExtResource( 21 )
 popup/exclusive = false
 
 [node name="exit_editor" type="PopupPanel" parent="popups" groups=[
@@ -1186,6 +1207,8 @@ max_lines_visible = -1
 [connection signal="pressed" from="gui/sidebar/parameters/content/scroll/params/width/plus" to="gui/sidebar/parameters" method="change_width" binds= [ 1 ]]
 
 [connection signal="pressed" from="gui/sidebar/robots/content/header/TextureButton" to="." method="show_panel" binds= [ "main" ]]
+
+[connection signal="pressed" from="gui/undo_button" to="." method="undo_action"]
 
 [connection signal="popup_hide" from="popups/exit_editor" to="popups/background" method="hide" flags=3]
 

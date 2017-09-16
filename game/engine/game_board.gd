@@ -23,7 +23,7 @@ func get_new_tile(line, col, type = "floor"):
 func set_tile_type(line, col, type = "floor"):
 	var old = grid[line][col]
 	if old.tile_type == type:
-		return
+		return null
 	old.close_properties()
 	var new_tile = get_new_tile(line, col, type)
 	new_tile.convert_from(old)

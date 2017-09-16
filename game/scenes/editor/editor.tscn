@@ -115,7 +115,6 @@ __meta__ = {
 
 [node name="sidebar" type="Control" parent="gui"]
 
-editor/display_folded = true
 anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -424,6 +423,13 @@ columns = 2
 margin/right = 150.0
 margin/bottom = 150.0
 type = "portal"
+
+[node name="door" parent="gui/sidebar/tiles/content/scroll/VBoxContainer/specials" instance=ExtResource( 12 )]
+
+margin/left = 154.0
+margin/right = 304.0
+margin/bottom = 150.0
+type = "door"
 
 [node name="category_buttons" parent="gui/sidebar/tiles/content/scroll/VBoxContainer" instance=ExtResource( 11 )]
 

@@ -6,6 +6,9 @@ var selected = null
 func action_on_cell(line, col):
 	if selected:
 		var on_cell = board.robot_on_cell(line, col)
+		if not board.grid[line][col].is_safe_for_robot():
+			editor.notify("ROBOT_CANT_BE_PLACED_ON_TILE")
+			return
 		if on_cell:
 			if on_cell.robot_id == selected:
 				remove_robot(selected)

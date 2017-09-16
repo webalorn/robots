@@ -57,11 +57,14 @@ func set_pos_from_params(params, pos_property = "to_cell"):
 ##  Effects  ##
 ###############
 
-func effect_lost_in_space():
+func effect_destroyed():
 	if root.game_active():
 		play_anim("robot_dead", "effect")
 		yield(anim_nodes.effects, "finished")
 		self.destroyed = true
+
+func effect_lost_in_space():
+	effect_destroyed()
 
 ####################
 ##    Actions     ##

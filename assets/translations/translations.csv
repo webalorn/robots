@@ -59,3 +59,4 @@ SELECTED_ROBOT,Selected robot:,Robot sélectionné:
 BASE_TILE_CATEGORY,Basics,Basiques
 SPECIAL_TILE_CATEGORY,Special tiles,Tuiles spéciales
 BUTTON_TILE_CATEGORY,Buttons,Bouttons
+ROBOT_CANT_BE_PLACED_ON_TILE,The robot can’t be placed on this cell,Le robot ne peut pas être place sur cette case

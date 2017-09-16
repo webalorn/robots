@@ -23,7 +23,6 @@ func set_robot_id(value):
 			portal.set_modulate(CONSTS.color_to_modulate[robot_color])
 		else:
 			portal.set_modulate(Color(1, 1, 1))
-		print(portal.get_modulate())
 
 func _exit_tree():
 	board.unregister_door(self)

@@ -1,0 +1,196 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/editor/panels/tiles_config/config_magic_wall.gd" type="Script" id=2]
+[ext_resource path="res://gui/editor/none.png" type="Texture" id=3]
+[ext_resource path="res://scenes/game/tiles/magic_wall/portal.png" type="Texture" id=4]
+[ext_resource path="res://scenes/game/tiles/magic_wall/magic_wall.png" type="Texture" id=5]
+[ext_resource path="res://gui/editor/sphere.png" type="Texture" id=6]
+
+[node name="config_magic_wall" type="VBoxContainer"]
+
+rect/min_size = Vector2( 320, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+alignment = 0
+script/script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 320.0
+margin/bottom = 36.0
+text = "CHOOSE_PORTAL"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Control1" type="Control" parent="."]
+
+rect/min_size = Vector2( 0, 20 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 36.0
+margin/right = 320.0
+margin/bottom = 56.0
+
+[node name="portals" type="GridContainer" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 56.0
+margin/right = 320.0
+margin/bottom = 316.0
+columns = 2
+
+[node name="none" type="TextureButton" parent="portals"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 128.0
+margin/bottom = 128.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 3 )
+params/resize_mode = 0
+params/scale = Vector2( 0.5, 0.5 )
+params/stretch_mode = 0
+
+[node name="portal1" type="TextureButton" parent="portals"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 132.0
+margin/top = 0.0
+margin/right = 260.0
+margin/bottom = 128.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 4 )
+params/resize_mode = 0
+params/scale = Vector2( 0.5, 0.5 )
+params/stretch_mode = 0
+
+[node name="magic_wall" type="TextureFrame" parent="portals/portal1"]
+
+visibility/behind_parent = true
+rect/scale = Vector2( 0.5, 0.5 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 256.0
+margin/bottom = 256.0
+texture = ExtResource( 5 )
+stretch_mode = 0
+
+[node name="portal2" type="TextureButton" parent="portals"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 132.0
+margin/right = 128.0
+margin/bottom = 260.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 4 )
+params/resize_mode = 0
+params/scale = Vector2( 0.5, 0.5 )
+params/stretch_mode = 0
+
+[node name="magic_wall" type="TextureFrame" parent="portals/portal2"]
+
+visibility/behind_parent = true
+rect/scale = Vector2( 0.5, 0.5 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 256.0
+margin/bottom = 256.0
+texture = ExtResource( 5 )
+stretch_mode = 0
+
+[node name="Control" type="Control" parent="."]
+
+rect/min_size = Vector2( 0, 20 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 316.0
+margin/right = 320.0
+margin/bottom = 336.0
+
+[node name="center" type="CenterContainer" parent="."]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 336.0
+margin/right = 320.0
+margin/bottom = 456.0
+use_top_left = false
+
+[node name="color" type="TextureFrame" parent="center"]
+
+rect/min_size = Vector2( 120, 120 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 100.0
+margin/top = 0.0
+margin/right = 220.0
+margin/bottom = 120.0
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 0
+
+[connection signal="pressed" from="portals/none" to="." method="set_portal_id"]
+
+[connection signal="pressed" from="portals/portal1" to="." method="set_portal_id" binds= [ 1 ]]
+
+[connection signal="pressed" from="portals/portal2" to="." method="set_portal_id" binds= [ 2 ]]
+
+

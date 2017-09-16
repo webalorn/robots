@@ -2,10 +2,12 @@ extends Node
 
 enum DIRS {UP = 0, LEFT = 1, DOWN = 2, RIGHT = 3}
 
-const colors = ["red", "green"]
+const colors = ["red", "green", "blue", "orange", "white"]
 const color_to_modulate = {
+	"white" : Color(1, 1, 1),
 	"red" : Color(246 / 255.0, 5 / 255.0, 5 / 255.0),
-	"green" : Color(5 / 255.0, 246 / 255.0, 37 / 255.0)
+	"green" : Color(5 / 255.0, 246 / 255.0, 37 / 255.0),
+	"orange": Color(0.93, 0.52, 0.05)
 }
 
 const blocked = "blocked"

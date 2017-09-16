@@ -23,6 +23,8 @@ func action_on_cell(line, col):
 	
 	if tile.tile_type == "portal":
 		specific_config = preload("res://scenes/editor/panels/tiles_config/config_portal.tscn")
+	elif tile.tile_type == "magic_wall":
+		specific_config = preload("res://scenes/editor/panels/tiles_config/config_magic_wall.tscn")
 	elif tile extends preload("res://engine/tiles/generic_button_tile.gd"):
 		specific_config = preload("res://scenes/editor/panels/tiles_config/config_buttons.tscn")
 	elif tile.tile_type == "end":

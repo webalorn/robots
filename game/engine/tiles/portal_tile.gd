@@ -1,7 +1,7 @@
 extends "special_tile.gd"
 
 var linked_to = null setget link_to
-var FLOOR_CLASS = preload("res://engine/tiles/floor_tile.gd")
+const FLOOR_CLASS = preload("res://engine/tiles/floor_tile.gd")
 var active = true setget set_active
 
 func _init(a, b, c).(a, b, c):
@@ -59,23 +59,30 @@ func close_properties():
 	unlink()
 	.close_properties()
 
-func get_portal_out_tile():
-	var next_pos = CONSTS.apply_move(line, col, rotation)
-	if not root.pos_in_grid(next_pos.line, next_pos.col):
+static func get_portal_out_tile_from(portal):
+	var next_pos = CONSTS.apply_move(portal.line, portal.col, portal.rotation)
+	if not portal.root.pos_in_grid(next_pos.line, next_pos.col):
 		return null
-	var tile = root.grid[next_pos.line][next_pos.col]
+	var tile = portal.root.grid[next_pos.line][next_pos.col]
 	if not tile extends FLOOR_CLASS:
+		return null
+	if portal.root.robot_on_cell(next_pos.line, next_pos.col):
 		return null
 	return tile
 
-func get_entering_special_action():
-	if not linked_to or not active:
+func get_portal_out_tile():
+	return get_portal_out_tile_from(self)
+
+static func get_entering_special_action_from(portal, linked_to):
+	if linked_to == null or (portal.has_method("set_active") and not portal.active):
 		return {action = CONSTS.blocked}
 	var next_tile = linked_to.get_portal_out_tile()
 	if not next_tile:
-		return {action = CONSTS.portal_blocked, portals = [self, linked_to]}
+		return {action = CONSTS.portal_blocked, portals = [portal, linked_to]}
 	return {
 		action = CONSTS.teleport,
 		teleport_to = next_tile,
 		direction = linked_to.rotation
 	}
+func get_entering_special_action():
+	return get_entering_special_action_from(self, linked_to)

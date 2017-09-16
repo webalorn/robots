@@ -351,7 +351,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 330.0
-margin/bottom = 968.0
+margin/bottom = 1122.0
 alignment = 0
 
 [node name="category_basic" parent="gui/sidebar/tiles/content/scroll/VBoxContainer" instance=ExtResource( 11 )]
@@ -360,7 +360,6 @@ name = "BASE_TILE_CATEGORY"
 
 [node name="basics" type="GridContainer" parent="gui/sidebar/tiles/content/scroll/VBoxContainer"]
 
-editor/display_folded = true
 rect/min_size = Vector2( 310, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -369,7 +368,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 70.0
 margin/right = 330.0
-margin/bottom = 374.0
+margin/bottom = 528.0
 columns = 2
 
 [node name="floor" parent="gui/sidebar/tiles/content/scroll/VBoxContainer/basics" instance=ExtResource( 12 )]
@@ -384,25 +383,32 @@ margin/right = 304.0
 margin/bottom = 150.0
 type = "wall"
 
-[node name="space" parent="gui/sidebar/tiles/content/scroll/VBoxContainer/basics" instance=ExtResource( 12 )]
+[node name="magic_wall" parent="gui/sidebar/tiles/content/scroll/VBoxContainer/basics" instance=ExtResource( 12 )]
 
 margin/top = 154.0
 margin/right = 150.0
 margin/bottom = 304.0
-type = "space"
+type = "magic_wall"
 
-[node name="end" parent="gui/sidebar/tiles/content/scroll/VBoxContainer/basics" instance=ExtResource( 12 )]
+[node name="space" parent="gui/sidebar/tiles/content/scroll/VBoxContainer/basics" instance=ExtResource( 12 )]
 
 margin/left = 154.0
 margin/top = 154.0
 margin/right = 304.0
 margin/bottom = 304.0
+type = "space"
+
+[node name="end" parent="gui/sidebar/tiles/content/scroll/VBoxContainer/basics" instance=ExtResource( 12 )]
+
+margin/top = 308.0
+margin/right = 150.0
+margin/bottom = 458.0
 type = "end"
 
 [node name="category_specials" parent="gui/sidebar/tiles/content/scroll/VBoxContainer" instance=ExtResource( 11 )]
 
-margin/top = 374.0
-margin/bottom = 444.0
+margin/top = 528.0
+margin/bottom = 598.0
 name = "SPECIAL_TILE_CATEGORY"
 
 [node name="specials" type="GridContainer" parent="gui/sidebar/tiles/content/scroll/VBoxContainer"]
@@ -413,9 +419,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 444.0
+margin/top = 598.0
 margin/right = 330.0
-margin/bottom = 594.0
+margin/bottom = 748.0
 columns = 2
 
 [node name="portal" parent="gui/sidebar/tiles/content/scroll/VBoxContainer/specials" instance=ExtResource( 12 )]
@@ -433,8 +439,8 @@ type = "door"
 
 [node name="category_buttons" parent="gui/sidebar/tiles/content/scroll/VBoxContainer" instance=ExtResource( 11 )]
 
-margin/top = 594.0
-margin/bottom = 664.0
+margin/top = 748.0
+margin/bottom = 818.0
 name = "BUTTON_TILE_CATEGORY"
 
 [node name="buttons" type="GridContainer" parent="gui/sidebar/tiles/content/scroll/VBoxContainer"]
@@ -446,9 +452,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 664.0
+margin/top = 818.0
 margin/right = 330.0
-margin/bottom = 968.0
+margin/bottom = 1122.0
 columns = 2
 
 [node name="big_button" parent="gui/sidebar/tiles/content/scroll/VBoxContainer/buttons" instance=ExtResource( 12 )]

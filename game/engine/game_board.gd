@@ -122,6 +122,31 @@ func is_level_done():
 			return false
 	return true
 
+######################
+##  Robots portals  ##
+######################
+
+var robot_portals = {}
+
+func remove_robot_portal(id):
+	if robot_portals.has(id):
+		robot_portals[id].portal_id = null
+		robot_portals.erase(id)
+
+func get_robot_portal(id):
+	if robot_portals.has(id):
+		return robot_portals[id]
+
+func get_linked_robot_portal(id):
+	if id == 1:
+		return get_robot_portal(2)
+	if id == 2:
+		return get_robot_portal(1)
+
+func add_robot_portal(magic_tile):
+	remove_robot_portal(magic_tile.portal_id)
+	robot_portals[magic_tile.portal_id] = magic_tile
+
 ##############################
 ##  Serialization function  ##
 ##############################

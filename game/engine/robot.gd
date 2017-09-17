@@ -4,14 +4,14 @@ var robot_id = "1"
 var destroyed = false setget set_destroyed
 var anim_nodes = []
 
-const existants_ids = ["1", "2"]
+const existants_ids = ["1", "2", "3"]
 const robots_colors = {
 	"1" : "red",
 	"2" : "green"
 }
 const robots_portals_ids = {
 	"2" : 1,
-	"portal2" : 2
+	"3" : 2
 }
 
 func get_color():

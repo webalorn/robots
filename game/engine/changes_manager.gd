@@ -13,9 +13,11 @@ func _init(base_state):
 func get_state():
 	return copy_data(state)
 
-func add_step(new_state):
-	changes_list.push_back(compute_changes(state, new_state))
-	state = new_state
+func add_step(new_state, force_add = false):
+	var changes = compute_changes(state, new_state)
+	if changes != false and not force_add:
+		changes_list.push_back(changes)
+		state = new_state
 
 func revert_last_change():
 	if changes_list.empty():

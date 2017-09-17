@@ -2,13 +2,10 @@ extends Node
 
 var current_scene = null
 var loading_screen = preload("res://autoloads/loading/loading_screen.tscn")
-var ress_loader
 
 func _ready():
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() -1)
-	ress_loader = preload("loading/resource_queue.gd").new()
-	ress_loader.start()
 
 #############
 ##  Files  ##

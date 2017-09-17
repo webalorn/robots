@@ -351,7 +351,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 330.0
-margin/bottom = 1122.0
+margin/bottom = 1276.0
 alignment = 0
 
 [node name="category_basic" parent="gui/sidebar/tiles/content/scroll/VBoxContainer" instance=ExtResource( 11 )]
@@ -421,7 +421,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 598.0
 margin/right = 330.0
-margin/bottom = 748.0
+margin/bottom = 902.0
 columns = 2
 
 [node name="portal" parent="gui/sidebar/tiles/content/scroll/VBoxContainer/specials" instance=ExtResource( 12 )]
@@ -437,10 +437,17 @@ margin/right = 304.0
 margin/bottom = 150.0
 type = "door"
 
+[node name="gap_wall" parent="gui/sidebar/tiles/content/scroll/VBoxContainer/specials" instance=ExtResource( 12 )]
+
+margin/top = 154.0
+margin/right = 150.0
+margin/bottom = 304.0
+type = "gap_wall"
+
 [node name="category_buttons" parent="gui/sidebar/tiles/content/scroll/VBoxContainer" instance=ExtResource( 11 )]
 
-margin/top = 748.0
-margin/bottom = 818.0
+margin/top = 902.0
+margin/bottom = 972.0
 name = "BUTTON_TILE_CATEGORY"
 
 [node name="buttons" type="GridContainer" parent="gui/sidebar/tiles/content/scroll/VBoxContainer"]
@@ -452,9 +459,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 818.0
+margin/top = 972.0
 margin/right = 330.0
-margin/bottom = 1122.0
+margin/bottom = 1276.0
 columns = 2
 
 [node name="big_button" parent="gui/sidebar/tiles/content/scroll/VBoxContainer/buttons" instance=ExtResource( 12 )]
@@ -1120,8 +1127,8 @@ custom_styles/panel = ExtResource( 21 )
 popup/exclusive = false
 
 [node name="exit_editor" type="PopupPanel" parent="popups" groups=[
-"auto_scale",
 "auto_center",
+"auto_scale",
 ]]
 
 editor/display_folded = true

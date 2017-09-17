@@ -98,6 +98,9 @@ func clear():
 	for id in robots:
 		robots[id].queue_free()
 	robots = []
+	grid = []
+	end_doors = {}
+	robot_portals = {}
 
 ####################
 ## End of levels  ##
@@ -171,8 +174,6 @@ func load_from(s):
 	self.clear()
 	height = s.height
 	width = s.width
-	grid = []
-	end_doors = {}
 	robots = s.robots
 	for line in range(height):
 		grid.push_back([])

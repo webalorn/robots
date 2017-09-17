@@ -1,0 +1,7 @@
+extends "wall_tile.gd"
+
+func _init(a, b, c).(a, b, c):
+	pass
+
+func get_projectile_entering_result(direction):
+	return {result = CONSTS.result_continue}

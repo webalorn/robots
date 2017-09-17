@@ -8,15 +8,17 @@ var changes_manager
 var game_view
 var in_action = false
 
-func action_move_robot(robot, move):
+###############
+##  Actions  ##
+###############
+
+var robot_gui
+func before_action(robot):
 	in_action = true
-	var cam_parent = camera.get_parent()
-	var robot_gui = robot.get_active_gui()
+	robot_gui = robot.get_active_gui()
 	robot.hide_gui()
-	
-	processor.move_robot(robot.robot_id, move)
-	yield(processor, "processing_end")
-	
+
+func after_action(robot):
 	changes_manager.add_step(board.save())
 	if robot_gui:
 		robot.show_gui(robot_gui)
@@ -24,6 +26,21 @@ func action_move_robot(robot, move):
 	
 	if board.is_level_done():
 		set_level_to_done()
+
+func action_move_robot(robot, move):
+	before_action(robot)
+	processor.move_robot(robot.robot_id, move)
+	yield(processor, "processing_end")
+	after_action(robot)
+
+func action_throw_portal(robot, direction):
+	before_action(robot)
+	processor.throw_portal(robot.robot_id, direction)
+	after_action(robot)
+
+###############
+##           ##
+###############
 
 func _ready():
 	game_view = get_node("view")
@@ -45,7 +62,8 @@ func load_level():
 	if save != null:
 		board.load_from(save)
 	elif OS.is_debug_build():
-		board.load_from(save_manager.read("res://data/levels/chapter_1/1.dat"))
+		# board.load_from(save_manager.read("res://data/levels/chapter_1/1.dat"))
+		board.load_from(save_manager.read("user://editor/level2.dat"))
 	else:
 		exit()
 

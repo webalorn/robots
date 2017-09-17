@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=11 format=1]
 
 [ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/game/game.gd" type="Script" id=2]
@@ -6,9 +6,10 @@
 [ext_resource path="res://addons/resizable_gui/icon.png" type="Texture" id=4]
 [ext_resource path="res://gui/game/menu_button.png" type="Texture" id=5]
 [ext_resource path="res://gui/game/back.png" type="Texture" id=6]
-[ext_resource path="res://scenes/game/game_board.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/game/camera.gd" type="Script" id=8]
-[ext_resource path="res://gui/second_plan_elements/background_panel.tres" type="StyleBox" id=9]
+[ext_resource path="res://gui/game/throw_portal.png" type="Texture" id=7]
+[ext_resource path="res://scenes/game/game_board.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/game/camera.gd" type="Script" id=9]
+[ext_resource path="res://gui/second_plan_elements/background_panel.tres" type="StyleBox" id=10]
 
 [node name="game" type="Control"]
 
@@ -69,14 +70,34 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 75.0
+margin/left = 80.0
 margin/top = 10.0
-margin/right = -181.0
+margin/right = -176.0
 margin/bottom = 268.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 6 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="portal_button" type="TextureButton" parent="gui"]
+
+anchor/top = 1
+anchor/bottom = 1
+rect/scale = Vector2( 0.3, 0.3 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 89.0
+margin/right = 266.0
+margin/bottom = -167.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 7 )
 params/resize_mode = 0
 params/stretch_mode = 0
 
@@ -97,7 +118,7 @@ audio_listener/enable_3d = false
 physics/object_picking = false
 gui/disable_input = false
 
-[node name="board" parent="view" instance=ExtResource( 7 )]
+[node name="board" parent="view" instance=ExtResource( 8 )]
 
 tile_size = 100
 mode = "game"
@@ -120,7 +141,7 @@ drag_margin/left = 0.2
 drag_margin/top = 0.2
 drag_margin/right = 0.2
 drag_margin/bottom = 0.2
-script/script = ExtResource( 8 )
+script/script = ExtResource( 9 )
 margin_size = 0.2
 
 [node name="popups" type="Control" parent="."]
@@ -138,8 +159,8 @@ margin/right = 0.0
 margin/bottom = 0.0
 
 [node name="menu" type="PopupPanel" parent="popups" groups=[
-"auto_scale",
 "auto_center",
+"auto_scale",
 ]]
 
 editor/display_folded = true
@@ -236,12 +257,12 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
-custom_styles/panel = ExtResource( 9 )
+custom_styles/panel = ExtResource( 10 )
 popup/exclusive = false
 
 [node name="end_level" type="PopupPanel" parent="popups" groups=[
-"auto_scale",
 "auto_center",
+"auto_scale",
 ]]
 
 visibility/visible = false
@@ -354,11 +375,11 @@ flat = false
 
 [connection signal="pressed" from="popups/end_level/buttons/exit" to="." method="exit"]
 
+[connection signal="pressed" from="popups/end_level/buttons/restart" to="." method="_on_restart"]
+
 [connection signal="pressed" from="popups/end_level/buttons/restart" to="popups/end_level" method="hide"]
 
 [connection signal="pressed" from="popups/end_level/buttons/restart" to="popups/background" method="hide"]
-
-[connection signal="pressed" from="popups/end_level/buttons/restart" to="." method="_on_restart"]
 
 [connection signal="pressed" from="popups/end_level/buttons/next_level" to="." method="_on_next_level"]
 

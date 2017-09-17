@@ -42,6 +42,9 @@ func get_entering_result(direction):
 		return PORTAL_CLASS.get_entering_special_action_from(self, linked_to)
 	return {action = CONSTS.blocked}
 
+func get_projectile_entering_result(direction):
+	return {result = CONSTS.result_target_reached}
+
 func _init(a, b, c).(a, b, c):
 	pass
 

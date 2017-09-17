@@ -104,6 +104,56 @@ func action_move_robot():
 		in_move = false
 		try_end_move()
 
+#####################
+##  Throw portals  ##
+#####################
+
+var projectile_end_results = [
+	CONSTS.result_blocked,
+	CONSTS.result_target_reached,
+	CONSTS.result_out_of_grid
+]
+
+func throw_portal(robot_id, direction):
+	var robot = board.robots[str(robot_id)]
+	var portal_id = robot.get_portal_id()
+	
+	var result = get_throw_portal_result(robot_id, direction)
+	if result.result == CONSTS.result_target_reached:
+		result.tile.portal_id = portal_id
+		result.tile.rotation = result.side_of_tile
+	
+func get_throw_portal_result(robot_id, direction):
+	var robot = board.robots[str(robot_id)]
+	var tile = board.grid[robot.line][robot.col]
+	
+	while direction != null:
+		var next_pos = CONSTS.apply_move(tile.line, tile.col, direction)
+		
+		var action_result = {"result": CONSTS.result_blocked, "tile": next_pos}
+		
+		# Apply move
+		if not board.pos_in_grid(next_pos.line, next_pos.col):
+			action_result.result = CONSTS.result_out_of_grid
+		elif board.robot_on_cell(next_pos.line, next_pos.col):
+			action_result.result = CONSTS.result_blocked
+		else:
+			var next_tile = board.grid[next_pos.line][next_pos.col]
+			var enterSide = CONSTS.real_side(CONSTS.invertDir(direction), next_tile.rotation)
+			action_result = next_tile.get_projectile_entering_result(enterSide)
+			action_result.tile_type = next_tile.tile_type
+			action_result.side_of_tile = CONSTS.invertDir(direction)
+			
+			tile = next_tile
+		
+		if action_result.result in projectile_end_results:
+			action_result.tile = tile
+			return action_result
+
+###############
+##           ##
+###############
+
 func _init(_board):
 	board = _board
 	board.linked_processor = self

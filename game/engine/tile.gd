@@ -20,6 +20,9 @@ func set_is_active(value):
 func get_entering_result(direction):
 	return {action = CONSTS.destroyed}
 
+func get_projectile_entering_result(direction):
+	return {result = CONSTS.result_continue}
+
 func _create_view():
 	var scene_path = "res://scenes/game/tiles/" + tile_type + "/" + tile_type + ".tscn"
 	if global.file_exists(scene_path):

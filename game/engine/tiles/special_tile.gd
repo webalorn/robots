@@ -7,3 +7,6 @@ func get_entering_result(direction):
 	if direction == CONSTS.DIRS.UP and self.has_method("get_entering_special_action"):
 		return get_entering_special_action()
 	return {action = CONSTS.blocked}
+
+func get_projectile_entering_result(direction):
+	return {result = CONSTS.result_blocked}

@@ -1,6 +1,7 @@
 extends Node
 
 enum DIRS {UP = 0, LEFT = 1, DOWN = 2, RIGHT = 3}
+enum projectiles {portal = 0}
 
 const colors = ["red", "green", "blue", "orange", "white"]
 const color_to_modulate = {
@@ -10,12 +11,19 @@ const color_to_modulate = {
 	"orange": Color(0.93, 0.52, 0.05)
 }
 
+##  For robots  ##
 const blocked = "blocked"
 const move = "move"
 const lost_in_space = "lost_in_space"
 const destroyed = "destroyed"
 const teleport = "teleport"
 const portal_blocked = "portal_blocked"
+
+##  For projectiles  ##
+const result_target_reached = "reached"
+const result_blocked = "blocked"
+const result_continue = "continue"
+const result_out_of_grid = "out_of_grid"
 
 func invertDir(dir):
 	if dir == DIRS.UP:

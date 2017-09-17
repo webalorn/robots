@@ -66,7 +66,7 @@ func get_progress(path):
 func is_ready(path):
 	var ret
 	_lock("is_ready")
-	if path in pending:
+	if path in pending and pending[path]:
 		ret = !(pending[path] extends ResourceInteractiveLoader)
 	else:
 		ret = false

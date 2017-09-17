@@ -1,6 +1,6 @@
 extends "game_element.gd"
 
-var robot_id = 1
+var robot_id = "1"
 var destroyed = false setget set_destroyed
 var anim_nodes = []
 
@@ -9,9 +9,18 @@ const robots_colors = {
 	"1" : "red",
 	"2" : "green"
 }
+const robots_portals_ids = {
+	"2" : 1,
+	"portal2" : 2
+}
 
 func get_color():
 	return robots_colors[robot_id]
+
+func get_portal_id():
+	if robots_portals_ids.has(robot_id):
+		return robots_portals_ids[robot_id]
+
 
 ####################
 ##   Animations   ##
@@ -103,7 +112,7 @@ func action_portal_blocked(params):
 ##      GUI       ##
 ####################
 
-var gui_childs = ["arrows"]
+var gui_childs = ["arrows", "portal_arrows"]
 
 func hide_gui():
 	for k in gui_childs:

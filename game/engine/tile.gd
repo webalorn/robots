@@ -25,11 +25,7 @@ func get_projectile_entering_result(direction):
 
 func _create_view():
 	var scene_path = "res://scenes/game/tiles/" + tile_type + "/" + tile_type + ".tscn"
-	if global.file_exists(scene_path):
-		view = load(scene_path).instance()
-	else:
-		view = Sprite.new()
-		view.set_texture(get_tile_icon_texture(tile_type))
+	view = load(scene_path).instance()
 	._create_view()
 
 func _init(_line, _col, type).(_line, _col):

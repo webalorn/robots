@@ -62,8 +62,7 @@ func load_level():
 	if save != null:
 		board.load_from(save)
 	elif OS.is_debug_build():
-		# board.load_from(save_manager.read("res://data/levels/chapter_1/1.dat"))
-		board.load_from(save_manager.read("user://editor/level2.dat"))
+		board.load_from(save_manager.read("res://data/levels/chapter_1/1.dat"))
 	else:
 		exit()
 
@@ -109,6 +108,8 @@ func is_game_input_active():
 	for p in get_node("popups").get_children():
 		if p.is_visible():
 			return false
+	if get_node("gui/portal_button").is_pressed():
+		return false
 	return true
 
 func handle_return_action():

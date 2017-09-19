@@ -45,7 +45,7 @@ __meta__ = {
 
 [node name="menu_button" type="TextureButton" parent="gui"]
 
-rect/scale = Vector2( 0.25, 0.25 )
+rect/scale = Vector2( 0.4, 0.4 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -65,15 +65,15 @@ params/stretch_mode = 0
 
 anchor/left = 1
 anchor/right = 1
-rect/scale = Vector2( 0.25, 0.25 )
+rect/scale = Vector2( 0.4, 0.4 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 80.0
-margin/top = 10.0
-margin/right = -176.0
-margin/bottom = 268.0
+margin/left = 117.0
+margin/top = 14.0
+margin/right = -139.0
+margin/bottom = 272.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -85,15 +85,15 @@ params/stretch_mode = 0
 
 anchor/top = 1
 anchor/bottom = 1
-rect/scale = Vector2( 0.3, 0.3 )
+rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 89.0
-margin/right = 266.0
-margin/bottom = -167.0
+margin/left = 42.0
+margin/top = 403.0
+margin/right = 298.0
+margin/bottom = 147.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -103,6 +103,7 @@ params/stretch_mode = 0
 
 [node name="view" type="Viewport" parent="."]
 
+editor/display_folded = true
 rect = Rect2( 0, 0, 1080, 720 )
 own_world = false
 world = null
@@ -159,8 +160,8 @@ margin/right = 0.0
 margin/bottom = 0.0
 
 [node name="menu" type="PopupPanel" parent="popups" groups=[
-"auto_center",
 "auto_scale",
+"auto_center",
 ]]
 
 editor/display_folded = true
@@ -261,8 +262,8 @@ custom_styles/panel = ExtResource( 10 )
 popup/exclusive = false
 
 [node name="end_level" type="PopupPanel" parent="popups" groups=[
-"auto_center",
 "auto_scale",
+"auto_center",
 ]]
 
 visibility/visible = false
@@ -375,11 +376,11 @@ flat = false
 
 [connection signal="pressed" from="popups/end_level/buttons/exit" to="." method="exit"]
 
+[connection signal="pressed" from="popups/end_level/buttons/restart" to="popups/background" method="hide"]
+
 [connection signal="pressed" from="popups/end_level/buttons/restart" to="." method="_on_restart"]
 
 [connection signal="pressed" from="popups/end_level/buttons/restart" to="popups/end_level" method="hide"]
-
-[connection signal="pressed" from="popups/end_level/buttons/restart" to="popups/background" method="hide"]
 
 [connection signal="pressed" from="popups/end_level/buttons/next_level" to="." method="_on_next_level"]
 

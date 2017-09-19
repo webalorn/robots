@@ -36,6 +36,7 @@ func event_touch(pos, index, is_pressed):
 		touchs_events.erase(index)
 
 func _unhandled_input(ev):
+	var gui = game.get_node("gui")
 	if not game.is_game_input_active():
 		return false
 	if not global.on_phone():

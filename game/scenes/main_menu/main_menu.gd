@@ -8,6 +8,9 @@ func play():
 func load_editor():
 	global.goto_scene("editor_files")
 
+func _on_goto_settings():
+	global.goto_scene("config")
+
 func exit():
 	get_tree().quit()
 

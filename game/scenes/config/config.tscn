@@ -1,0 +1,199 @@
+[gd_scene load_steps=10 format=1]
+
+[ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/config/config.gd" type="Script" id=2]
+[ext_resource path="res://addons/resizable_gui/gui_node.gd" type="Script" id=3]
+[ext_resource path="res://addons/resizable_gui/icon.png" type="Texture" id=4]
+[ext_resource path="res://scenes/config/lang_icons/usa.png" type="Texture" id=5]
+[ext_resource path="res://scenes/config/lang_icons/usa_selected.png" type="Texture" id=6]
+[ext_resource path="res://scenes/config/lang_icons/fr.png" type="Texture" id=7]
+[ext_resource path="res://scenes/config/lang_icons/fr_selected.png" type="Texture" id=8]
+[ext_resource path="res://gui/editor/back_button.png" type="Texture" id=9]
+
+[node name="config" type="Control"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 2 )
+
+[node name="background" type="ColorFrame" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+color = Color( 0.410156, 0.410156, 0.410156, 1 )
+
+[node name="gui" type="Control" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 3 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="settings" type="Panel" parent="gui"]
+
+anchor/left = 3
+anchor/right = 3
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 250.0
+margin/top = 100.0
+margin/right = -250.0
+margin/bottom = 100.0
+
+[node name="lang_label" type="Label" parent="gui/settings"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 33.0
+margin/top = 80.0
+margin/right = 468.0
+margin/bottom = 116.0
+text = "LANGUAGE"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="langs" type="ButtonGroup" parent="gui/settings"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 39.0
+margin/top = 155.0
+margin/right = 459.0
+margin/bottom = 235.0
+alignment = 0
+
+[node name="list" type="HBoxContainer" parent="gui/settings/langs"]
+
+rect/min_size = Vector2( 0, 80 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 420.0
+margin/bottom = 80.0
+custom_constants/separation = 60
+alignment = 1
+
+[node name="en" type="TextureButton" parent="gui/settings/langs/list" groups=[
+"lang_buttons",
+]]
+
+rect/min_size = Vector2( 80, 80 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 100.0
+margin/top = 0.0
+margin/right = 180.0
+margin/bottom = 80.0
+toggle_mode = true
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 5 )
+textures/pressed = ExtResource( 6 )
+params/resize_mode = 1
+params/stretch_mode = 0
+
+[node name="fr" type="TextureButton" parent="gui/settings/langs/list" groups=[
+"lang_buttons",
+]]
+
+rect/min_size = Vector2( 80, 80 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 240.0
+margin/top = 0.0
+margin/right = 320.0
+margin/bottom = 80.0
+toggle_mode = true
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 7 )
+textures/pressed = ExtResource( 8 )
+params/resize_mode = 1
+params/stretch_mode = 0
+
+[node name="left" type="Panel" parent="."]
+
+anchor/left = 3
+anchor/right = 3
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 382.0
+margin/top = 100.0
+margin/right = 282.0
+margin/bottom = 100.0
+
+[node name="exit" type="TextureButton" parent="left"]
+
+anchor/left = 3
+anchor/right = 3
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 50.0
+margin/top = 0.0
+margin/right = -50.0
+margin/bottom = 0.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 9 )
+params/resize_mode = 1
+params/stretch_mode = 6
+
+[connection signal="pressed" from="gui/settings/langs/list/en" to="." method="set_lang" binds= [ "en" ]]
+
+[connection signal="pressed" from="gui/settings/langs/list/fr" to="." method="set_lang" binds= [ "fr" ]]
+
+[connection signal="pressed" from="left/exit" to="." method="exit"]
+
+

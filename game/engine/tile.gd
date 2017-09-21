@@ -20,7 +20,7 @@ func set_is_active(value):
 func get_entering_result(direction):
 	return {action = CONSTS.destroyed}
 
-func get_projectile_entering_result(direction):
+func get_projectile_entering_result(direction, type):
 	return {result = CONSTS.result_continue}
 
 func _create_view():

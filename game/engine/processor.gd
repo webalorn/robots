@@ -120,8 +120,11 @@ func throw_portal(robot_id, direction):
 	
 	var result = get_throw_portal_result(robot_id, direction)
 	if result.result == CONSTS.result_target_reached:
-		result.tile.portal_id = portal_id
-		result.tile.rotation = result.side_of_tile
+		if result.tile.portal_id == null:
+			result.tile.portal_id = portal_id
+			result.tile.rotation = result.side_of_tile
+		elif result.tile.portal_id == portal_id:
+			result.tile.portal_id = null
 	
 func get_throw_portal_result(robot_id, direction):
 	var robot = board.robots[str(robot_id)]
@@ -140,7 +143,7 @@ func get_throw_portal_result(robot_id, direction):
 		else:
 			var next_tile = board.grid[next_pos.line][next_pos.col]
 			var enterSide = CONSTS.real_side(CONSTS.invertDir(direction), next_tile.rotation)
-			action_result = next_tile.get_projectile_entering_result(enterSide)
+			action_result = next_tile.get_projectile_entering_result(enterSide, CONSTS.projectile_portal)
 			action_result.tile_type = next_tile.tile_type
 			action_result.side_of_tile = CONSTS.invertDir(direction)
 			

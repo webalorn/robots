@@ -25,6 +25,8 @@ const result_blocked = "blocked"
 const result_continue = "continue"
 const result_out_of_grid = "out_of_grid"
 
+const projectile_portal = "portal"
+
 func invertDir(dir):
 	if dir == DIRS.UP:
 		return DIRS.DOWN

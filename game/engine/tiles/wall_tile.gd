@@ -6,5 +6,5 @@ func _init(a, b, c).(a, b, c):
 func get_entering_result(direction):
 	return {action = CONSTS.blocked}
 
-func get_projectile_entering_result(direction):
+func get_projectile_entering_result(direction, type):
 	return {result = CONSTS.result_blocked}

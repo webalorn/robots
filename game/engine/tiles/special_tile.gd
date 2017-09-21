@@ -8,5 +8,5 @@ func get_entering_result(direction):
 		return get_entering_special_action()
 	return {action = CONSTS.blocked}
 
-func get_projectile_entering_result(direction):
+func get_projectile_entering_result(direction, type):
 	return {result = CONSTS.result_blocked}

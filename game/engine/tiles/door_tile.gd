@@ -18,7 +18,7 @@ func get_entering_result(direction):
 		return {action = CONSTS.blocked}
 	return {action = CONSTS.move}
 
-func get_projectile_entering_result(direction):
+func get_projectile_entering_result(direction, type):
 	if active:
 		return {result = CONSTS.result_blocked}
 	return {result = CONSTS.result_continue}

@@ -33,7 +33,7 @@ func handle_touch_cell(line, col):
 			if robot != active_robot:
 				set_active_robot(robot)
 			else:
-				active_robot = null
+				reset_active_robot()
 		elif active_robot:
 			reset_active_robot()
 	else:
@@ -53,8 +53,9 @@ func show_robot_gui():
 	portal_button.set_hidden(active_robot.get_portal_id() == null)
 
 func toogle_action_portal():
-	portal_action = not portal_action
-	show_robot_gui()
+	if not game.in_action:
+		portal_action = not portal_action
+		show_robot_gui()
 
 func set_active_from_id(robot_id):
 	if robot_id and game.board.robots.has(robot_id):

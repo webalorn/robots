@@ -62,7 +62,7 @@ func close_properties():
 static func get_portal_out_tile_from(portal):
 	var next_pos = CONSTS.apply_move(portal.line, portal.col, portal.rotation)
 	if not portal.root.pos_in_grid(next_pos.line, next_pos.col):
-		return null
+		return next_pos
 	var tile = portal.root.grid[next_pos.line][next_pos.col]
 	if not tile.is_robot_teleportation_possible():
 		return null
@@ -77,7 +77,7 @@ static func get_entering_special_action_from(portal, linked_to):
 	if linked_to == null or (portal.has_method("set_active") and not portal.active):
 		return {action = CONSTS.blocked}
 	var next_tile = linked_to.get_portal_out_tile()
-	if not next_tile:
+	if next_tile == null:
 		return {action = CONSTS.portal_blocked, portals = [portal, linked_to]}
 	return {
 		action = CONSTS.teleport,

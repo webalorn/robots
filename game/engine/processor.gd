@@ -56,12 +56,17 @@ func move_robot(id_robot, _direction):
 	action_move_robot()
 
 func action_move_robot():
+	if not robot.destroyed and not board.coords_on_grid(robot):
+		robot.effect_lost_in_space()
+		return try_next_action()
+	
 	if not todo_after_move.empty():
 		var action = todo_after_move[0]
 		todo_after_move.pop_front()
 		if action == "call_on_teleportation_effect":
-			var tile = board.grid[robot.line][robot.col]
-			tile.on_teleportation_effect(robot)
+			if board.coords_on_grid(robot):
+				var tile = board.grid[robot.line][robot.col]
+				tile.on_teleportation_effect(robot)
 		
 		try_next_action()
 		return

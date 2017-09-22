@@ -89,6 +89,9 @@ func pos_in_grid(line, col):
 		return false
 	return true
 
+func coords_on_grid(coords):
+	return pos_in_grid(coords.line, coords.col)
+
 func get_board_size():
 	return Vector2(width * tile_size, height * tile_size)
 

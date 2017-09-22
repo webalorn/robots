@@ -79,8 +79,8 @@ func notify(text):
 	var notifs = get_node("gui/notifications")
 	if notifs.get_children().size() >= MAX_NOTIFS:
 		var first = notifs.get_children()[0]
-		notifs.remove_child(first)
 		first.queue_free()
+		notifs.remove_child(first)
 	var new_notif = preload("notification.tscn").instance()
 	new_notif.set_text(text)
 	notifs.add_child(new_notif)

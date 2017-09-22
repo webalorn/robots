@@ -54,7 +54,7 @@ func play_anim_move(direction, type = null):
 	play_anim("move_" + dir + ("_" + type if type else ""), "action")
 
 #######################
-##  ACtions effects  ##
+##  Actions effects  ##
 #######################
 
 func set_pos_from_params(params, pos_property = "to_cell"):
@@ -66,9 +66,13 @@ func set_pos_from_params(params, pos_property = "to_cell"):
 ##  Effects  ##
 ###############
 
+# Animation type: not always effet.
+# "effet" only if this effect can take place during the robot movements
+# "action" otherwise
+
 func effect_destroyed():
 	if root.game_active():
-		play_anim("robot_dead", "effect")
+		play_anim("robot_dead", "action")
 		yield(anim_nodes.effects, "finished")
 		self.destroyed = true
 

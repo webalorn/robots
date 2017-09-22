@@ -7,12 +7,12 @@ var robot_id = null setget set_robot_id
 func _init(a, b, c).(a, b, c):
 	pass
 
-func get_entering_result(direction):
-	return {action = CONSTS.move}
-
 func _ready():
 	board.register_door(self)
 	set_robot_id(robot_id)
+
+func is_safe_for_robot():
+	return true
 
 func set_robot_id(value):
 	robot_id = value

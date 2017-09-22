@@ -64,7 +64,7 @@ static func get_portal_out_tile_from(portal):
 	if not portal.root.pos_in_grid(next_pos.line, next_pos.col):
 		return null
 	var tile = portal.root.grid[next_pos.line][next_pos.col]
-	if not tile extends FLOOR_CLASS:
+	if not tile.is_robot_teleportation_possible():
 		return null
 	if portal.root.robot_on_cell(next_pos.line, next_pos.col):
 		return null

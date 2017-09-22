@@ -10,7 +10,6 @@ var in_move = false
 ##  Manage animations  ##
 #########################
 
-
 var queue_actions = 0
 var queue_effects = 0
 
@@ -45,16 +44,28 @@ func try_end_move():
 var previous_locations = {}
 var robot
 var direction
+var todo_after_move = []
 
 func move_robot(id_robot, _direction):
 	robot = board.robots[str(id_robot)]
 	direction = _direction
 	in_move = true
 	previous_locations = {}
+	todo_after_move = []
 	
 	action_move_robot()
 
 func action_move_robot():
+	if not todo_after_move.empty():
+		var action = todo_after_move[0]
+		todo_after_move.pop_front()
+		if action == "call_on_teleportation_effect":
+			var tile = board.grid[robot.line][robot.col]
+			tile.on_teleportation_effect(robot)
+		
+		try_next_action()
+		return
+	
 	if not robot.destroyed and direction != null:
 		# Move datas
 		var next_pos = CONSTS.apply_move(robot.line, robot.col, direction)
@@ -91,6 +102,8 @@ func action_move_robot():
 		var action_method = "action_" + action_result.action
 		if robot.has_method(action_method):
 			robot.call(action_method, action_result)
+		if action_result.action == CONSTS.teleport:
+			todo_after_move.append("call_on_teleportation_effect")
 		
 		if action_result.action in no_move_actions:
 			direction = null

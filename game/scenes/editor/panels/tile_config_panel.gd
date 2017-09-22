@@ -40,6 +40,7 @@ func rotate_tile():
 
 func set_tile_active(value):
 	tile.active = value
+	set_safe_for_robot()
 
 func unselect_tile():
 	if tile:
@@ -52,6 +53,12 @@ func unselect_tile():
 func on_hide_panel():
 	unselect_tile()
 	.on_hide_panel()
+
+func set_safe_for_robot():
+	if tile and not tile.is_safe_for_robot():
+		var robot = board.robot_on_cell(tile.line, tile.col)
+		if robot:
+			board.remove_robot(robot.robot_id)
 
 ####################
 ##  Undo changes  ##

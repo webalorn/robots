@@ -18,10 +18,21 @@ func set_is_active(value):
 		self.active = value
 
 func get_entering_result(direction):
-	return {action = CONSTS.destroyed}
+	if is_safe_for_robot(): # So a robot can enter without problem
+		return {action = CONSTS.move}
+	return {action = CONSTS.blocked}
 
 func get_projectile_entering_result(direction, type):
 	return {result = CONSTS.result_continue}
+
+func is_safe_for_robot():
+	return is_always_safe_for_robot()
+
+func is_robot_teleportation_possible():
+	return is_safe_for_robot()
+
+func on_teleportation_effect(robot):
+	pass
 
 func _create_view():
 	var scene_path = "res://scenes/game/tiles/" + tile_type + "/" + tile_type + ".tscn"
@@ -63,7 +74,7 @@ static func load_from(s):
 func load_refs_from(s): # targets, links, etc... can't be created in "_load"
 	pass
 
-static func is_safe_for_robot():
+static func is_always_safe_for_robot():
 	return false
 
 static func get_type_class(type):

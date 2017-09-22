@@ -3,6 +3,9 @@ extends "game_element.gd"
 var rotation = 0 setget set_rotation
 var tile_type = null
 
+func _on_board_ready():
+	set_view_active()
+
 func set_rotation(value):
 	rotation = (int(value)%4+4)%4;
 	set_rot(float(rotation) * 2 * PI /4)
@@ -98,9 +101,9 @@ func set_anim(anim):
 	if anim != view.get_animation():
 		view.set_animation(anim)
 
-func set_view_active():
+func set_view_active(force_state = null):
 	if self.has_method("set_active"):
-		if self.active:
+		if (self.active and force_state == null) or force_state == true:
 			set_anim("active")
 		else:
 			set_anim("inactive")

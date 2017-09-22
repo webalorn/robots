@@ -187,6 +187,9 @@ func load_from(s):
 	for line in range(height):
 		for col in range(width):
 			grid[line][col].load_refs_from(s.grid[line][col])
+	for line in range(height):
+		for col in range(width):
+			grid[line][col]._on_board_ready()
 	for id in robots:
 		robots[id] = ROBOT_CLASS.load_from(robots[id])
 		get_node("robots").add_child(robots[id])

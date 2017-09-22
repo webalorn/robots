@@ -27,6 +27,12 @@ func set_active(value):
 		linked_to.active = active
 	set_view_active()
 
+func set_view_active(force_state = null):
+	if linked_to == null and root and root.game_active():
+		.set_view_active(false)
+	else:
+		.set_view_active(force_state)
+
 func unlink():
 	if linked_to:
 		var portal = linked_to

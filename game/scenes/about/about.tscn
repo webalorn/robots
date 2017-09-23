@@ -1,0 +1,220 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/about/about.gd" type="Script" id=2]
+[ext_resource path="res://addons/resizable_gui/gui_node.gd" type="Script" id=3]
+[ext_resource path="res://addons/resizable_gui/icon.png" type="Texture" id=4]
+[ext_resource path="res://scenes/about/godot.png" type="Texture" id=5]
+[ext_resource path="res://gui/editor/back_button.png" type="Texture" id=6]
+
+[node name="about" type="Control"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 2 )
+
+[node name="background" type="ColorFrame" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+color = Color( 0.410156, 0.410156, 0.410156, 1 )
+
+[node name="gui" type="Control" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 3 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+
+[node name="about" type="Panel" parent="gui"]
+
+anchor/left = 3
+anchor/right = 3
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 300.0
+margin/top = 100.0
+margin/right = -448.0
+margin/bottom = 100.0
+
+[node name="items" type="VBoxContainer" parent="gui/about"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 50.0
+margin/top = 30.0
+margin/right = 50.0
+margin/bottom = 30.0
+custom_constants/separation = 15
+alignment = 0
+
+[node name="developed_by" type="Label" parent="gui/about/items"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 648.0
+margin/bottom = 36.0
+text = "DEVELOPED_BY"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="name" type="Label" parent="gui/about/items"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 51.0
+margin/right = 648.0
+margin/bottom = 87.0
+text = "webalorn"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="gui/about"]
+
+anchor/top = 1
+anchor/right = 1
+anchor/bottom = 1
+rect/min_size = Vector2( 100, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 50.0
+margin/top = 130.0
+margin/right = 50.0
+margin/bottom = 30.0
+custom_constants/separation = 40
+alignment = 1
+
+[node name="godot" type="TextureButton" parent="gui/about/HBoxContainer"]
+
+rect/min_size = Vector2( 300, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 174.0
+margin/top = 0.0
+margin/right = 474.0
+margin/bottom = 100.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 5 )
+params/resize_mode = 1
+params/stretch_mode = 6
+
+[node name="border" type="ColorFrame" parent="gui/about/HBoxContainer/godot"]
+
+visibility/behind_parent = true
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+color = Color( 0.453125, 0.453125, 0.453125, 1 )
+
+[node name="background" type="ColorFrame" parent="gui/about/HBoxContainer/godot/border"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 3.0
+margin/top = 3.0
+margin/right = 3.0
+margin/bottom = 3.0
+color = Color( 1, 1, 1, 1 )
+
+[node name="left" type="Panel" parent="gui"]
+
+editor/display_folded = true
+anchor/left = 3
+anchor/right = 3
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 432.0
+margin/top = 100.0
+margin/right = 332.0
+margin/bottom = 100.0
+
+[node name="exit" type="TextureButton" parent="gui/left"]
+
+anchor/left = 3
+anchor/right = 3
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 50.0
+margin/top = 0.0
+margin/right = -50.0
+margin/bottom = 0.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 6 )
+params/resize_mode = 1
+params/stretch_mode = 6
+
+[connection signal="pressed" from="gui/about/HBoxContainer/godot" to="." method="_on_godot_button_pressed"]
+
+[connection signal="pressed" from="gui/left/exit" to="." method="exit"]
+
+

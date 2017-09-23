@@ -11,3 +11,6 @@ func _exit_tree():
 
 func set_lang(value):
 	Settings.set_locale(value)
+
+func _on_goto_about():
+	global.goto_scene("about")

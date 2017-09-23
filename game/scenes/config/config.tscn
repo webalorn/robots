@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=11 format=1]
 
 [ext_resource path="res://gui/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/config/config.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/config/lang_icons/fr.png" type="Texture" id=7]
 [ext_resource path="res://scenes/config/lang_icons/fr_selected.png" type="Texture" id=8]
 [ext_resource path="res://gui/editor/back_button.png" type="Texture" id=9]
+[ext_resource path="res://scenes/config/about.png" type="Texture" id=10]
 
 [node name="config" type="Control"]
 
@@ -192,10 +193,44 @@ textures/normal = ExtResource( 9 )
 params/resize_mode = 1
 params/stretch_mode = 6
 
+[node name="right" type="Panel" parent="gui"]
+
+anchor/left = 3
+anchor/right = 3
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -377.0
+margin/top = 100.0
+margin/right = -462.0
+margin/bottom = 185.0
+
+[node name="about" type="TextureButton" parent="gui/right"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 5.0
+margin/top = 5.0
+margin/right = 5.0
+margin/bottom = 5.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 10 )
+params/resize_mode = 1
+params/stretch_mode = 0
+
 [connection signal="pressed" from="gui/settings/langs/list/en" to="." method="set_lang" binds= [ "en" ]]
 
 [connection signal="pressed" from="gui/settings/langs/list/fr" to="." method="set_lang" binds= [ "fr" ]]
 
 [connection signal="pressed" from="gui/left/exit" to="." method="exit"]
+
+[connection signal="pressed" from="gui/right/about" to="." method="_on_goto_about"]
 
 

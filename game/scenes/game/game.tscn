@@ -43,6 +43,21 @@ __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 
+[node name="robots_bar" type="HBoxContainer" parent="gui"]
+
+anchor/right = 1
+rect/min_size = Vector2( 1080, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 100.0
+custom_constants/separation = 0
+alignment = 1
+
 [node name="menu_button" type="TextureButton" parent="gui"]
 
 rect/scale = Vector2( 0.4, 0.4 )
@@ -376,11 +391,11 @@ flat = false
 
 [connection signal="pressed" from="popups/end_level/buttons/exit" to="." method="exit"]
 
+[connection signal="pressed" from="popups/end_level/buttons/restart" to="popups/end_level" method="hide"]
+
 [connection signal="pressed" from="popups/end_level/buttons/restart" to="popups/background" method="hide"]
 
 [connection signal="pressed" from="popups/end_level/buttons/restart" to="." method="_on_restart"]
-
-[connection signal="pressed" from="popups/end_level/buttons/restart" to="popups/end_level" method="hide"]
 
 [connection signal="pressed" from="popups/end_level/buttons/next_level" to="." method="_on_next_level"]
 

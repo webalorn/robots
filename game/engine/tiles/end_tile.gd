@@ -27,8 +27,11 @@ func set_robot_id(value):
 func _exit_tree():
 	board.unregister_door(self)
 
+func end_activated_by(id):
+	return robot_id == null or id == robot_id
+
 func robot_enter(robot):
-	if robot_id == null or robot.robot_id == robot_id:
+	if end_activated_by(robot.robot_id):
 		set_door_state(true)
 
 func robot_exit(robot):

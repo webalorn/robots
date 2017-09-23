@@ -7,12 +7,15 @@ var anim_nodes = []
 const existants_ids = ["1", "2", "3"]
 const robots_colors = {
 	"1" : "red",
-	"2" : "green"
+	"2" : "green",
+	"3": "orange"
 }
 const robots_portals_ids = {
 	"2" : 1,
 	"3" : 2
 }
+
+signal event_dead
 
 func get_color():
 	return robots_colors[robot_id]
@@ -32,9 +35,10 @@ func get_player_of(anim_name):
 			return anim_nodes[name]
 
 func set_destroyed(val):
-	if val:
+	if val and not destroyed:
 		set_hidden(true)
 		destroyed = true
+		emit_signal("event_dead")
 
 func play_anim(name, type_action):
 	var player = get_player_of(name)
@@ -156,7 +160,7 @@ func save():
 	
 func _load(s):
 	._load(s)
-	destroyed = s.destroyed
+	set_destroyed(s.destroyed)
 	
 static func load_from(s):
 	var robot = new(s.line, s.col, s.robot_id)

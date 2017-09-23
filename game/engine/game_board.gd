@@ -11,6 +11,17 @@ var linked_processor = null
 const TILE_CLASS = preload("res://engine/tiles/floor_tile.gd")
 const ROBOT_CLASS = preload("res://engine/robot.gd")
 
+##############
+##  Events  ##
+##############
+
+signal robot_dead_event(robot_id)
+signal robot_move_begin_event(robot_id)
+signal robot_move_end_event(robot_id)
+
+func _on_robot_dead(id_robot):
+	emit_signal("robot_dead_event", id_robot)
+
 ###########################
 ## Manage game elements  ##
 ###########################
@@ -31,10 +42,14 @@ func set_tile_type(line, col, type = "floor"):
 	old.queue_free()
 	return new_tile
 
+func add_robot_object(robot):
+	get_node("robots").add_child(robot)
+	robots[str(robot.robot_id)] = robot
+	robot.connect("event_dead", self, "_on_robot_dead", [robot.robot_id])
+
 func add_new_robot(line, col, id_robot):
 	var robot = ROBOT_CLASS.new(line, col, str(id_robot))
-	get_node("robots").add_child(robot)
-	robots[str(id_robot)] = robot
+	add_robot_object(robot)
 
 func get_robot(id_robot):
 	if robots.has(id_robot):
@@ -191,8 +206,7 @@ func load_from(s):
 		for col in range(width):
 			grid[line][col]._on_board_ready()
 	for id in robots:
-		robots[id] = ROBOT_CLASS.load_from(robots[id])
-		get_node("robots").add_child(robots[id])
+		add_robot_object(ROBOT_CLASS.load_from(robots[id]))
 
 ###################################
 ## Game_element acces functions  ##

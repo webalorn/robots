@@ -28,12 +28,7 @@ func handle_touch_cell(line, col):
 		portal_action = false
 		var robots = game.board.robots
 		if robot:
-			if active_robot:
-				active_robot.hide_gui()
-			if robot != active_robot:
-				set_active_robot(robot)
-			else:
-				reset_active_robot()
+			set_active_robot(robot)
 		elif active_robot:
 			reset_active_robot()
 	else:
@@ -41,11 +36,19 @@ func handle_touch_cell(line, col):
 		reset_active_robot()
 
 func set_active_robot(robot):
-	active_robot = robot
-	portal_action = false
-	show_robot_gui()
+	if active_robot:
+		active_robot.hide_gui()
+	if active_robot != robot and not robot.destroyed:
+		active_robot = robot
+		portal_action = false
+		show_robot_gui()
+	else:
+		reset_active_robot()
 
 func show_robot_gui():
+	if not active_robot or active_robot.destroyed:
+		portal_button.set_hidden(true)
+		return
 	if portal_action:
 		active_robot.show_gui("portal_arrows")
 	else:
@@ -60,6 +63,10 @@ func toogle_action_portal():
 func set_active_from_id(robot_id):
 	if robot_id and game.board.robots.has(robot_id):
 		set_active_robot(game.board.robots[robot_id])
+
+func input_set_active_from_id(robot_id):
+	if not game.in_action:
+		set_active_from_id(robot_id)
 
 func _init(_game).(_game):
 	portal_button = game.get_node("gui/portal_button")

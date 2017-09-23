@@ -138,24 +138,28 @@ func throw_portal(robot_id, direction):
 	
 	var result = get_throw_portal_result(robot_id, direction)
 	if result.result == CONSTS.result_target_reached:
-		if result.tile.portal_id == null:
-			result.tile.portal_id = portal_id
-			result.tile.rotation = result.side_of_tile
-		elif result.tile.portal_id == portal_id:
-			result.tile.portal_id = null
+		var tile = board.grid[result.pos.line][result.pos.col]
+		if tile.portal_id == null:
+			tile.portal_id = portal_id
+			tile.rotation = result.side_of_tile
+		elif tile.portal_id == portal_id:
+			tile.portal_id = null
 	
 func get_throw_portal_result(robot_id, direction):
 	var robot = board.robots[str(robot_id)]
-	var tile = board.grid[robot.line][robot.col]
+	var pos = {line = robot.line, col = robot.col}
 	
 	while direction != null:
-		var next_pos = CONSTS.apply_move(tile.line, tile.col, direction)
+		if not board.pos_in_grid(pos.line, pos.col):
+			return {"result": CONSTS.result_out_of_grid}
 		
+		var next_pos = CONSTS.apply_move(pos.line, pos.col, direction)
 		var action_result = {"result": CONSTS.result_blocked, "tile": next_pos}
 		
 		# Apply move
 		if not board.pos_in_grid(next_pos.line, next_pos.col):
-			action_result.result = CONSTS.result_out_of_grid
+			action_result.result = CONSTS.result_continue
+			pos = next_pos
 		elif board.robot_on_cell(next_pos.line, next_pos.col):
 			action_result.result = CONSTS.result_blocked
 		else:
@@ -165,10 +169,14 @@ func get_throw_portal_result(robot_id, direction):
 			action_result.tile_type = next_tile.tile_type
 			action_result.side_of_tile = CONSTS.invertDir(direction)
 			
-			tile = next_tile
+			pos = next_pos
+			if action_result.has("teleport_to"):
+				pos = action_result.teleport_to
+			if action_result.has("direction"):
+				direction = action_result.direction
 		
 		if action_result.result in projectile_end_results:
-			action_result.tile = tile
+			action_result.pos = pos
 			return action_result
 
 ###############

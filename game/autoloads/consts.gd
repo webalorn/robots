@@ -24,6 +24,7 @@ const result_target_reached = "reached"
 const result_blocked = "blocked"
 const result_continue = "continue"
 const result_out_of_grid = "out_of_grid"
+const result_teleported = "teleported"
 
 const projectile_portal = "portal"
 

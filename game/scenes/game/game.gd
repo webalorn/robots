@@ -62,7 +62,8 @@ func load_level():
 	if save != null:
 		board.load_from(save)
 	elif OS.is_debug_build():
-		board.load_from(save_manager.read("res://data/levels/chapter_1/1.dat"))
+		# board.load_from(save_manager.read("res://data/levels/chapter_1/1.dat"))
+		board.load_from(save_manager.read("user://editor/tests.dat"))
 	else:
 		exit()
 

@@ -90,5 +90,22 @@ static func get_entering_special_action_from(portal, linked_to):
 		teleport_to = next_tile,
 		direction = linked_to.rotation
 	}
+
 func get_entering_special_action():
 	return get_entering_special_action_from(self, linked_to)
+
+static func get_projectile_entering_special_action_from(portal, linked_to):
+	var action = get_entering_special_action_from(portal, linked_to)
+	if action.action != CONSTS.teleport:
+		return {result = CONSTS.result_blocked}
+	return {
+		result = CONSTS.result_teleported,
+		teleport_to = action.teleport_to,
+		direction = action.direction
+	}
+
+func get_projectile_entering_special_action():
+	return get_projectile_entering_special_action_from(self, linked_to)
+
+
+

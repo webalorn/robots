@@ -12,6 +12,7 @@ var in_move = false
 
 var queue_actions = 0
 var queue_effects = 0
+var method_to_call
 
 func wait_action(object, event = "finished"):
 	queue_actions += 1
@@ -31,7 +32,7 @@ func _on_effect_done():
 
 func try_next_action():
 	if queue_actions == 0:
-		call_deferred("action_move_robot")
+		call_deferred(method_to_call)
 
 func try_end_move():
 	if not in_move and queue_actions == 0 and queue_effects == 0:
@@ -53,6 +54,7 @@ func move_robot(id_robot, _direction):
 	previous_locations = {}
 	todo_after_move = []
 	
+	method_to_call = "action_move_robot"
 	action_move_robot()
 
 func action_move_robot():
@@ -131,53 +133,73 @@ var projectile_end_results = [
 	CONSTS.result_target_reached,
 	CONSTS.result_out_of_grid
 ]
+var projectile
+var pos = {}
 
 func throw_portal(robot_id, direction):
-	var robot = board.robots[str(robot_id)]
-	var portal_id = robot.get_portal_id()
+	self.direction = direction
+	self.robot = board.robots[str(robot_id)]
+	pos = {line = robot.line, col = robot.col}
+	in_move = true
 	
-	var result = get_throw_portal_result(robot_id, direction)
-	if result.result == CONSTS.result_target_reached:
-		var tile = board.grid[result.pos.line][result.pos.col]
-		if tile.portal_id == null:
-			tile.portal_id = portal_id
-			tile.rotation = result.side_of_tile
-		elif tile.portal_id == portal_id:
-			tile.portal_id = null
+	projectile = preload("res://scenes/game/robots/portal_projectile.tscn").instance()
+	projectile.attach(board, robot)
+	method_to_call = "get_throw_portal_result"
 	
-func get_throw_portal_result(robot_id, direction):
-	var robot = board.robots[str(robot_id)]
-	var pos = {line = robot.line, col = robot.col}
+	get_throw_portal_result()
+
+func get_throw_portal_result():
 	
-	while direction != null:
-		if not board.pos_in_grid(pos.line, pos.col):
-			return {"result": CONSTS.result_out_of_grid}
+	if direction != null:
+		
 		
 		var next_pos = CONSTS.apply_move(pos.line, pos.col, direction)
-		var action_result = {"result": CONSTS.result_blocked, "tile": next_pos}
+		var action_result = {"result": CONSTS.result_blocked}
 		
 		# Apply move
-		if not board.pos_in_grid(next_pos.line, next_pos.col):
+		if not board.pos_in_grid(pos.line, pos.col):
+			action_result.result = CONSTS.result_out_of_grid
+		elif not board.pos_in_grid(next_pos.line, next_pos.col):
 			action_result.result = CONSTS.result_continue
-			pos = next_pos
 		elif board.robot_on_cell(next_pos.line, next_pos.col):
 			action_result.result = CONSTS.result_blocked
 		else:
 			var next_tile = board.grid[next_pos.line][next_pos.col]
 			var enterSide = CONSTS.real_side(CONSTS.invertDir(direction), next_tile.rotation)
 			action_result = next_tile.get_projectile_entering_result(enterSide, CONSTS.projectile_portal)
-			action_result.tile_type = next_tile.tile_type
 			action_result.side_of_tile = CONSTS.invertDir(direction)
-			
+		
+		action_result.move_direction = direction
+		action_result.from_pos = pos
+		action_result.to_pos = next_pos
+		if action_result.has("direction"):
+			direction = action_result.direction
+		
+		if not action_result.result in projectile_end_results:
 			pos = next_pos
 			if action_result.has("teleport_to"):
 				pos = action_result.teleport_to
-			if action_result.has("direction"):
-				direction = action_result.direction
+		
+		projectile.handle_action(action_result)
 		
 		if action_result.result in projectile_end_results:
-			action_result.pos = pos
-			return action_result
+			end_portal_move(action_result)
+			direction = null
+		
+		try_next_action()
+	else:
+		in_move = false
+		try_end_move()
+
+func end_portal_move(result):
+	var portal_id = robot.get_portal_id()
+	if result.result == CONSTS.result_target_reached:
+		var tile = board.grid[result.to_pos.line][result.to_pos.col]
+		if tile.portal_id == null:
+			tile.portal_id = portal_id
+			tile.rotation = result.side_of_tile
+		elif tile.portal_id == portal_id:
+			tile.portal_id = null
 
 ###############
 ##           ##

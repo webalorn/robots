@@ -16,13 +16,12 @@ func display_state():
 			get_node("anims").play("destroyed")
 	else:
 		cross.set_hidden(true)
-	
+
 	var on_end = false
 	if not robot.destroyed:
 		var tile = board.grid[robot.line][robot.col]
 		if tile.has_method("end_activated_by") and tile.end_activated_by(robot_name):
 			on_end = true
-	print(on_end)
 	get_node("item/on_end_tile").set_hidden(not on_end)
 
 func _on_robot_dead(id):

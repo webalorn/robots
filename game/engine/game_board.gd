@@ -4,6 +4,7 @@ var height = 0 setget resize_height
 var width = 0 setget resize_width
 var grid = []
 var robots = Dictionary()
+
 export var tile_size = 30 setget resize_tiles
 export(String) var mode = "game"
 var linked_processor = null
@@ -18,6 +19,7 @@ const ROBOT_CLASS = preload("res://engine/robot.gd")
 signal robot_dead_event(robot_id)
 signal robot_move_begin_event(robot_id)
 signal robot_move_end_event(robot_id)
+signal board_cleared(robot_id)
 
 func _on_robot_dead(id_robot):
 	emit_signal("robot_dead_event", id_robot)
@@ -119,6 +121,7 @@ func clear():
 	grid = []
 	end_doors = {}
 	robot_portals = {}
+	emit_signal("board_cleared")
 
 ####################
 ## End of levels  ##

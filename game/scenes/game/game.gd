@@ -37,12 +37,12 @@ func action_move_robot(robot, move):
 	before_action(robot)
 	processor.move_robot(robot.robot_id, move)
 	yield(processor, "processing_end")
-	print("end")
 	after_action(robot)
 
 func action_throw_portal(robot, direction):
 	before_action(robot)
 	processor.throw_portal(robot.robot_id, direction)
+	yield(processor, "processing_end")
 	after_action(robot)
 
 ###############

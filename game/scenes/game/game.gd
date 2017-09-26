@@ -107,6 +107,7 @@ func display_gui_actual_state():
 				continue
 			var item = preload("gui/robot_icon.tscn").instance()
 			item.set_robot(board, robot_name)
+			item.add_to_group("gui_buttons")
 			robots_bar.add_child(item)
 			item.connect("selected", input_manager, "input_set_active_from_id")
 	
@@ -121,6 +122,7 @@ func _on_restart():
 	input_manager.reset_active_robot()
 	load_level()
 	changes_manager.reset_to(board.save())
+	display_gui_actual_state()
 
 func _on_cancel_move():
 	if self.in_action:
@@ -139,8 +141,9 @@ func is_game_input_active():
 	for p in get_node("popups").get_children():
 		if p.is_visible():
 			return false
-	if get_node("gui/portal_button").is_pressed():
-		return false
+	for node in get_tree().get_nodes_in_group("gui_buttons"):
+		if node.is_pressed():
+			return false
 	return true
 
 func handle_return_action():

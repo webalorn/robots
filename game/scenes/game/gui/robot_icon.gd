@@ -5,6 +5,9 @@ var board
 
 signal selected(id)
 
+func is_pressed():
+	return get_node("item/icon").is_pressed()
+
 func display_state():
 	var robot = board.robots[robot_name]
 	var cross = get_node("item/icon/cross")
